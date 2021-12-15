@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "gsw-xarray"
+version = "0.1.0"
+description = ""
+authors = ["Andrew Barna <abarna@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+xarray = "^0.20.2"
+gsw = "^3.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
