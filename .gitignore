@@ -1,6 +1,9 @@
 # macOS noise
 .DS_Store
 
+# emacs tmp
+*~
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
