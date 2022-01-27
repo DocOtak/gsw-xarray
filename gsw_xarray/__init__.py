@@ -19,7 +19,7 @@ _compat_modules = {name: import_module(f".{name}", "gsw_xarray") for name in _co
 # See PEP 562
 def __getattr__(name):
     if name in _compat:
-        return getattr(_compat[name], name)
+        return getattr(_compat_modules[name], name)
     try:
         return _wrapped_funcs[name]
     except KeyError:
