@@ -5,7 +5,7 @@ description = ""
 authors = ["Andrew Barna <abarna@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 xarray = "^0.20.2"
 gsw = "^3.4.0"
 
