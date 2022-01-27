@@ -11,6 +11,8 @@ gsw = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+Sphinx = "^4.4.0"
+furo = "^2022.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
