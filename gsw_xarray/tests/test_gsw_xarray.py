@@ -25,11 +25,18 @@ def test_func_standard():
 def test_func_standard_module():
     """gsw can be used with modules, e.g. gsw.density, or e.g. 'import sigma0 from gsw.density'"""
     ds = _create_ds()
+    # 
     sigma0 = gsw.density.sigma0(SA=ds.SA, CT=ds.CT)
     assert sigma0.attrs['standard_name'] == 'sea_water_sigma_t'
+    #
     from gsw.density import sigma0
     sigma0 = sigma0(SA=ds.SA, CT=ds.CT)
     assert sigma0.attrs['standard_name'] == 'sea_water_sigma_t'
+    #
     from gsw import density
     sigma0 = density.sigma0(SA=ds.SA, CT=ds.CT)
     assert sigma0.attrs['standard_name'] == 'sea_water_sigma_t'
+    #
+    from gsw.density import * # Not good to do, but checks if functions are loaded
+    sigma1 # should be loaded
+    
