@@ -9,6 +9,13 @@ The import gsw_xarray is kept in every function to not interfere
 between them with a global import.
 """
 
+def test_import_from():
+    """Test import from gsw_xarray"""
+    ds = create_ds()
+    from gsw_xarray import sigma0
+    sigma0 = sigma0(SA=ds.SA, CT=ds.CT)
+    assert sigma0.attrs['standard_name'] == 'sea_water_sigma_t'
+
 def test_func_standard_dir():
     """Test with dir"""
     ds = create_ds()
