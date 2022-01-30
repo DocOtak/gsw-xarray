@@ -16,7 +16,6 @@ def submodule_attr_compat(submodule_name):
 
 def submodule_dir_compat(submodule_name):
     submodule = import_module(submodule_name)
-    print(submodule, submodule_name)
     def dir_():
         return dir(submodule)
     return dir_
