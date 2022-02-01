@@ -2,7 +2,7 @@
 name = "gsw-xarray"
 version = "0.1.0"
 description = ""
-authors = ["Andrew Barna <abarna@gmail.com>"]
+authors = ["Andrew Barna <abarna@gmail.com>", "Romain Caneill <romain.caneill@ens-lyon.org>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
