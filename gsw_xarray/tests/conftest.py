@@ -1,7 +1,10 @@
-import xarray as xr
+import pytest
 
-def create_ds():
-    import numpy as np
+import xarray as xr
+import numpy as np
+
+@pytest.fixture
+def ds():
     ds = xr.Dataset()
     id = np.arange(3)
     ds['id'] = xr.DataArray(id, coords={'id':id})
