@@ -45,7 +45,8 @@ Pip
 Conda
 .....
 
-Activate your conda environment, and then use ``pip install gsw_xarray``.
+For the moment gsw-xarray is not released in conda-forge, so you'll
+need to instal via pip: activate your conda environment, and then use ``pip install gsw_xarray``.
 
 Pipenv
 ......
