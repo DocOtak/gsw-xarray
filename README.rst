@@ -38,6 +38,7 @@ Pip
 ...
 
 .. code:: bash
+
     pip install gsw_xarray
 
 
