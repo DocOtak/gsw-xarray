@@ -33,4 +33,4 @@ jobs:
         poetry install
     - name: Test with pytest
       run: |
-        poetry run pytest gsw_xarray/tests
+        /home/$HOME/.poetry/bin/poetry run pytest gsw_xarray/tests
