@@ -61,8 +61,8 @@ enhancements, and ideas are welcome.
 If you notice a bug or are missing a feature, fell free
 to open an issue in the `github issues page <https://github.com/DocOtak/gsw-xarray/issues>`_.
 
-In order to contribute to xgcm, please fork the repository and
-submit a pull request. A good step by step tutorial for this can be found in the
+In order to contribute to gsw-xarray, please fork the repository and
+submit a pull request. A good step by step tutorial for starting with git can be found in the
 `xarray contributor guide <https://xarray.pydata.org/en/stable/contributing.html#working-with-the-code>`_.
 A main difference is that we do not use conda as python environment, but poetry.
 
@@ -89,3 +89,8 @@ You can check that the tests pass locally:
 .. code:: bash
 
    pytest gsw_xarray/tests
+
+Release (for maintainers only)
+..............................
+
+TODO...
