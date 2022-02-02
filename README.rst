@@ -1,7 +1,7 @@
-gsw_xarray: Wrapper for gsw that adds CF attributes
+gsw-xarray: Wrapper for gsw that adds CF attributes
 ===================================================
 
-gsw_xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
+gsw-xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
 that will add CF attributes to xarray.DataArray outputs.
 
 Usage
@@ -52,5 +52,40 @@ Pipenv
 
 Inside a pipenv environment: ``pipenv install gsw_xarray``.
 
+
 Contributor guide
 -----------------
+
+All contributions, bug reports, bug fixes, documentation improvements,
+enhancements, and ideas are welcome.
+If you notice a bug or are missing a feature, fell free
+to open an issue in the `github issues page <https://github.com/DocOtak/gsw-xarray/issues>`_.
+
+In order to contribute to xgcm, please fork the repository and
+submit a pull request. A good step by step tutorial for this can be found in the
+`xarray contributor guide <https://xarray.pydata.org/en/stable/contributing.html#working-with-the-code>`_.
+A main difference is that we do not use conda as python environment, but poetry.
+
+Set up the environment
+......................
+
+You will first need to `install poetry <https://python-poetry.org/docs/#installation>`_.
+Then go to your local clone of gsw-xarray and launch installation:
+
+.. code:: bash
+
+   cd /path/to/your/gsw-xarray
+   poetry install
+
+You can then activate the environment by launching a shell
+within the virtual environment:
+
+.. code:: bash
+
+   poetry shell
+
+You can check that the tests pass locally:
+
+.. code:: bash
+
+   pytest gsw_xarray/tests
