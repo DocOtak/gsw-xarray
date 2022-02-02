@@ -60,14 +60,14 @@ def test_wrapped_return(upstream_func):
 @pytest.mark.parametrize("submodule", submodules)
 def test_wrapped_interface_submodules(submodule):
     upstream_submodule = getattr(gsw, submodule)
-    wrapepd_submodule = getattr(gsw_xarray, submodule)
+    wrapped_submodule = getattr(gsw_xarray, submodule)
 
     upstream_funcs = get_module_names(upstream_submodule)
     for name in upstream_funcs:
         if name in wrapped_funcs:
-            assert getattr(wrapepd_submodule, name) is wrapped_funcs[name]
+            assert getattr(wrapped_submodule, name) is wrapped_funcs[name]
         else:
-            assert getattr(wrapepd_submodule, name) is getattr(upstream_submodule, name)
+            assert getattr(wrapped_submodule, name) is getattr(upstream_submodule, name)
 
 
 @pytest.mark.parametrize("upstream_func", gsw_base)
