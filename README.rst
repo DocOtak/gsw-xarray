@@ -1,8 +1,8 @@
 gsw_xarray: Wrapper for gsw that adds CF attributes
 ===================================================
 
-gsw_xarray is a wrapper for gsw that will add CF attributes to
-xarray.DataArray outputs.
+gsw_xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
+that will add CF attributes to xarray.DataArray outputs.
 
 Usage
 -----
@@ -34,6 +34,19 @@ Outputs
 
 Installation
 ------------
+Pip
+...
+.. code:: bash
+    pip install gsw_xarray
+
+
+Conda
+.....
+Activate your conda environment, and then use `pip install gsw_xarray`.
+
+Pipenv
+......
+Inside a pipenv environment: `pipenv install gsw_xarray`.
 
 Contributor guide
 -----------------
