@@ -36,17 +36,20 @@ Installation
 ------------
 Pip
 ...
+
 .. code:: bash
     pip install gsw_xarray
 
 
 Conda
 .....
-Activate your conda environment, and then use `pip install gsw_xarray`.
+
+Activate your conda environment, and then use ``pip install gsw_xarray``.
 
 Pipenv
 ......
-Inside a pipenv environment: `pipenv install gsw_xarray`.
+
+Inside a pipenv environment: ``pipenv install gsw_xarray``.
 
 Contributor guide
 -----------------
