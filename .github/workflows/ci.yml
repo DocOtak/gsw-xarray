@@ -29,6 +29,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python # install poetry
+        source $HOME/.poetry/env
         poetry install
     - name: Test with pytest
       run: |
