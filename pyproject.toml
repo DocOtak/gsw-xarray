@@ -10,7 +10,7 @@ xarray = "^0.20.2"
 gsw = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = ">=6.2.5"
 Sphinx = "^4.4.0"
 furo = "^2022.1.2"
 
