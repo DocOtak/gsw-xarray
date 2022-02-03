@@ -21,9 +21,3 @@ def test_func_standard():
     ds = _create_ds()
     sigma0 = gsw.sigma0(SA=ds.SA, CT=ds.CT)
     assert sigma0.attrs['standard_name'] == 'sea_water_sigma_t'
-
-def test_func_standard_module():
-    """gsw can be used with modules, e.g. gsw.density"""
-    ds = _create_ds()
-    sigma0 = gsw.density.sigma0(SA=ds.SA, CT=ds.CT)
-    assert sigma0.attrs['standard_name'] == 'sea_water_sigma_t'
