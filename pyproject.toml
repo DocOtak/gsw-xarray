@@ -3,6 +3,7 @@ name = "gsw-xarray"
 version = "0.1.0"
 description = ""
 authors = ["Andrew Barna <abarna@gmail.com>", "Romain Caneill <romain.caneill@ens-lyon.org>"]
+license = "BSD-3-Clause"
 
 [tool.poetry.dependencies]
 python = "^3.8"
