@@ -6,14 +6,14 @@ authors = ["Andrew Barna <abarna@gmail.com>", "Romain Caneill <romain.caneill@en
 license = "BSD-3-Clause"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-xarray = "^0.20.2"
-gsw = "^3.4.0"
+python = ">=3.8"
+xarray = ">=0.20.2"
+gsw = ">=3.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=6.2.5"
-Sphinx = "^4.4.0"
-furo = "^2022.1.2"
+Sphinx = ">=4.4.0"
+furo = ">=2022.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
