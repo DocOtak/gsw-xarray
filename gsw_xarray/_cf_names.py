@@ -1,38 +1,138 @@
-_func_standard_name_units = (
-    ("CT_from_enthalpy", "sea_water_conservative_temperature", "degC"),
-    ("CT_from_enthalpy_exact", "sea_water_conservative_temperature", "degC"),
-    ("CT_from_entropy", "sea_water_conservative_temperature", "degC"),
-    ("CT_from_pt", "sea_water_conservative_temperature", "degC"),
-    ("CT_from_rho", "sea_water_conservative_temperature", "degC"),
-    ("CT_from_t", "sea_water_conservative_temperature", "degC"),
-    ("C_from_SP", "sea_water_electrical_conductivity", "mS cm-1"),
-    ("SA_from_SP", "sea_water_absolute_salinity", "g kg-1"),
-    ("SA_from_SP_Baltic", "sea_water_absolute_salinity", "g kg-1"),
-    ("SA_from_Sstar", "sea_water_absolute_salinity", "g kg-1"),
-    ("SA_from_rho", "sea_water_absolute_salinity", "g kg-1"),
-    ("SP_from_C", "sea_water_practical_salinity", "1"),
-    ("SP_from_SA", "sea_water_practical_salinity", "1"),
-    ("SP_from_SA_Baltic", "sea_water_practical_salinity", "1"),
-    ("SP_from_SK", "sea_water_practical_salinity", "1"),
-    ("SP_from_SR", "sea_water_practical_salinity", "1"),
-    ("SP_from_Sstar", "sea_water_practical_salinity", "1"),
-    ("SP_salinometer", "sea_water_practical_salinity", "1"),
-    ("SR_from_SP", "sea_water_reference_salinity", "g kg-1"),
-    ("Sstar_from_SA", "sea_water_preformed_salinity", "g kg-1"),
-    ("Sstar_from_SP", "sea_water_preformed_salinity", "g kg-1"),
-    ("f", "coriolis_parameter", "s-1"),
-    ("p_from_z", "sea_water_pressure", "dbar"),
-    ("pt0_from_t", "sea_water_potential_temperature", "degC"),
-    ("pt_from_CT", "sea_water_potential_temperature", "degC"),
-    ("pt_from_entropy", "sea_water_potential_temperature", "degC"),
-    # if p_ref is not 0 this next standard name is incorrect
-    ("pt_from_t", "sea_water_potential_temperature", "degC"),
-    ("rho", "sea_water_density", "kg m-3"),
-    ("rho_t_exact", "sea_water_density", "kg m-3"),
-    ("sigma0", "sea_water_sigma_t", "kg m-3"),  # only applies to pressure=0
-    ("sound_speed", "speed_of_sound_in_sea_water", "m s-1"),
-    ("sound_speed_t_exact", "speed_of_sound_in_sea_water", "m s-1"),
-    ("t_from_CT", "sea_water_temperature", "degC"),
-    # not sure how I feel about this next one
-    ("z_from_p", "height_above_mean_sea_level", "m"),
-)
+_func_standard_name_units = {
+    "CT_from_enthalpy": {
+        "standard_name": "sea_water_conservative_temperature",
+        "units": "degC",
+    },
+    "CT_from_enthalpy_exact": {
+        "standard_name": "sea_water_conservative_temperature",
+        "units": "degC",
+    },
+    "CT_from_entropy": {
+        "standard_name": "sea_water_conservative_temperature",
+        "units": "degC",
+    },
+    "CT_from_pt": {
+        "standard_name": "sea_water_conservative_temperature",
+        "units": "degC",
+    },
+    "CT_from_rho": {
+        "standard_name": "sea_water_conservative_temperature",
+        "units": "degC",
+    },
+    "CT_from_t": {
+        "standard_name": "sea_water_conservative_temperature",
+        "units": "degC",
+    },
+    "C_from_SP": {
+        "standard_name": "sea_water_electrical_conductivity",
+        "units": "mS cm-1",
+    },
+    "SA_from_SP": {
+        "standard_name": "sea_water_absolute_salinity",
+        "units": "g kg-1",
+    },
+    "SA_from_SP_Baltic": {
+        "standard_name": "sea_water_absolute_salinity",
+        "units": "g kg-1",
+    },
+    "SA_from_Sstar": {
+        "standard_name": "sea_water_absolute_salinity",
+        "units": "g kg-1",
+    },
+    "SA_from_rho": {
+        "standard_name": "sea_water_absolute_salinity",
+        "units": "g kg-1",
+    },
+    "SP_from_C": {
+        "standard_name": "sea_water_practical_salinity",
+        "units": "1",
+    },
+    "SP_from_SA": {
+        "standard_name": "sea_water_practical_salinity",
+        "units": "1",
+    },
+    "SP_from_SA_Baltic": {
+        "standard_name": "sea_water_practical_salinity",
+        "units": "1",
+    },
+    "SP_from_SK": {
+        "standard_name": "sea_water_practical_salinity",
+        "units": "1",
+    },
+    "SP_from_SR": {
+        "standard_name": "sea_water_practical_salinity",
+        "units": "1",
+    },
+    "SP_from_Sstar": {
+        "standard_name": "sea_water_practical_salinity",
+        "units": "1",
+    },
+    "SP_salinometer": {
+        "standard_name": "sea_water_practical_salinity",
+        "units": "1",
+    },
+    "SR_from_SP": {
+        "standard_name": "sea_water_reference_salinity",
+        "units": "g kg-1",
+    },
+    "Sstar_from_SA": {
+        "standard_name": "sea_water_preformed_salinity",
+        "units": "g kg-1",
+    },
+    "Sstar_from_SP": {
+        "standard_name": "sea_water_preformed_salinity",
+        "units": "g kg-1",
+    },
+    "f": {
+        "standard_name": "coriolis_parameter",
+        "units": "s-1",
+    },
+    "p_from_z": {
+        "standard_name": "sea_water_pressure",
+        "units": "dbar",
+    },
+    "pt0_from_t": {
+        "standard_name": "sea_water_potential_temperature",
+        "units": "degC",
+    },
+    "pt_from_CT": {
+        "standard_name": "sea_water_potential_temperature",
+        "units": "degC",
+    },
+    "pt_from_entropy": {
+        "standard_name": "sea_water_potential_temperature",
+        "units": "degC",
+    },
+    "pt_from_t": {
+        "standard_name": "sea_water_potential_temperature",
+        "units": "degC",
+    },
+    "rho": {
+        "standard_name": "sea_water_density",
+        "units": "kg m-3",
+    },
+    "rho_t_exact": {
+        "standard_name": "sea_water_density",
+        "units": "kg m-3",
+    },
+    "sigma0": {
+        "standard_name": "sea_water_sigma_t",
+        "units": "kg m-3",
+    },
+    "sound_speed": {
+        "standard_name": "speed_of_sound_in_sea_water",
+        "units": "m s-1",
+    },
+    "sound_speed_t_exact": {
+        "standard_name": "speed_of_sound_in_sea_water",
+        "units": "m s-1",
+    },
+    "t_from_CT": {
+        "standard_name": "sea_water_temperature",
+        "units": "degC",
+    },
+    "z_from_p": {
+        "standard_name": "height_above_mean_sea_level",
+        "units": "m",
+    },
+}
