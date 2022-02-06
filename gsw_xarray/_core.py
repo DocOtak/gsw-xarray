@@ -3,7 +3,7 @@ from functools import wraps
 import gsw
 import xarray as xr
 
-from ._cf_names import _func_standard_name_units
+from ._attributes import _func_standard_name_units
 
 def cf_attrs(attrs, extra=None):
     def cf_attrs_decorator(func):
