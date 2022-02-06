@@ -45,7 +45,7 @@ _func_standard_name = (
     ("z_from_p", "height_above_mean_sea_level", "m"),
 )
 
-_func_standard_name = (
+_func_standard_name_units = (
     ("CT_first_derivatives", None, None),
     ("CT_first_derivatives_wrt_t_exact", None, None),
     ("CT_freezing", "freezing_temperature_of_sea_water", "degC"),  # Not sure
