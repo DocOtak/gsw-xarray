@@ -5,6 +5,7 @@ import xarray as xr
 
 from ._cf_names import _func_standard_name_units
 
+
 def cf_attrs(standard_name, units, extra=None):
     def cf_attrs_decorator(func):
         @wraps(func)
@@ -19,6 +20,7 @@ def cf_attrs(standard_name, units, extra=None):
         return cf_attrs_wrapper
 
     return cf_attrs_decorator
+
 
 def _init_funcs():
     _wrapped_funcs = {}
