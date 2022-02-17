@@ -140,3 +140,25 @@ def test_attr_method(submodule, upstream_func):
             assert func is wrapped_funcs[upstream_func]
         else:
             assert func is expected_func
+
+
+def test_wildcard_top_level():
+    upstream_interface = {}
+    exec("from gsw import *", {}, upstream_interface)
+
+    wrapped_interface = {}
+    exec("from gsw_xarray import *", {}, wrapped_interface)
+
+    assert wrapped_interface.keys() == upstream_interface.keys()
+
+
+@pytest.mark.parametrize("submodule", submodules)
+def test_wildcard_submodule(submodule):
+    """tests the identities of funcs in the form of gsw_xarray.submodule.func"""
+    upstream_interface = {}
+    exec(f"from gsw.{submodule} import *", {}, upstream_interface)
+
+    wrapped_interface = {}
+    exec(f"from gsw_xarray.{submodule} import *", {}, wrapped_interface)
+
+    assert wrapped_interface.keys() == upstream_interface.keys()
