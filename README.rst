@@ -1,5 +1,13 @@
+.. |CI Status| image:: https://github.com/docotak/gsw-xarray/actions/workflows/ci.yml/badge.svg
+  :target: https://github.com/DocOtak/gsw-xarray/actions/workflows/ci.yml
+  :alt: CI Status
+.. |Documentation Status| image:: https://readthedocs.org/projects/gsw-xarray/badge/?version=latest
+  :target: https://gsw-xarray.readthedocs.io/en/latest/?badge=latest
+  :alt: Documentation Status
+
 gsw-xarray: Wrapper for gsw that adds CF attributes
 ===================================================
+|CI Status| |Documentation Status|
 
 gsw-xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
 that will add CF attributes to xarray.DataArray outputs.
