@@ -6,16 +6,22 @@ import xarray as xr
 from ._attributes import _func_attrs
 
 
+def add_attrs(rv, attrs):
+    name = attrs.pop("name")
+    rv.name = name
+    rv.attrs = attrs
+
+
 def cf_attrs(attrs, extra=None):
     def cf_attrs_decorator(func):
         @wraps(func)
         def cf_attrs_wrapper(*args, **kwargs):
             rv = func(*args, **kwargs)
-            if isinstance(rv, xr.DataArray):
-                name = attrs.pop("name")
-                rv.name = name
-                rv.attrs = attrs
-
+            if isinstance(rv, tuple):
+                for (i, da) in enumerate(rv):
+                    add_attrs(da, attrs[i])
+            elif isinstance(rv, xr.DataArray):
+                add_attrs(rv, attrs)
             return rv
 
         return cf_attrs_wrapper

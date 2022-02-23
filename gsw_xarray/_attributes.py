@@ -1,4 +1,14 @@
 _func_attrs = {
+    "CT_first_derivatives": (
+        {
+            "name": "CT_SA",
+            "units": "K (g/kg)^-1",
+        },
+        {
+            "name": "CT_pt",
+            "units": "1",
+        },
+    ),
     "CT_from_enthalpy": {
         "name": "CT",
         "standard_name": "sea_water_conservative_temperature",
