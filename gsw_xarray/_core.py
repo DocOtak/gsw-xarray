@@ -12,7 +12,7 @@ def cf_attrs(attrs, extra=None):
         def cf_attrs_wrapper(*args, **kwargs):
             rv = func(*args, **kwargs)
             if isinstance(rv, xr.DataArray):
-                name = attrs.pop('name')
+                name = attrs.pop("name")
                 rv.name = name
                 rv.attrs = attrs
 
