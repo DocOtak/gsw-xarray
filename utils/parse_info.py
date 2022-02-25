@@ -35,7 +35,7 @@ def print_dict_attrs():
         i
         for i in dir(gsw)
         if (isinstance(getattr(gsw, i), FunctionType) and not i.startswith("_"))
-    ][:10]
+    ]
     attrs = {}
     names = {}
     for func in all_gsw_function:
