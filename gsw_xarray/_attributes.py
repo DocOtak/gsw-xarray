@@ -1,7 +1,7 @@
 _func_attrs = {
     "CT_first_derivatives": (
         {
-            "units": "K (g/kg)^-1",
+            "units": "K/(g/kg)",
         },
         {
             "units": "1",
@@ -39,7 +39,7 @@ _func_attrs = {
     },
     "C_from_SP": {
         "standard_name": "sea_water_electrical_conductivity",
-        "units": "mS cm^-1",
+        "units": "mS/cm",
     },
     "SA_from_SP": {
         "standard_name": "sea_water_absolute_salinity",
@@ -99,7 +99,7 @@ _func_attrs = {
     },
     "f": {
         "standard_name": "coriolis_parameter",
-        "units": "s^-1",
+        "units": "radians/s",
     },
     "p_from_z": {
         "standard_name": "sea_water_pressure",
@@ -131,19 +131,19 @@ _func_attrs = {
     },
     "rho_t_exact": {
         "standard_name": "sea_water_density",
-        "units": "kg m^-3",
+        "units": "kg/m^3",
     },
     "sigma0": {
         "standard_name": "sea_water_sigma_t",
-        "units": "kg m^-3",
+        "units": "kg/m^3",
     },
     "sound_speed": {
         "standard_name": "speed_of_sound_in_sea_water",
-        "units": "m s^-1",
+        "units": "m/s",
     },
     "sound_speed_t_exact": {
         "standard_name": "speed_of_sound_in_sea_water",
-        "units": "m s^-1",
+        "units": "m/s",
     },
     "t_from_CT": {
         "standard_name": "sea_water_temperature",
