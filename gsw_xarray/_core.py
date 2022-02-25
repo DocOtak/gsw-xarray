@@ -3,18 +3,27 @@ from functools import wraps
 import gsw
 import xarray as xr
 
-from ._cf_names import _func_standard_name_units
+from ._attributes import _func_attrs
+from ._names import _names
+from ._check_funcs import _check_funcs
 
 
-def cf_attrs(standard_name, units, extra=None):
+def add_attrs(rv, attrs, name):
+    rv.name = name
+    rv.attrs = attrs
+
+
+def cf_attrs(attrs, name, check_func):
     def cf_attrs_decorator(func):
         @wraps(func)
         def cf_attrs_wrapper(*args, **kwargs):
             rv = func(*args, **kwargs)
-            if isinstance(rv, xr.DataArray):
-                rv.attrs["standard_name"] = standard_name
-                rv.attrs["units"] = units
-
+            attrs_checked = check_func(attrs, args, kwargs)
+            if isinstance(rv, tuple):
+                for (i, da) in enumerate(rv):
+                    add_attrs(da, attrs_checked[i], name[i])
+            elif isinstance(rv, xr.DataArray):
+                add_attrs(rv, attrs_checked, name)
             return rv
 
         return cf_attrs_wrapper
@@ -24,8 +33,12 @@ def cf_attrs(standard_name, units, extra=None):
 
 def _init_funcs():
     _wrapped_funcs = {}
-    for func, name, units in _func_standard_name_units:
-        _wrapped_funcs[func] = cf_attrs(name, units)(getattr(gsw, func))
+    for func in _func_attrs.keys():
+        _wrapped_funcs[func] = cf_attrs(
+            _func_attrs[func],
+            _names[func],
+            _check_funcs.get(func, lambda attrs, *args, **kwargs: attrs),
+        )(getattr(gsw, func))
     return _wrapped_funcs
 
 
