@@ -60,30 +60,37 @@ _func_attrs = {
     "SP_from_C": {
         "standard_name": "sea_water_practical_salinity",
         "units": "1",
+        "reference_scale": "PSS-78",
     },
     "SP_from_SA": {
         "standard_name": "sea_water_practical_salinity",
         "units": "1",
+        "reference_scale": "PSS-78",
     },
     "SP_from_SA_Baltic": {
         "standard_name": "sea_water_practical_salinity",
         "units": "1",
+        "reference_scale": "PSS-78",
     },
     "SP_from_SK": {
         "standard_name": "sea_water_practical_salinity",
         "units": "1",
+        "reference_scale": "PSS-78",
     },
     "SP_from_SR": {
         "standard_name": "sea_water_practical_salinity",
         "units": "1",
+        "reference_scale": "PSS-78",
     },
     "SP_from_Sstar": {
         "standard_name": "sea_water_practical_salinity",
         "units": "1",
+        "reference_scale": "PSS-78",
     },
     "SP_salinometer": {
         "standard_name": "sea_water_practical_salinity",
         "units": "1",
+        "reference_scale": "PSS-78",
     },
     "SR_from_SP": {
         "standard_name": "sea_water_reference_salinity",
