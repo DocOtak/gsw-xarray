@@ -1,4 +1,4 @@
-{
+_names = {
     "CT_first_derivatives": ("CT_SA", "CT_pt"),
     "CT_first_derivatives_wrt_t_exact": "CT",
     "CT_freezing": "CT",
