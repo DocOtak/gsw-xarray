@@ -662,7 +662,7 @@ _func_attrs = {
             "units": "(kg/m^3)(g/kg)^-1",  # To verify, it seems that the matlab doc is uncorrect
         },
         {
-            "units": "J/(kg K(g/kg))",
+            "units": "(kg/m^3)(J/kg)^-1",
         },
     ),
     "rho_ice": {
