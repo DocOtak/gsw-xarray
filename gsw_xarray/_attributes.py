@@ -457,9 +457,6 @@ _func_attrs = {
             "units": "1",
         },
     ),
-    "indexer": {
-        "units": "",
-    },
     "internal_energy": {
         "units": "J/kg",
     },
@@ -487,14 +484,11 @@ _func_attrs = {
     "latentheat_melting": {
         "units": "J/kg",
     },
-    "match_args_return": {
-        "units": "",
-    },
     "melting_ice_SA_CT_ratio": {
-        "units": "",
+        "units": "g/(kg K)",
     },
     "melting_ice_SA_CT_ratio_poly": {
-        "units": "",
+        "units": "g/(kg K)",
     },
     "melting_ice_equilibrium_SA_CT_ratio": {
         "units": "g/(kg K)",
@@ -502,9 +496,17 @@ _func_attrs = {
     "melting_ice_equilibrium_SA_CT_ratio_poly": {
         "units": "g/(kg K)",
     },
-    "melting_ice_into_seawater": {
-        "units": "g/kg",
-    },
+    "melting_ice_into_seawater": (
+        {
+            "units": "g/kg",
+        },
+        {
+            "units": "degC",
+        },
+        {
+            "units": "1",
+        },
+    ),
     "melting_seaice_SA_CT_ratio": {
         "units": "g/(kg K)",
     },
@@ -517,9 +519,14 @@ _func_attrs = {
     "melting_seaice_equilibrium_SA_CT_ratio_poly": {
         "units": "g/(kg K)",
     },
-    "melting_seaice_into_seawater": {
-        "units": "degC",
-    },
+    "melting_seaice_into_seawater": (
+        {
+            "units": "g/kg",
+        },
+        {
+            "units": "degC",
+        },
+    ),
     "p_from_z": {
         "standard_name": "sea_water_pressure",
         "units": "dbar",

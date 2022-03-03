@@ -13,6 +13,8 @@ import gsw
 
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_(func_name):
+    if func_name in ['indexer', 'match_args_return']:
+        return
     f = getattr(gsw, func_name)
     n_args = len(signature(f).parameters)
     p = signature(f).parameters
