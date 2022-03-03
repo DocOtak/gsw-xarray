@@ -7,20 +7,42 @@ _func_attrs = {
             "units": "1",
         },
     ),
-    "CT_first_derivatives_wrt_t_exact": {
-        "units": "K/(g/kg)",
-    },
+    "CT_first_derivatives_wrt_t_exact": (
+        {
+            "units": "K/(g/kg)",
+        },
+        {
+            "units": "1",
+        },
+        {
+            "units": "K/Pa",
+        },
+    ),
     "CT_freezing": {
         "units": "degC",
+        "reference_scale": "ITS-90",
+        "standard_name": "freezing_temperature_of_sea_water", # Not sure
     },
-    "CT_freezing_first_derivatives": {
-        "units": "K/(g/kg)",
-    },
-    "CT_freezing_first_derivatives_poly": {
-        "units": "K/(g/kg)",
-    },
+    "CT_freezing_first_derivatives": (
+        {
+            "units": "K/(g/kg)",
+        },
+        {
+            "units": "K/Pa",
+        },
+    ),
+    "CT_freezing_first_derivatives_poly": (
+        {
+            "units": "K/(g/kg)",
+        },
+        {
+            "units": "K/Pa",
+        },
+    ),
     "CT_freezing_poly": {
         "units": "degC",
+        "reference_scale": "ITS-90",
+        "standard_name": "freezing_temperature_of_sea_water", # Not sure
     },
     "CT_from_enthalpy": {
         "standard_name": "sea_water_conservative_temperature",
@@ -42,11 +64,18 @@ _func_attrs = {
         "units": "degC",
         "reference_scale": "ITS-90",
     },
-    "CT_from_rho": {
-        "standard_name": "sea_water_conservative_temperature",
-        "units": "degC",
-        "reference_scale": "ITS-90",
-    },
+    "CT_from_rho": (
+        {
+            "standard_name": "sea_water_conservative_temperature",
+            "units": "degC",
+            "reference_scale": "ITS-90",
+        },
+        {
+            "standard_name": "sea_water_conservative_temperature",
+            "units": "degC",
+            "reference_scale": "ITS-90",
+        },
+    ),
     "CT_from_t": {
         "standard_name": "sea_water_conservative_temperature",
         "units": "degC",
@@ -55,9 +84,17 @@ _func_attrs = {
     "CT_maxdensity": {
         "units": "degC",
     },
-    "CT_second_derivatives": {
-        "units": "K/((g/kg)^2)",
-    },
+    "CT_second_derivatives": (
+        {
+            "units": "K/((g/kg)^2)",
+        },
+        {
+            "units": "1/(g/kg)",
+        },
+        {
+            "units": "1/K",
+        },
+    ),
     "C_from_SP": {
         "standard_name": "sea_water_electrical_conductivity",
         "units": "mS/cm",
@@ -69,14 +106,27 @@ _func_attrs = {
         "units": "J/kg",
     },
     "Hill_ratio_at_SP2": {
-        "units": "",
-    },
-    "IPV_vs_fNsquared_ratio": {
         "units": "1",
     },
-    "Nsquared": {
-        "units": "",
-    },
+    "IPV_vs_fNsquared_ratio": (
+        {
+            "units": "1",
+        },
+        {
+            "standard_name": "sea_water_pressure", # Not sure (is it tot pressure or only presure due to sea water?
+            "units": "dbar",
+        },
+    ),
+    "Nsquared": (
+        {
+            "standard_name": "square_of_brunt_vaisala_frequency_in_sea_water",
+            "units": "rad^2 s^-2", # Seems to be an error in the python doc, where it is 1/s
+        },
+        {
+            "standard_name": "sea_water_pressure", # Not sure (is it tot pressure or only presure due to sea water?
+            "units": "dbar",
+        },
+    ),
     "O2sol": {
         "units": "umol/kg",
     },
@@ -161,9 +211,18 @@ _func_attrs = {
         "standard_name": "sea_water_preformed_salinity",
         "units": "g/kg",
     },
-    "Turner_Rsubrho": {
-        "units": "arcdeg",
-    },
+    "Turner_Rsubrho": (
+        {
+            "units": "arcdeg",
+        },
+        {
+            "units": "1",
+        },
+        {
+            "standard_name": "sea_water_pressure", # Not sure (is it tot pressure or only presure due to sea water?
+            "units": "dbar",
+        },
+    ),
     "adiabatic_lapse_rate_from_CT": {
         "units": "K/Pa",
     },
@@ -227,27 +286,58 @@ _func_attrs = {
     "enthalpy_diff": {
         "units": "J/kg",
     },
-    "enthalpy_first_derivatives": {
-        "units": "J/(kg (g/kg))",
-    },
-    "enthalpy_first_derivatives_CT_exact": {
-        "units": "J/(kg (g/kg))",
-    },
+    "enthalpy_first_derivatives": (
+        {
+            "units": "J/(kg (g/kg))",
+        },
+        {
+            "units": "J/(kg K)",
+        },
+    ),
+    "enthalpy_first_derivatives_CT_exact":  (
+        {
+            "units": "J/(kg (g/kg))",
+        },
+        {
+            "units": "J/(kg K)",
+        },
+    ),
     "enthalpy_ice": {
         "units": "J/kg",
     },
-    "enthalpy_second_derivatives": {
-        "units": "(J/kg)(g/kg)^-2)",
-    },
-    "enthalpy_second_derivatives_CT_exact": {
-        "units": "J/(kg (g/kg)^2)",
-    },
+    "enthalpy_second_derivatives": (
+        {
+            "units": "(J/kg)(g/kg)^-2)",
+        },
+        {
+            "units": "J/(kg K(g/kg))",
+        },
+        {
+            "units": "J/(kg K^2)",
+        },
+    ),
+    "enthalpy_second_derivatives_CT_exact":  (
+        {
+            "units": "(J/kg)(g/kg)^-2)",
+        },
+        {
+            "units": "J/(kg K(g/kg))",
+        },
+        {
+            "units": "J/(kg K^2)",
+        },
+    ),
     "enthalpy_t_exact": {
         "units": "J/kg",
     },
-    "entropy_first_derivatives": {
-        "units": "J/(kg K(g/kg))",
-    },
+    "entropy_first_derivatives": (
+        {
+            "units": "J/(kg K(g/kg))",
+        },
+        {
+            "units": "J/(kg K^2)",
+        },
+    ),
     "entropy_from_CT": {
         "units": "J/(kg*K)",
     },
@@ -260,49 +350,113 @@ _func_attrs = {
     "entropy_ice": {
         "units": "J/(kg*K)",
     },
-    "entropy_second_derivatives": {
-        "units": "J/(kg K^3)",
-    },
+    "entropy_second_derivatives": (
+        {
+            "units": "J/(kg K^3)",
+        },
+        {
+            "units": "J/(kg (g/kg) K^2)",
+        },
+        {
+            "units": "J/(kg K^3)",
+        },
+    ),
     "f": {
         "standard_name": "coriolis_parameter",
         "units": "radians/s",
     },
-    "frazil_properties": {
-        "units": "g/kg",
-    },
-    "frazil_properties_potential": {
-        "units": "g/kg",
-    },
-    "frazil_properties_potential_poly": {
-        "units": "g/kg",
-    },
-    "frazil_ratios_adiabatic": {
-        "units": "g/(kg K)",
-    },
-    "frazil_ratios_adiabatic_poly": {
-        "units": "g/(kg K)",
-    },
+    "frazil_properties": (
+        {
+            "units": "g/kg",
+        },
+        {
+            "units": "degC",
+        },
+        {
+            "units": "1",
+        },
+    ),
+    "frazil_properties_potential": (
+        {
+            "units": "g/kg",
+        },
+        {
+            "units": "degC",
+        },
+        {
+            "units": "1",
+        },
+    ),
+    "frazil_properties_potential_poly": (
+        {
+            "units": "g/kg",
+        },
+        {
+            "units": "degC",
+        },
+        {
+            "units": "1",
+        },
+    ),
+    "frazil_ratios_adiabatic": (
+        {
+            "units": "g/(kg K)",
+        },
+        {
+            "units": "g/(kg Pa)",
+        },
+        {
+            "units": "K/Pa",
+        },
+    ),
+    "frazil_ratios_adiabatic_poly": (
+        {
+            "units": "g/(kg K)",
+        },
+        {
+            "units": "g/(kg Pa)",
+        },
+        {
+            "units": "K/Pa",
+        },
+    ),
     "geo_strf_dyn_height": {
         "units": "m^2/s^2",
     },
-    "geostrophic_velocity": {
-        "units": "-90 ... +90",
-    },
+    "geostrophic_velocity": (
+        {
+            "units": "m/s",
+        },
+        {
+            "units": "degree_east",
+        },
+        {
+            "units": "degree_north",
+        },
+    ),
     "gibbs_ice_part_t": {
-        "units": "",
+        "units": "J/kg/K",
     },
     "gibbs_ice_pt0": {
-        "units": "",
+        "units": "J/kg/K",
     },
     "gibbs_ice_pt0_pt0": {
-        "units": "",
+        "units": "J/kg/K^2",
     },
     "grav": {
         "units": "m/s^2",
     },
-    "ice_fraction_to_freeze_seawater": {
-        "units": "g/kg",
-    },
+    "ice_fraction_to_freeze_seawater": (
+        {
+            "units": "g/kg",
+        },
+        {
+            "units": "degC",
+        },
+        {
+            "units": "1",
+        },
+    ),
     "indexer": {
         "units": "",
     },
