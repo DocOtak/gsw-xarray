@@ -1,3 +1,11 @@
+def check_pot_rho_t_exact(attrs, args, kwargs):
+    """
+    From cf convention:
+    Sea water potential density is the density a parcel of sea water would have if moved adiabatically to a reference pressure, by default assumed to be sea level pressure. To specify the reference pressure to which the quantity applies, provide a scalar coordinate variable with standard name reference_pressure. The density of a substance is its mass per unit volume. For sea water potential density, if 1000 kg m-3 is subtracted, the standard name sea_water_sigma_theta should be chosen instead.
+    """
+    return attrs
+
+
 def check_z_from_p(attrs, args, kwargs):
     """
     If the 2 optional arguments are not 0, removes the standard name.
@@ -41,4 +49,10 @@ def check_z_from_p(attrs, args, kwargs):
     return attrs
 
 
-_check_funcs = {"z_from_p": check_z_from_p}
+_check_funcs = {
+    "pot_rho_t_exact": check_pot_rho_t_exact,
+    "z_from_p": check_z_from_p,
+}
+
+# TODO
+# sigma1, sigma2, sigma3, sigma4

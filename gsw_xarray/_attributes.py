@@ -21,7 +21,7 @@ _func_attrs = {
     "CT_freezing": {
         "units": "degC",
         "reference_scale": "ITS-90",
-        "standard_name": "freezing_temperature_of_sea_water", # Not sure
+        "standard_name": "freezing_temperature_of_sea_water",  # Not sure
     },
     "CT_freezing_first_derivatives": (
         {
@@ -42,7 +42,7 @@ _func_attrs = {
     "CT_freezing_poly": {
         "units": "degC",
         "reference_scale": "ITS-90",
-        "standard_name": "freezing_temperature_of_sea_water", # Not sure
+        "standard_name": "freezing_temperature_of_sea_water",  # Not sure
     },
     "CT_from_enthalpy": {
         "standard_name": "sea_water_conservative_temperature",
@@ -83,6 +83,7 @@ _func_attrs = {
     },
     "CT_maxdensity": {
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
     "CT_second_derivatives": (
         {
@@ -113,17 +114,17 @@ _func_attrs = {
             "units": "1",
         },
         {
-            "standard_name": "sea_water_pressure", # Not sure (is it tot pressure or only presure due to sea water?
+            "standard_name": "sea_water_pressure",  # Not sure (is it tot pressure or only presure due to sea water?
             "units": "dbar",
         },
     ),
     "Nsquared": (
         {
             "standard_name": "square_of_brunt_vaisala_frequency_in_sea_water",
-            "units": "rad^2 s^-2", # Seems to be an error in the python doc, where it is 1/s
+            "units": "rad^2 s^-2",  # Seems to be an error in the python doc, where it is 1/s
         },
         {
-            "standard_name": "sea_water_pressure", # Not sure (is it tot pressure or only presure due to sea water?
+            "standard_name": "sea_water_pressure",  # Not sure (is it tot pressure or only presure due to sea water?
             "units": "dbar",
         },
     ),
@@ -219,7 +220,7 @@ _func_attrs = {
             "units": "1",
         },
         {
-            "standard_name": "sea_water_pressure", # Not sure (is it tot pressure or only presure due to sea water?
+            "standard_name": "sea_water_pressure",  # Not sure (is it tot pressure or only presure due to sea water?
             "units": "dbar",
         },
     ),
@@ -294,7 +295,7 @@ _func_attrs = {
             "units": "J/(kg K)",
         },
     ),
-    "enthalpy_first_derivatives_CT_exact":  (
+    "enthalpy_first_derivatives_CT_exact": (
         {
             "units": "J/(kg (g/kg))",
         },
@@ -316,7 +317,7 @@ _func_attrs = {
             "units": "J/(kg K^2)",
         },
     ),
-    "enthalpy_second_derivatives_CT_exact":  (
+    "enthalpy_second_derivatives_CT_exact": (
         {
             "units": "(J/kg)(g/kg)^-2)",
         },
@@ -371,6 +372,7 @@ _func_attrs = {
         },
         {
             "units": "degC",
+            "reference_scale": "ITS-90",
         },
         {
             "units": "1",
@@ -382,6 +384,7 @@ _func_attrs = {
         },
         {
             "units": "degC",
+            "reference_scale": "ITS-90",
         },
         {
             "units": "1",
@@ -393,6 +396,7 @@ _func_attrs = {
         },
         {
             "units": "degC",
+            "reference_scale": "ITS-90",
         },
         {
             "units": "1",
@@ -452,6 +456,7 @@ _func_attrs = {
         },
         {
             "units": "degC",
+            "reference_scale": "ITS-90",
         },
         {
             "units": "1",
@@ -502,6 +507,7 @@ _func_attrs = {
         },
         {
             "units": "degC",
+            "reference_scale": "ITS-90",
         },
         {
             "units": "1",
@@ -525,14 +531,12 @@ _func_attrs = {
         },
         {
             "units": "degC",
+            "reference_scale": "ITS-90",
         },
     ),
     "p_from_z": {
         "standard_name": "sea_water_pressure",
         "units": "dbar",
-    },
-    "pchip_interp": {
-        "units": "",
     },
     "pot_enthalpy_from_pt_ice": {
         "units": "J/kg",
@@ -543,16 +547,27 @@ _func_attrs = {
     "pot_enthalpy_ice_freezing": {
         "units": "J/kg",
     },
-    "pot_enthalpy_ice_freezing_first_derivatives": {
-        "units": "(J/kg)/(g/kg)",
-    },
-    "pot_enthalpy_ice_freezing_first_derivatives_poly": {
-        "units": "(J/kg)/(g/kg)",
-    },
+    "pot_enthalpy_ice_freezing_first_derivatives": (
+        {
+            "units": "(J/kg)/(g/kg)",
+        },
+        {
+            "units": "(J/kg)/Pa",
+        },
+    ),
+    "pot_enthalpy_ice_freezing_first_derivatives_poly": (
+        {
+            "units": "(J/kg)/(g/kg)",
+        },
+        {
+            "units": "(J/kg)/Pa",
+        },
+    ),
     "pot_enthalpy_ice_freezing_poly": {
         "units": "J/kg",
     },
     "pot_rho_t_exact": {
+        "standard_name": "sea_water_potential_density",
         "units": "kg/m^3",
     },
     "pressure_coefficient_ice": {
@@ -568,10 +583,16 @@ _func_attrs = {
     },
     "pt0_from_t_ice": {
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
-    "pt_first_derivatives": {
-        "units": "K/(g/kg)",
-    },
+    "pt_first_derivatives": (
+        {
+            "units": "K/(g/kg)",
+        },
+        {
+            "units": "1",
+        },
+    ),
     "pt_from_CT": {
         "standard_name": "sea_water_potential_temperature",
         "units": "degC",
@@ -584,9 +605,11 @@ _func_attrs = {
     },
     "pt_from_pot_enthalpy_ice": {
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
     "pt_from_pot_enthalpy_ice_poly": {
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
     "pt_from_t": {
         "standard_name": "sea_water_potential_temperature",
@@ -595,53 +618,118 @@ _func_attrs = {
     },
     "pt_from_t_ice": {
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
-    "pt_second_derivatives": {
-        "units": "K/((g/kg)^2)",
-    },
+    "pt_second_derivatives": (
+        {
+            "units": "K/((g/kg)^2)",
+        },
+        {
+            "units": "1/(g/kg)",
+        },
+        {
+            "units": "1/K",
+        },
+    ),
     "rho": {
         "standard_name": "sea_water_density",
         "units": "kg m^-3",
     },
-    "rho_alpha_beta": {
-        "units": "kg/m^3",
-    },
-    "rho_first_derivatives": {
-        "units": "(kg/m^3)(g/kg)^-1",
-    },
-    "rho_first_derivatives_wrt_enthalpy": {
-        "units": "(kg/m^3)(g/kg)^-1 (J/kg)^-1",
-    },
+    "rho_alpha_beta": (
+        {
+            "units": "kg/m^3",
+        },
+        {
+            "units": "1/K",
+        },
+        {
+            "units": "kg/g",
+        },
+    ),
+    "rho_first_derivatives": (
+        {
+            "units": "(kg/m^3)(g/kg)^-1",
+        },
+        {
+            "units": "kg/(m^3 K)",
+        },
+        {
+            "units": "kg/(m^3 Pa)",
+        },
+    ),
+    "rho_first_derivatives_wrt_enthalpy": (
+        {
+            "units": "(kg/m^3)(g/kg)^-1",  # To verify, it seems that the matlab doc is uncorrect
+        },
+        {
+            "units": "J/(kg K(g/kg))",
+        },
+    ),
     "rho_ice": {
         "units": "kg/m^3",
     },
-    "rho_second_derivatives": {
-        "units": "(kg/m^3)(g/kg)^-2",
-    },
-    "rho_second_derivatives_wrt_enthalpy": {
-        "units": "(kg/m^3)(g/kg)^-2 (J/kg)^-1",
-    },
+    "rho_second_derivatives": (
+        {
+            "units": "(kg/m^3)(g/kg)^-2",
+        },
+        {
+            "units": "(kg/m^3)(g/kg)^-1 K^-1",
+        },
+        {
+            "units": "(kg/m^3) K^-2",
+        },
+        {
+            "units": "(kg/m^3)(g/kg)^-1 Pa^-1",
+        },
+        {
+            "units": "(kg/m^3) K^-1 Pa^-1",
+        },
+    ),
+    "rho_second_derivatives_wrt_enthalpy": (
+        {
+            "units": "(kg/m^3)(g/kg)^-2",  # To verify, it seems that the matlab doc is uncorrect
+        },
+        {
+            "units": "(kg/m^3)(g/kg)^-1 (J/kg)^-1",
+        },
+        {
+            "units": "(kg/m^3)(J/kg)^-2",
+        },
+    ),
     "rho_t_exact": {
         "standard_name": "sea_water_density",
         "units": "kg/m^3",
     },
-    "seaice_fraction_to_freeze_seawater": {
-        "units": "",
-    },
+    "seaice_fraction_to_freeze_seawater": (
+        {
+            "units": " g/kg",
+        },
+        {
+            "units": "degC",
+            "reference_scale": "ITS-90",
+        },
+        {
+            "units": "1",
+        },
+    ),
     "sigma0": {
         "standard_name": "sea_water_sigma_t",
         "units": "kg/m^3",
     },
     "sigma1": {
+        "standard_name": "sea_water_sigma_theta",
         "units": "kg/m^3",
     },
     "sigma2": {
+        "standard_name": "sea_water_sigma_theta",
         "units": "kg/m^3",
     },
     "sigma3": {
+        "standard_name": "sea_water_sigma_theta",
         "units": "kg/m^3",
     },
     "sigma4": {
+        "standard_name": "sea_water_sigma_theta",
         "units": "kg/m^3",
     },
     "sound_speed": {
@@ -658,56 +746,114 @@ _func_attrs = {
     "specvol": {
         "units": "m^3/kg",
     },
-    "specvol_alpha_beta": {
-        "units": "m^3/kg",
-    },
+    "specvol_alpha_beta": (
+        {
+            "units": "m^3/kg",
+        },
+        {
+            "units": "1/K",
+        },
+        {
+            "units": "kg/g",
+        },
+    ),
     "specvol_anom_standard": {
         "units": "m^3/kg",
     },
-    "specvol_first_derivatives": {
-        "units": "(m^3/kg)(g/kg)^-1",
-    },
-    "specvol_first_derivatives_wrt_enthalpy": {
-        "units": "(m^3/kg)(g/kg)^-1 (J/kg)^-1",
-    },
+    "specvol_first_derivatives": (
+        {
+            "units": "(m^3/kg)(g/kg)^-1",
+        },
+        {
+            "units": "m^3/(kg K)",
+        },
+        {
+            "units": "m^3/(kg Pa)",
+        },
+    ),
+    "specvol_first_derivatives_wrt_enthalpy": (
+        {
+            "units": "(m^3/kg)(g/kg)^-1",  # seems to be an error in the doc
+        },
+        {
+            "units": "(m^3/kg)(J/kg)^-1",
+        },
+    ),
     "specvol_ice": {
         "units": "m^3/kg",
     },
-    "specvol_second_derivatives": {
-        "units": "(m^3/kg)(g/kg)^-2",
-    },
-    "specvol_second_derivatives_wrt_enthalpy": {
-        "units": "(m^3/kg)(g/kg)^-2 (J/kg)^-1",
-    },
+    "specvol_second_derivatives": (
+        {
+            "units": "(m^3/kg)(g/kg)^-2",
+        },
+        {
+            "units": "(m^3/kg)(g/kg)^-1 K^-1",
+        },
+        {
+            "units": "(m^3/kg) K^-2",
+        },
+        {
+            "units": "(m^3/kg)(g/kg)^-1 Pa^-1",  # seems to be an error in the doc
+        },
+        {
+            "units": "(m^3/kg) K^-1 Pa^-1",
+        },
+    ),
+    "specvol_second_derivatives_wrt_enthalpy": (
+        {
+            "units": "(m^3/kg)(g/kg)^-2",  # error in doc?
+        },
+        {
+            "units": "(m^3/kg)(g/kg)^-1 (J/kg)^-1",
+        },
+        {
+            "units": "(m^3/kg)(J/kg)^-2",
+        },
+    ),
     "specvol_t_exact": {
         "units": "kg/m^3",
     },
     "spiciness0": {
-        "units": "",
+        "units": "kg/m^3",
     },
     "spiciness1": {
-        "units": "",
+        "units": "kg/m^3",
     },
     "spiciness2": {
-        "units": "",
+        "units": "kg/m^3",
     },
     "t90_from_t68": {
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
     "t_deriv_chem_potential_water_t_exact": {
         "units": "J/g/C",
     },
     "t_freezing": {
+        "standard_name": "freezing_temperature_of_sea_water",  # Not sure
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
-    "t_freezing_first_derivatives": {
-        "units": "K/(g/kg)",
-    },
-    "t_freezing_first_derivatives_poly": {
-        "units": "K/(g/kg)",
-    },
+    "t_freezing_first_derivatives": (
+        {
+            "units": "K/(g/kg)",
+        },
+        {
+            "units": "K/Pa",
+        },
+    ),
+    "t_freezing_first_derivatives_poly": (
+        {
+            "units": "K/(g/kg)",
+        },
+        {
+            "units": "K/Pa",
+        },
+    ),
     "t_freezing_poly": {
+        "standard_name": "freezing_temperature_of_sea_water",  # Not sure
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
     "t_from_CT": {
         "standard_name": "sea_water_temperature",
@@ -716,6 +862,7 @@ _func_attrs = {
     },
     "t_from_pt0_ice": {
         "units": "degC",
+        "reference_scale": "ITS-90",
     },
     "thermobaric": {
         "units": "1/(K Pa)",
