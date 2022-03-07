@@ -717,19 +717,15 @@ _func_attrs = {
         "units": "kg/m^3",
     },
     "sigma1": {
-        "standard_name": "sea_water_sigma_theta",
         "units": "kg/m^3",
     },
     "sigma2": {
-        "standard_name": "sea_water_sigma_theta",
         "units": "kg/m^3",
     },
     "sigma3": {
-        "standard_name": "sea_water_sigma_theta",
         "units": "kg/m^3",
     },
     "sigma4": {
-        "standard_name": "sea_water_sigma_theta",
         "units": "kg/m^3",
     },
     "sound_speed": {

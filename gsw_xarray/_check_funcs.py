@@ -1,9 +1,35 @@
+def _rm_std_nme(d):
+    """
+    Return a dict which does not contain the standard name
+    """
+    d = d.copy()
+    # necessary to use a copy, or it will pop the item from the original dict
+    try:
+        d.pop("standard_name")
+    except KeyError:
+        pass
+    return d
+
 def check_pot_rho_t_exact(attrs, args, kwargs):
     """
-    From cf convention:
-    Sea water potential density is the density a parcel of sea water would have if moved adiabatically to a reference pressure, by default assumed to be sea level pressure. To specify the reference pressure to which the quantity applies, provide a scalar coordinate variable with standard name reference_pressure. The density of a substance is its mass per unit volume. For sea water potential density, if 1000 kg m-3 is subtracted, the standard name sea_water_sigma_theta should be chosen instead.
+    If the reference pressure is not 0, remove standard name.
+
+    Reminder of the function call:
+    gsw.pot_rho_t_exact(SA, t, p, p_ref)
+    
+    TODO: could provide a scalar coordinate variable with standard name reference_pressure
+    (see issue 32, https://github.com/DocOtak/gsw-xarray/issues/32)
     """
-    return attrs
+    # get value of p_ref
+    try:
+        p_ref = kwargs["p_ref"]
+    except KeyError:
+        p_ref = args[3]
+
+    if p_ref == 0:
+        return attrs
+    else:
+        return _rm_std_nme(attrs)
 
 
 def check_z_from_p(attrs, args, kwargs):
@@ -43,10 +69,9 @@ def check_z_from_p(attrs, args, kwargs):
             )
 
     if geo_strf_dyn_height != 0 or sea_surface_geopotential != 0:
-        attrs = attrs.copy()
-        # necessary to use a copy, or it will pop the item from the original dict
-        attrs.pop("standard_name")
-    return attrs
+        return _rm_std_nme(attrs)
+    else:
+        return attrs
 
 
 _check_funcs = {
