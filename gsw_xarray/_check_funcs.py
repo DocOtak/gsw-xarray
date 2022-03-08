@@ -1,3 +1,38 @@
+def _rm_std_nme(d):
+    """
+    Return a dict which does not contain the standard name
+    """
+    d = d.copy()
+    # necessary to use a copy, or it will pop the item from the original dict
+    try:
+        d.pop("standard_name")
+    except KeyError:
+        pass
+    return d
+
+
+def check_pot_rho_t_exact(attrs, args, kwargs):
+    """
+    If the reference pressure is not 0, remove standard name.
+
+    Reminder of the function call:
+    gsw.pot_rho_t_exact(SA, t, p, p_ref)
+
+    TODO: could provide a scalar coordinate variable with standard name reference_pressure
+    (see issue 32, https://github.com/DocOtak/gsw-xarray/issues/32)
+    """
+    # get value of p_ref
+    try:
+        p_ref = kwargs["p_ref"]
+    except KeyError:
+        p_ref = args[3]
+
+    if p_ref == 0:
+        return attrs
+    else:
+        return _rm_std_nme(attrs)
+
+
 def check_z_from_p(attrs, args, kwargs):
     """
     If the 2 optional arguments are not 0, removes the standard name.
@@ -35,10 +70,15 @@ def check_z_from_p(attrs, args, kwargs):
             )
 
     if geo_strf_dyn_height != 0 or sea_surface_geopotential != 0:
-        attrs = attrs.copy()
-        # necessary to use a copy, or it will pop the item from the original dict
-        attrs.pop("standard_name")
-    return attrs
+        return _rm_std_nme(attrs)
+    else:
+        return attrs
 
 
-_check_funcs = {"z_from_p": check_z_from_p}
+_check_funcs = {
+    "pot_rho_t_exact": check_pot_rho_t_exact,
+    "z_from_p": check_z_from_p,
+}
+
+# TODO
+# sigma1, sigma2, sigma3, sigma4
