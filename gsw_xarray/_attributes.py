@@ -659,7 +659,7 @@ _func_attrs = {
     ),
     "rho_first_derivatives_wrt_enthalpy": (
         {
-            "units": "(kg/m^3)(g/kg)^-1",  # To verify, it seems that the matlab doc is uncorrect
+            "units": "(kg/m^3)(g/kg)^-1",  # matlab doc is uncorrect
         },
         {
             "units": "(kg/m^3)(J/kg)^-1",
@@ -687,7 +687,7 @@ _func_attrs = {
     ),
     "rho_second_derivatives_wrt_enthalpy": (
         {
-            "units": "(kg/m^3)(g/kg)^-2",  # To verify, it seems that the matlab doc is uncorrect
+            "units": "(kg/m^3)(g/kg)^-2",  # matlab doc is uncorrect
         },
         {
             "units": "(kg/m^3)(g/kg)^-1 (J/kg)^-1",

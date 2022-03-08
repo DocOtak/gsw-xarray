@@ -10,13 +10,14 @@ def _rm_std_nme(d):
         pass
     return d
 
+
 def check_pot_rho_t_exact(attrs, args, kwargs):
     """
     If the reference pressure is not 0, remove standard name.
 
     Reminder of the function call:
     gsw.pot_rho_t_exact(SA, t, p, p_ref)
-    
+
     TODO: could provide a scalar coordinate variable with standard name reference_pressure
     (see issue 32, https://github.com/DocOtak/gsw-xarray/issues/32)
     """

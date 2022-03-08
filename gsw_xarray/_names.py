@@ -66,7 +66,7 @@ _names = {
     "enthalpy_first_derivatives_CT_exact": (
         "h_SA",
         "h_CT",
-    ),  # difference with matlab code that return 3 outputs
+    ),
     "enthalpy_ice": "enthalpy_ice",
     "enthalpy_second_derivatives": ("h_SA_SA", "h_SA_CT", "h_CT_CT"),
     "enthalpy_second_derivatives_CT_exact": ("h_SA_SA", "h_SA_CT", "h_CT_CT"),
