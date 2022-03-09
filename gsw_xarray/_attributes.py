@@ -308,7 +308,7 @@ _func_attrs = {
     },
     "enthalpy_second_derivatives": (
         {
-            "units": "(J/kg)(g/kg)^-2)",
+            "units": "(J/kg)(g/kg)^-2",
         },
         {
             "units": "J/(kg K(g/kg))",
@@ -319,7 +319,7 @@ _func_attrs = {
     ),
     "enthalpy_second_derivatives_CT_exact": (
         {
-            "units": "(J/kg)(g/kg)^-2)",
+            "units": "(J/kg)(g/kg)^-2",
         },
         {
             "units": "J/(kg K(g/kg))",
@@ -690,7 +690,7 @@ _func_attrs = {
             "units": "(kg/m^3)(g/kg)^-2",  # matlab doc is uncorrect
         },
         {
-            "units": "(kg/m^3)(g/kg)^-1 (J/kg)^-1",
+            "units": "(kg/m^3)(g/kg)^-1 J^-1/kg^-1",
         },
         {
             "units": "(kg/m^3)(J/kg)^-2",
@@ -800,7 +800,7 @@ _func_attrs = {
             "units": "(m^3/kg)(g/kg)^-2",  # error in doc?
         },
         {
-            "units": "(m^3/kg)(g/kg)^-1 (J/kg)^-1",
+            "units": "(m^3/kg)(g/kg)^-1 J^-1/kg^-1",
         },
         {
             "units": "(m^3/kg)(J/kg)^-2",

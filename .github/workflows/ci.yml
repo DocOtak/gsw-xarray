@@ -45,6 +45,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install udunits
+      run: sudo apt-get install -y libudunits2-dev
     - name: Run image
       uses: abatilo/actions-poetry@v2.0.0
       with:
@@ -52,6 +54,7 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
+        poetry run pip install cf_units==3.0.1
     - name: Test with pytest
       run: |
         poetry run pytest gsw_xarray/tests
