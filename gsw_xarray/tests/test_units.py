@@ -1,5 +1,5 @@
 """
-Testing units with pint
+Testing units with pint and cf_units
 """
 import pytest
 
