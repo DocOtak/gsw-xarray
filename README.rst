@@ -38,7 +38,7 @@ Outputs
 
 ::
 
-   {'standard_name': 'sea_water_sigma_t', 'units': 'kg m-3'}
+   {'standard_name': 'sea_water_sigma_t', 'units': 'kg/m^3'}
 
 Installation
 ------------
