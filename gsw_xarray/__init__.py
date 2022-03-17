@@ -13,7 +13,8 @@ _compat = {
     "energy",
     "freezing",
     "geostrophy",
-    "ice", "stability",
+    "ice",
+    "stability",
 }
 _compat_modules = {name: import_module(f".{name}", "gsw_xarray") for name in _compat}
 
@@ -34,4 +35,5 @@ def __getattr__(name):
             ) from error
 
 
-def __dir__(): return list(sorted(set([*_wrapped_funcs.keys(), *dir(gsw)])))
+def __dir__():
+    return list(sorted(set([*_wrapped_funcs.keys(), *dir(gsw)])))
