@@ -10,6 +10,16 @@ on:
     branches: [ master ]
 
 jobs:
+  style:
+    name: Code linting checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: psf/black@stable
+        with:
+          options: "--check --verbose"
+          version: "22.1.0"
+
   build:
     name: build (${{ matrix.os }}, ${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
