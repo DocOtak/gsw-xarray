@@ -18,7 +18,7 @@ jobs:
       - uses: psf/black@stable
         with:
           options: "--check --verbose"
-          version: "21.1.0"
+          version: "22.1.0"
 
   build:
     name: build (${{ matrix.os }}, ${{ matrix.python-version }})
