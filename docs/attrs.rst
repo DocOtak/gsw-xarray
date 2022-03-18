@@ -17,7 +17,7 @@ There are some things to be aware of:
 
 * We include the OceanSITES ``reference_scale`` attribute for functions that return PSS-78 or ITS-90.
 
-* Finally, we did out best to include the correct units and standard name based on the published TEOS-10 documentation.
+* Finally, we did our best to include the correct units and standard name based on the published TEOS-10 documentation.
   If erorrs are noted, please open an issue on github so we can correct these errors.
 
 .. include:: _attr_table.rst
