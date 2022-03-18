@@ -5,7 +5,7 @@
 
 .. include:: ../README.rst
 
-For the specific list of what attribtues are added for each function, see the :ref:`attrs:Added Attributes` section.
+For the specific list of what attributes are added for each function, see the :ref:`attrs:Added Attributes` section.
 
 .. toctree::
    :maxdepth: 2
