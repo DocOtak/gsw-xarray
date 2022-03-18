@@ -11,7 +11,7 @@ gsw-xarray: Wrapper for gsw that adds CF attributes
 
 gsw-xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
 that will add CF attributes to xarray.DataArray outputs.
-It is meant to be a drop in wrapper for the upstream GSW-Python library and will only add these attributes if the first argument to a function is an xarray.DataArray.
+It is meant to be a drop in wrapper for the upstream GSW-Python library and will only add these attributes if one argument to a function is an xarray.DataArray.
 
 Usage
 -----
