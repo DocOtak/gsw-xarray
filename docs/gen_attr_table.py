@@ -11,7 +11,9 @@ for name, result_name in _names.items():
         list_table += f"Has {len(result_name)} outputs\n\n"
         for i, result in enumerate(result_name):
             list_table += f"**{result}**\n\n"
-            list_table += f"* standard_name: {_func_attrs[name][i].get('standard_name', '')}\n"
+            list_table += (
+                f"* standard_name: {_func_attrs[name][i].get('standard_name', '')}\n"
+            )
             list_table += f"* units: {_func_attrs[name][i].get('units', '')}\n\n"
 
     else:
@@ -22,5 +24,5 @@ for name, result_name in _names.items():
     list_table += "\n"
 
 
-
-print(list_table)
+with open("_attr_table.rst", "w", encoding="utf8") as f:
+    f.write(list_table)
