@@ -11,6 +11,7 @@ gsw-xarray: Wrapper for gsw that adds CF attributes
 
 gsw-xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
 that will add CF attributes to xarray.DataArray outputs.
+It is meant to be a drop in wrapper for the upstram GSW-Python library and will only add these attribtues if the first argument to a fucntion is an xarray.DataArray.
 
 Usage
 -----
@@ -39,6 +40,19 @@ Outputs
 ::
 
    {'standard_name': 'sea_water_sigma_t', 'units': 'kg/m^3'}
+
+Don't worry about usage with non xarray array objects, just use in all places you would the upstream library:
+
+.. code:: python
+
+   sigma0 = gsw.sigma0(id * 10, id * 0.1 + 34)
+   print(type(sigma0, sigma0)
+
+Outputs
+
+::
+
+   <class 'numpy.ndarray'> [-5.08964499  2.1101098   9.28348219]
 
 Installation
 ------------
