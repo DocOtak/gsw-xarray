@@ -7,9 +7,11 @@
 
 For the specific list of what attributes are added for each function, see the :ref:`attrs:Added Attributes` section.
 
+Contents
+--------
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    attrs
 
