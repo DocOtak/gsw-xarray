@@ -9,8 +9,9 @@ from ._check_funcs import _check_funcs
 
 
 def add_attrs(rv, attrs, name):
-    rv.name = name
-    rv.attrs = attrs
+    if isinstance(rv, xr.DataArray):
+        rv.name = name
+        rv.attrs = attrs
 
 
 def cf_attrs(attrs, name, check_func):
@@ -22,7 +23,7 @@ def cf_attrs(attrs, name, check_func):
             if isinstance(rv, tuple):
                 for (i, da) in enumerate(rv):
                     add_attrs(da, attrs_checked[i], name[i])
-            elif isinstance(rv, xr.DataArray):
+            else:
                 add_attrs(rv, attrs_checked, name)
             return rv
 
