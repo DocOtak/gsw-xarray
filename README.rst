@@ -11,6 +11,7 @@ gsw-xarray: Wrapper for gsw that adds CF attributes
 
 gsw-xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
 that will add CF attributes to xarray.DataArray outputs.
+It is meant to be a drop in wrapper for the upstream GSW-Python library and will only add these attributes if one argument to a function is an xarray.DataArray.
 
 Usage
 -----
@@ -40,6 +41,19 @@ Outputs
 
    {'standard_name': 'sea_water_sigma_t', 'units': 'kg/m^3'}
 
+Don't worry about usage with non xarray array objects, just use in all places you would the upstream library:
+
+.. code:: python
+
+   sigma0 = gsw.sigma0(id * 10, id * 0.1 + 34)
+   print(type(sigma0), sigma0)
+
+Outputs
+
+::
+
+   <class 'numpy.ndarray'> [-5.08964499  2.1101098   9.28348219]
+
 Installation
 ------------
 Pip
@@ -54,7 +68,7 @@ Conda
 .....
 
 For the moment gsw-xarray is not released in conda-forge, so you'll
-need to instal via pip: activate your conda environment, and then use ``pip install gsw_xarray``.
+need to install via pip: activate your conda environment, and then use ``pip install gsw_xarray``.
 
 Pipenv
 ......
@@ -68,7 +82,7 @@ Contributor guide
 All contributions, bug reports, bug fixes, documentation improvements,
 enhancements, and ideas are welcome.
 If you notice a bug or are missing a feature, fell free
-to open an issue in the `github issues page <https://github.com/DocOtak/gsw-xarray/issues>`_.
+to open an issue in the `GitHub issues page <https://github.com/DocOtak/gsw-xarray/issues>`_.
 
 In order to contribute to gsw-xarray, please fork the repository and
 submit a pull request. A good step by step tutorial for starting with git can be found in the

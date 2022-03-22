@@ -3,24 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to gsw-xarray's documentation!
-======================================
+.. include:: ../README.rst
 
-``gsw-xarray`` is an xarray aware wrapper of the functions contained in ``GSW-Python``.
-It will add CF the appropriate CF Standard Name (when one exists) and unit attributes to the resulting Dataarray.
+For the specific list of what attributes are added for each function, see the :ref:`attrs:Added Attributes` section.
 
-Installation
-------------
-``gsw-xarray`` can be installed with pip
-
-.. code:: shell
-
-   pip install gsw-xarray
-
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
+   attrs
 
 
 

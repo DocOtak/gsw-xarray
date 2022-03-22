@@ -1,3 +1,6 @@
+# These files are generated on doc build and shoudl not be kept in VC
+docs/_attr_table.rst
+
 # macOS noise
 .DS_Store
 
