@@ -1,7 +1,8 @@
 Changelog
 =========
-v0.2.1 - unreleased
+v0.2.1 - 2022-03-22
 -------------------
+Despite all the checking, we missed a bad bug.
 
 Bug Fixes
 `````````
