@@ -3,6 +3,8 @@ Testing units with pint and cf_units
 """
 import pytest
 
+import gsw_xarray
+
 from .test_imports import gsw_base
 from gsw_xarray._attributes import _func_attrs
 
@@ -41,3 +43,9 @@ def test_unit_cf_units(func_name):
     for a in attrs:
         print(a["units"])
         cf_units.Unit(a["units"])
+
+
+def test_xarray_quantity(ds_pint):
+    pint_xarray = pytest.importorskip("pint_xarray")
+    sigma0 = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
+    assert sigma0.pint.units == pint_xarray.unit_registry("kg / m^3")
