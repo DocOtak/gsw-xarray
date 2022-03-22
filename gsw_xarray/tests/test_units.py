@@ -6,13 +6,10 @@ import pytest
 from .test_imports import gsw_base
 from gsw_xarray._attributes import _func_attrs
 
-from pint import UnitRegistry
-
-ureg = UnitRegistry()
-
 
 @pytest.mark.parametrize("func_name", gsw_base)
-def test_unit_pint(func_name):
+def test_unit_pint(func_name, ureg):
+
     if func_name in ["indexer", "match_args_return", "pchip_interp"]:
         # Internal gsw cookery or non wrapped functions
         return

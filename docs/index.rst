@@ -14,6 +14,7 @@ Contents
    :maxdepth: 2
 
    attrs
+   changelog
 
 
 

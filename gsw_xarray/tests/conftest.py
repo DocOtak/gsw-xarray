@@ -14,3 +14,9 @@ def ds():
     ds["SA"] = ds["id"] * 0.1 + 34
     ds["SA"].attrs = {"standard_name": "sea_water_absolute_salinity"}
     return ds
+
+
+@pytest.fixture(scope="session")
+def ureg():
+    pint = pytest.importorskip("pint")
+    return pint.UnitRegistry()
