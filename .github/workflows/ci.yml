@@ -63,7 +63,7 @@ jobs:
         poetry-version: ${{ matrix.poetry-version }}
     - name: Install dependencies
       run: |
-        poetry install
+        poetry install -E pint
         poetry run pip install cf_units==3.0.1
     - name: Test with pytest
       run: |
