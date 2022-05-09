@@ -49,3 +49,25 @@ def test_xarray_quantity(ds_pint):
     pint_xarray = pytest.importorskip("pint_xarray")
     sigma0 = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
     assert sigma0.pint.units == pint_xarray.unit_registry("kg / m^3")
+
+@pytest.mark.parametrize("SA_type", ['unit', 'ds'])
+@pytest.mark.parametrize("CT_type", ['unit', 'ds'])
+def test_xarray_quantity_or_ds(ds, ds_pint, SA_type, CT_type):
+    """If at least 1 of the inputs is quantity, the result should be quantity"""
+    pint_xarray = pytest.importorskip("pint_xarray")
+    if SA_type == 'unit':
+        SA = ds_pint.SA
+    elif SA_type == 'ds':
+        SA = ds.SA
+    
+    if CT_type == 'unit':
+        CT = ds_pint.CT
+    elif CT_type == 'ds':
+        CT = ds.CT
+        
+    sigma0 = gsw_xarray.sigma0(SA=SA, CT=CT)
+    if SA_type == 'unit' or CT_type == 'unit':
+        assert sigma0.pint.units == pint_xarray.unit_registry("kg / m^3")
+    else:
+        assert sigma0.pint.units is None
+        assert sigma0.pint.quantify().pint.units == pint_xarray.unit_registry("kg / m^3")
