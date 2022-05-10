@@ -1,6 +1,7 @@
 from gsw_xarray import __version__
 import gsw_xarray as gsw
 import xarray as xr
+import numpy as np
 import pytest
 
 
@@ -20,6 +21,12 @@ def test_func_return_tuple(ds):
     (CT_SA, CT_pt) = gsw.CT_first_derivatives(ds.SA, 1)
     assert CT_SA.name == "CT_SA"
     assert CT_SA.attrs["units"] == "K/(g/kg)"
+
+
+def test_func_return_tuple_ndarray(ds):
+    (CT_SA, CT_pt) = gsw.CT_first_derivatives(ds.SA.data, 1)
+    assert isinstance(CT_SA, np.ndarray)
+    assert isinstance(CT_pt, np.ndarray)
 
 
 @pytest.mark.parametrize("gsdh", [0, 1, None])

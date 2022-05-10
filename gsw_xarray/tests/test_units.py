@@ -71,3 +71,9 @@ def test_xarray_quantity_or_ds(ds, ds_pint, SA_type, CT_type):
     else:
         assert sigma0.pint.units is None
         assert sigma0.pint.quantify().pint.units == pint_xarray.unit_registry("kg / m^3")
+
+
+def test_func_return_tuple_quantity(ds_pint):
+    pint_xarray = pytest.importorskip("pint_xarray")
+    (CT_SA, CT_pt) = gsw_xarray.CT_first_derivatives(ds_pint.SA, 1)
+    assert CT_SA.pint.units == pint_xarray.unit_registry("K/(g/kg)")

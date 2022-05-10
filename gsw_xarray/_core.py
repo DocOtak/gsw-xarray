@@ -16,8 +16,9 @@ except ImportError:
 
 
 def add_attrs(rv, attrs, name):
-    rv.name = name
-    rv.attrs = attrs
+    if isinstance(rv, xr.DataArray):
+        rv.name = name
+        rv.attrs = attrs
 
 
 def pint_compat(args, kwargs):
@@ -68,14 +69,13 @@ def cf_attrs(attrs, name, check_func):
                 for (i, da) in enumerate(rv):
                     add_attrs(da, attrs_checked[i], name[i])
                     if is_quantity:
-                        da = rv.pint.quantify()
-                        rv_updated.append(da)
+                        rv_updated.append(da.pint.quantify())
                     else:
                         rv_updated.append(da)
 
                 rv = tuple(rv_updated)
 
-            elif isinstance(rv, xr.DataArray):
+            else:
                 add_attrs(rv, attrs_checked, name)
                 if is_quantity:
                     rv = rv.pint.quantify()
