@@ -1,5 +1,14 @@
 Changelog
 =========
+
+v0.3.0 - Unreleased
+-------------------
+This release will focus on supporting Pint quantities.
+
+Highlights
+``````````
+* If (at least 1) arguments are xarray.DataArray wrapped by pint-xarray, the result is wrapped into a pint-xarray quantity.
+
 v0.2.1 - 2022-03-22
 -------------------
 Despite all the checking, we missed a bad bug.
