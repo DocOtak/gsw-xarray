@@ -29,6 +29,8 @@ def quantify(rv, attrs):
         rv = rv.pint.quantify()
     else:
         if attrs is not None:
+            # Necessary to use the Q_ and not simply multiplication with ureg unit because of temperature
+            # see https://pint.readthedocs.io/en/latest/nonmult.html
             rv = Q_(rv, attrs["units"])
     return rv
 
