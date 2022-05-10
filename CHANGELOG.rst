@@ -1,5 +1,12 @@
 Changelog
 =========
+v0.2.1 - 2022-03-22
+-------------------
+Despite all the checking, we missed a bad bug.
+
+Bug Fixes
+`````````
+* Fixed a bug where attributes would attempt to be be added to non xr.DataArray objects if the gsw function has multiple return values.
 
 v0.2.0 - 2022-03-22
 -------------------

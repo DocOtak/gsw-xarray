@@ -20,7 +20,6 @@ def add_attrs(rv, attrs, name):
         rv.name = name
         rv.attrs = attrs
 
-
 def pint_compat(args, kwargs):
     if pint_xarray is None:
         return args, kwargs, False
@@ -74,7 +73,7 @@ def cf_attrs(attrs, name, check_func):
                         rv_updated.append(da)
 
                 rv = tuple(rv_updated)
-
+                
             else:
                 add_attrs(rv, attrs_checked, name)
                 if is_quantity:
