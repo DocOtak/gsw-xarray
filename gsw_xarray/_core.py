@@ -11,6 +11,9 @@ from ._check_funcs import _check_funcs
 try:
     import pint_xarray
     import pint
+
+    ureg = pint.UnitRegistry()
+    Q_ = ureg.Quantity
 except ImportError:
     pint_xarray = None
 
@@ -19,6 +22,16 @@ def add_attrs(rv, attrs, name):
     if isinstance(rv, xr.DataArray):
         rv.name = name
         rv.attrs = attrs
+
+
+def quantify(rv, attrs):
+    if isinstance(rv, xr.DataArray):
+        rv = rv.pint.quantify()
+    else:
+        if attrs is not None:
+            rv = Q_(rv, attrs["units"])
+    return rv
+
 
 def pint_compat(args, kwargs):
     if pint_xarray is None:
@@ -68,16 +81,16 @@ def cf_attrs(attrs, name, check_func):
                 for (i, da) in enumerate(rv):
                     add_attrs(da, attrs_checked[i], name[i])
                     if is_quantity:
-                        rv_updated.append(da.pint.quantify())
+                        rv_updated.append(quantify(da, attrs_checked[i]))
                     else:
                         rv_updated.append(da)
 
                 rv = tuple(rv_updated)
-                
+
             else:
                 add_attrs(rv, attrs_checked, name)
                 if is_quantity:
-                    rv = rv.pint.quantify()
+                    rv = quantify(rv, attrs_checked)
             return rv
 
         return cf_attrs_wrapper
