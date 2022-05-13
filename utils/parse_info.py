@@ -47,3 +47,6 @@ def print_dict_attrs():
         attrs[func] = {"units": unit}
     print(attrs)
     print(names)
+
+if __name__ == '__main__':
+    print_dict_attrs()
