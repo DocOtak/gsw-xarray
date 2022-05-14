@@ -2,7 +2,7 @@
 Testing units with pint and cf_units
 """
 import pytest
-
+import xarray as xr
 import gsw_xarray
 
 from .test_imports import gsw_base
@@ -112,3 +112,10 @@ def test_pint_quantity_tuple():
     (a, b) = gsw_xarray.CT_first_derivatives(35 * ureg("g / kg"), pt=1)
     assert isinstance(a, pint.Quantity)
     assert isinstance(b, pint.Quantity)
+
+
+def test_pint_quantity_convert(ds_pint):
+    pint_xarray = pytest.importorskip("pint_xarray")
+    sigma0_good_units = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
+    sigma0_bad_units = gsw_xarray.sigma0(SA=ds_pint.SA.pint.to('mg / kg'), CT=ds_pint.CT.pint.to('kelvin'))
+    assert xr.testing.assert_equal(sigma0_good_units, sigma0_bad_units)
