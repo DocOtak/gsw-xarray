@@ -4,10 +4,15 @@
 .. |Documentation Status| image:: https://readthedocs.org/projects/gsw-xarray/badge/?version=latest
   :target: https://gsw-xarray.readthedocs.io/en/latest/?badge=latest
   :alt: Documentation Status
+.. |pypi| image:: https://badge.fury.io/py/gsw-xarray.svg
+   :target: https://badge.fury.io/py/gsw-xarray
+   :alt: pypi package
+.. |conda forge| image:: https://img.shields.io/conda/vn/conda-forge/gsw-xarray
+   :target: https://anaconda.org/conda-forge/gsw-xarray
 
 gsw-xarray: Wrapper for gsw that adds CF attributes
 ===================================================
-|CI Status| |Documentation Status|
+|CI Status| |Documentation Status| |pypi| |conda forge|
 
 gsw-xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
 that will add CF attributes to xarray.DataArray outputs.
@@ -63,19 +68,18 @@ Pip
 
 .. code:: bash
 
-    pip install gsw_xarray
+    pip install gsw-xarray
 
 
 Conda
 .....
 
-For the moment gsw-xarray is not released in conda-forge, so you'll
-need to install via pip: activate your conda environment, and then use ``pip install gsw_xarray``.
+Inside a conda environment:  ``conda install -c conda-forge gsw-xarray``.
 
 Pipenv
 ......
 
-Inside a pipenv environment: ``pipenv install gsw_xarray``.
+Inside a pipenv environment: ``pipenv install gsw-xarray``.
 
 
 Contributor guide
