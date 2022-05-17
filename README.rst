@@ -62,6 +62,7 @@ Support for pint requires the installation of two optional dependencies: `pint` 
 If any of the inputs to a gsw function are Quantities, the returned object will also be a Quantity belonging to the same UnitRegistry.
 
 .. warning::
+
    Quantities must all belong to the same pint.UnitRegistry, a ValueError will be thrown if there are mixed registries.
 
 .. code:: python
@@ -115,6 +116,7 @@ The usage of xarray wrapped Quantities is not required, you can use pint directl
 Outputs
 
 ::
+
    26.824644457868317 kilogram / meter ** 3
 
 Installation
