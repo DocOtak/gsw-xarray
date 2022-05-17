@@ -58,7 +58,7 @@ Outputs
 
 
 We support (but don't yet validate) the usage of pint.Quantities and the usage of xarray wrapped Quantities.
-Support for pint requires the installation of two optional dependencies: `pint` and `pint-xarray`.
+Support for pint requires the installation of two optional dependencies: ``pint`` and ``pint-xarray``.
 If any of the inputs to a gsw function are Quantities, the returned object will also be a Quantity belonging to the same UnitRegistry.
 
 .. warning::
@@ -101,7 +101,7 @@ Outputs
    Attributes:
        standard_name:  sea_water_sigma_t
 
-The usage of xarray wrapped Quantities is not required, you can use pint directly (though the `pint-xarray` dep still needs to be installed).
+The usage of xarray wrapped Quantities is not required, you can use pint directly (though the ``pint-xarray`` dep still needs to be installed).
 
 .. code:: python
 
