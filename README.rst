@@ -65,6 +65,7 @@ If any of the inputs to a gsw function are Quantities, the returned object will 
    Quantities must all belong to the same pint.UnitRegistry, a ValueError will be thrown if there are mixed registries.
 
 .. code:: python
+
    import pint_xarray
    import gsw_xarray as gsw
 
@@ -91,6 +92,7 @@ If any of the inputs to a gsw function are Quantities, the returned object will 
 Outputs
 
 ::
+
    <xarray.DataArray 'sigma0' (id: 3)>
    <Quantity([27.17191038 26.12820162 24.03930887], 'kilogram / meter ** 3')>
    Coordinates:
