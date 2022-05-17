@@ -56,6 +56,65 @@ Outputs
 
    <class 'numpy.ndarray'> [-5.08964499  2.1101098   9.28348219]
 
+
+We support (but don't yet validate) the usage of pint.Quantities and the usage of xarray wrapped Quantities.
+Support for pint requires the installation of two optional dependencies: `pint` and `pint-xarray`.
+If any of the inputs to a gsw function are Quantities, the returned object will also be a Quantity belonging to the same UnitRegistry.
+
+.. warning::
+   Quantities must all belong to the same pint.UnitRegistry, a ValueError will be thrown if there are mixed registries.
+
+.. code:: python
+   import pint_xarray
+   import gsw_xarray as gsw
+
+   # Create a xarray.Dataset
+   import numpy as np
+   import xarray as xr
+   ds = xr.Dataset()
+   id = np.arange(3)
+   ds['id'] = xr.DataArray(id, coords={'id':id})
+   ds['CT'] = ds['id'] * 10
+   # make sure there are unit attrs this time
+   ds['CT'].attrs = {'standard_name':'sea_water_conservative_temperature', 'units': 'degC'}
+   ds['SA'] = ds['id'] * 0.1 + 34
+   ds['SA'].attrs = {'standard_name':'sea_water_absolute_salinity', 'units': 'g/kg'}
+
+   # use the pint accessor to quantify things
+   ds = ds.pint.quantify()
+
+   # Apply gsw functions
+   sigma0 = gsw.sigma0(SA=ds['SA'], CT=ds['CT'])
+   # outputs are now quantities!
+   print(sigma0)
+
+Outputs
+
+::
+   <xarray.DataArray 'sigma0' (id: 3)>
+   <Quantity([27.17191038 26.12820162 24.03930887], 'kilogram / meter ** 3')>
+   Coordinates:
+     * id       (id) int64 0 1 2
+   Attributes:
+       standard_name:  sea_water_sigma_t
+
+The usage of xarray wrapped Quantities is not required, you can use pint directly (though the `pint-xarray` dep still needs to be installed).
+
+.. code:: python
+
+   import gsw_xarray as gsw
+   import pint
+   ureg = pint.UnitRegistry()
+   SA = ureg.Quantity(35, ureg("g/kg"))
+   CT = ureg.Quantity(10, ureg.degC)
+   sigma0 = gsw.sigma0(SA=SA, CT=CT)
+   print(sigma0)
+
+Outputs
+
+::
+   26.824644457868317 kilogram / meter ** 3
+
 Installation
 ------------
 Pip
