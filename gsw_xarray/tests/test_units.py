@@ -2,6 +2,7 @@
 Testing units with pint and cf_units
 """
 import pytest
+import numpy as np
 import xarray as xr
 import gsw_xarray
 
@@ -82,33 +83,29 @@ def test_func_return_tuple_quantity(ds_pint):
     assert CT_SA.pint.units == pint_xarray.unit_registry("K/(g/kg)")
 
 
-def test_pint_quantity_xarray(ds):
+def test_pint_quantity_xarray(ds, T):
     """If input is mixed between xr.DataArray and pint quantity it should return pint-xarray wrapped quantity"""
     pint_xarray = pytest.importorskip("pint_xarray")
 
-    ureg = pint_xarray.unit_registry
-    Q_ = ureg.Quantity
-    sigma0 = gsw_xarray.sigma0(SA=ds.SA, CT=Q_(25.4, ureg.degC))
+    sigma0 = gsw_xarray.sigma0(SA=ds.SA, CT=T)
     assert sigma0.pint.units == pint_xarray.unit_registry("kg / m^3")
 
 
-def test_pint_quantity():
+def test_pint_quantity(S):
     """If input is pint quantity should return a quantity"""
     pint_xarray = pytest.importorskip("pint_xarray")
-    import pint
+    pint = pytest.importorskip("pint")
 
-    ureg = pint_xarray.unit_registry
-    CT = gsw_xarray.CT_from_pt(SA=35 * ureg("g / kg"), pt=10)
+    CT = gsw_xarray.CT_from_pt(SA=S, pt=10)
     assert isinstance(CT, pint.Quantity)
 
 
-def test_pint_quantity_tuple():
+def test_pint_quantity_tuple(S):
     """If input is pint quantity should return a quantity"""
     pint_xarray = pytest.importorskip("pint_xarray")
     import pint
 
-    ureg = pint_xarray.unit_registry
-    (a, b) = gsw_xarray.CT_first_derivatives(35 * ureg("g / kg"), pt=1)
+    (a, b) = gsw_xarray.CT_first_derivatives(S, pt=1)
     assert isinstance(a, pint.Quantity)
     assert isinstance(b, pint.Quantity)
 
@@ -128,6 +125,7 @@ def test_mixed_unit_regestiries():
 
 def test_pint_quantity_convert_kwargs(ds_pint):
     pint_xarray = pytest.importorskip("pint_xarray")
+    
     sigma0_good_units = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
     sigma0_bad_units = gsw_xarray.sigma0(SA=ds_pint.SA.pint.to('mg / kg'), CT=ds_pint.CT.pint.to('kelvin'))
     print('*****',sigma0_good_units, sigma0_bad_units)
@@ -135,7 +133,24 @@ def test_pint_quantity_convert_kwargs(ds_pint):
 
 def test_pint_quantity_convert_args(ds_pint):
     pint_xarray = pytest.importorskip("pint_xarray")
+    
     sigma0_good_units = gsw_xarray.sigma0(ds_pint.SA, ds_pint.CT)
     sigma0_bad_units = gsw_xarray.sigma0(ds_pint.SA.pint.to('mg / kg'), ds_pint.CT.pint.to('kelvin'))
     print('*****',sigma0_good_units, sigma0_bad_units)
     xr.testing.assert_equal(sigma0_good_units, sigma0_bad_units)
+
+def test_pint_quantity_convert_kwargs_pint(S, T):
+    pint_xarray = pytest.importorskip("pint_xarray")
+    
+    sigma0_good_units = gsw_xarray.sigma0(SA=S, CT=T)
+    sigma0_bad_units = gsw_xarray.sigma0(SA=S.to('mg / kg'), CT=T.to('kelvin'))
+    print('*****',sigma0_good_units, sigma0_bad_units)
+    assert np.allclose(sigma0_good_units, sigma0_bad_units)
+
+def test_pint_quantity_convert_args_pint(S, T):
+    pint_xarray = pytest.importorskip("pint_xarray")
+    
+    sigma0_good_units = gsw_xarray.sigma0(S, T)
+    sigma0_bad_units = gsw_xarray.sigma0(S.to('mg / kg'), T.to('kelvin'))
+    print('*****',sigma0_good_units, sigma0_bad_units)
+    assert np.allclose(sigma0_good_units, sigma0_bad_units)

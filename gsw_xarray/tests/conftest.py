@@ -21,8 +21,9 @@ def ds():
 
 @pytest.fixture(scope="session")
 def ureg():
-    pint = pytest.importorskip("pint")
-    return pint.UnitRegistry()
+    pint_xarray = pytest.importorskip("pint_xarray")
+    from pint_xarray import unit_registry as ureg
+    return ureg
 
 
 @pytest.fixture
@@ -30,3 +31,12 @@ def ds_pint(ds, ureg):
     pytest.importorskip("pint_xarray")
 
     return ds.pint.quantify()
+
+
+@pytest.fixture
+def S(ureg):
+    return 35 * ureg("g / kg")
+
+@pytest.fixture
+def T(ureg):
+    return ureg.Quantity(1, ureg.degC)
