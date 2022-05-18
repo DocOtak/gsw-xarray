@@ -125,32 +125,39 @@ def test_mixed_unit_regestiries():
 
 def test_pint_quantity_convert_kwargs(ds_pint):
     pint_xarray = pytest.importorskip("pint_xarray")
-    
+
     sigma0_good_units = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
-    sigma0_bad_units = gsw_xarray.sigma0(SA=ds_pint.SA.pint.to('mg / kg'), CT=ds_pint.CT.pint.to('kelvin'))
-    print('*****',sigma0_good_units, sigma0_bad_units)
+    sigma0_bad_units = gsw_xarray.sigma0(
+        SA=ds_pint.SA.pint.to("mg / kg"), CT=ds_pint.CT.pint.to("kelvin")
+    )
+    print("*****", sigma0_good_units, sigma0_bad_units)
     xr.testing.assert_equal(sigma0_good_units, sigma0_bad_units)
+
 
 def test_pint_quantity_convert_args(ds_pint):
     pint_xarray = pytest.importorskip("pint_xarray")
-    
+
     sigma0_good_units = gsw_xarray.sigma0(ds_pint.SA, ds_pint.CT)
-    sigma0_bad_units = gsw_xarray.sigma0(ds_pint.SA.pint.to('mg / kg'), ds_pint.CT.pint.to('kelvin'))
-    print('*****',sigma0_good_units, sigma0_bad_units)
+    sigma0_bad_units = gsw_xarray.sigma0(
+        ds_pint.SA.pint.to("mg / kg"), ds_pint.CT.pint.to("kelvin")
+    )
+    print("*****", sigma0_good_units, sigma0_bad_units)
     xr.testing.assert_equal(sigma0_good_units, sigma0_bad_units)
+
 
 def test_pint_quantity_convert_kwargs_pint(S, T):
     pint_xarray = pytest.importorskip("pint_xarray")
-    
+
     sigma0_good_units = gsw_xarray.sigma0(SA=S, CT=T)
-    sigma0_bad_units = gsw_xarray.sigma0(SA=S.to('mg / kg'), CT=T.to('kelvin'))
-    print('*****',sigma0_good_units, sigma0_bad_units)
+    sigma0_bad_units = gsw_xarray.sigma0(SA=S.to("mg / kg"), CT=T.to("kelvin"))
+    print("*****", sigma0_good_units, sigma0_bad_units)
     assert np.allclose(sigma0_good_units, sigma0_bad_units)
+
 
 def test_pint_quantity_convert_args_pint(S, T):
     pint_xarray = pytest.importorskip("pint_xarray")
-    
+
     sigma0_good_units = gsw_xarray.sigma0(S, T)
-    sigma0_bad_units = gsw_xarray.sigma0(S.to('mg / kg'), T.to('kelvin'))
-    print('*****',sigma0_good_units, sigma0_bad_units)
+    sigma0_bad_units = gsw_xarray.sigma0(S.to("mg / kg"), T.to("kelvin"))
+    print("*****", sigma0_good_units, sigma0_bad_units)
     assert np.allclose(sigma0_good_units, sigma0_bad_units)

@@ -54,7 +54,7 @@ def pint_compat(fname, args_names, args, kwargs):
             if arg.pint.units is not None:
                 try:
                     input_unit = _arg_attrs[fname][args_names[i]]["units"]
-                    _arg = arg.pint.to({arg.name:input_unit})
+                    _arg = arg.pint.to({arg.name: input_unit})
                 except KeyError:
                     _arg = arg
                 new_args.append(_arg.pint.dequantify())
@@ -77,7 +77,7 @@ def pint_compat(fname, args_names, args, kwargs):
             if arg.pint.units is not None:
                 try:
                     input_unit = _arg_attrs[fname][kw]["units"]
-                    _arg = arg.pint.to({arg.name:input_unit})
+                    _arg = arg.pint.to({arg.name: input_unit})
                 except KeyError:
                     _arg = arg
                 new_kwargs[kw] = _arg.pint.dequantify()

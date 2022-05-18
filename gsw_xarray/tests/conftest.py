@@ -23,6 +23,7 @@ def ds():
 def ureg():
     pint_xarray = pytest.importorskip("pint_xarray")
     from pint_xarray import unit_registry as ureg
+
     return ureg
 
 
@@ -36,6 +37,7 @@ def ds_pint(ds, ureg):
 @pytest.fixture
 def S(ureg):
     return 35 * ureg("g / kg")
+
 
 @pytest.fixture
 def T(ureg):
