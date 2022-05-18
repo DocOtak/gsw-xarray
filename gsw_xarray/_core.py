@@ -5,8 +5,10 @@ import gsw
 import xarray as xr
 
 from ._attributes import _func_attrs
+from ._arguments import _arg_attrs
 from ._names import _names
 from ._check_funcs import _check_funcs
+from ._function_utils import get_args_names
 
 try:
     import pint_xarray
@@ -36,7 +38,10 @@ def quantify(rv, attrs, unit_registry=None):
     return rv
 
 
-def pint_compat(args, kwargs):
+def pint_compat(fname, args_names, args, kwargs):
+    """
+    fname : name of the function
+    """
     if pint_xarray is None:
         return args, kwargs, None
 
@@ -44,15 +49,25 @@ def pint_compat(args, kwargs):
     new_args = []
     new_kwargs = {}
     registries = []
-    for arg in args:
+    for i, arg in enumerate(args):
         if isinstance(arg, xr.DataArray):
             if arg.pint.units is not None:
-                new_args.append(arg.pint.dequantify())
+                try:
+                    input_unit = _arg_attrs[fname][args_names[i]]["units"]
+                    _arg = arg.pint.to({arg.name:input_unit})
+                except KeyError:
+                    _arg = arg
+                new_args.append(_arg.pint.dequantify())
                 registries.append(arg.pint.registry)
             else:
                 new_args.append(arg)
         elif isinstance(arg, pint.Quantity):
-            new_args.append(arg.magnitude)
+            try:
+                input_unit = _arg_attrs[fname][args_names[i]]["units"]
+                _arg = arg.to(input_unit)
+            except KeyError:
+                _arg = arg
+            new_args.append(_arg.magnitude)
             registries.append(arg._REGISTRY)
         else:
             new_args.append(arg)
@@ -60,12 +75,22 @@ def pint_compat(args, kwargs):
     for kw, arg in kwargs.items():
         if isinstance(arg, xr.DataArray):
             if arg.pint.units is not None:
-                new_kwargs[kw] = arg.pint.dequantify()
+                try:
+                    input_unit = _arg_attrs[fname][kw]["units"]
+                    _arg = arg.pint.to({arg.name:input_unit})
+                except KeyError:
+                    _arg = arg
+                new_kwargs[kw] = _arg.pint.dequantify()
                 registries.append(arg.pint.registry)
             else:
                 new_kwargs[kw] = arg
         elif isinstance(arg, pint.Quantity):
-            new_kwargs[kw] = arg.magnitude
+            try:
+                input_unit = _arg_attrs[fname][kw]["units"]
+                _arg = arg.to(input_unit)
+            except KeyError:
+                _arg = arg
+            new_kwargs[kw] = _arg.magnitude
             registries.append(arg._REGISTRY)
         else:
             new_kwargs[kw] = arg
@@ -80,11 +105,12 @@ def pint_compat(args, kwargs):
     return new_args, new_kwargs, registries
 
 
-def cf_attrs(attrs, name, check_func):
+def cf_attrs(fname, attrs, name, check_func):
     def cf_attrs_decorator(func):
         @wraps(func)
         def cf_attrs_wrapper(*args, **kwargs):
-            args, kwargs, unit_registry = pint_compat(args, kwargs)
+            args_names = get_args_names(func, args)
+            args, kwargs, unit_registry = pint_compat(fname, args_names, args, kwargs)
             rv = func(*args, **kwargs)
             attrs_checked = check_func(attrs, args, kwargs)
             if isinstance(rv, tuple):
@@ -111,6 +137,7 @@ def _init_funcs():
     _wrapped_funcs = {}
     for func in _func_attrs.keys():
         _wrapped_funcs[func] = cf_attrs(
+            func,
             _func_attrs[func],
             _names[func],
             _check_funcs.get(func, lambda attrs, *args, **kwargs: attrs),
