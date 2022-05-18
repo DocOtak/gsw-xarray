@@ -130,4 +130,5 @@ def test_pint_quantity_convert(ds_pint):
     pint_xarray = pytest.importorskip("pint_xarray")
     sigma0_good_units = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
     sigma0_bad_units = gsw_xarray.sigma0(SA=ds_pint.SA.pint.to('mg / kg'), CT=ds_pint.CT.pint.to('kelvin'))
-    assert xr.testing.assert_equal(sigma0_good_units, sigma0_bad_units)
+    print('*****',sigma0_good_units, sigma0_bad_units)
+    xr.testing.assert_equal(sigma0_good_units, sigma0_bad_units)
