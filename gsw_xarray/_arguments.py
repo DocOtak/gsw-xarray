@@ -1,10 +1,6 @@
 _arg_attrs = {
-    "sigma0": (
-        {
-            "units": "g/kg",
-        },
-        {
-            "units": "degC"
-        },
-    ),
+    "sigma0": {
+        'SA': {"units": "g/kg",},
+        'CT': {"units": "degC"},
+    },
 }
