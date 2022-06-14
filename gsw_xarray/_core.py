@@ -45,7 +45,6 @@ def pint_compat(fname, args_names, args, kwargs):
     if pint_xarray is None:
         return args, kwargs, None
 
-    using_pint = False
     new_args = []
     new_kwargs = {}
     registries = []
