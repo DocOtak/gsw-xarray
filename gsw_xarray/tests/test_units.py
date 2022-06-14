@@ -4,10 +4,13 @@ Testing units with pint and cf_units
 import pytest
 import numpy as np
 import xarray as xr
+import gsw
 import gsw_xarray
 
 from .test_imports import gsw_base
 from gsw_xarray._attributes import _func_attrs
+from gsw_xarray._arguments import input_units
+from inspect import signature
 
 
 @pytest.mark.parametrize("func_name", gsw_base)
@@ -45,7 +48,20 @@ def test_unit_cf_units(func_name):
         print(a["units"])
         cf_units.Unit(a["units"])
 
+        
+@pytest.mark.parametrize("func_name", gsw_base)
+def test_unit_of_arg(func_name, ureg):
 
+    if func_name in ["indexer", "match_args_return", "pchip_interp"]:
+        # Internal gsw cookery or non wrapped functions
+        return
+    func = getattr(gsw, func_name)
+    s = signature(func)
+    p = s.parameters
+    for i in p:
+        assert i in input_units.keys()
+
+        
 def test_xarray_quantity(ds_pint):
     pint_xarray = pytest.importorskip("pint_xarray")
     sigma0 = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
