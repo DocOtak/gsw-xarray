@@ -7,7 +7,8 @@ This release will focus on supporting Pint quantities.
 
 Highlights
 ``````````
-* If (at least 1) arguments are xarray.DataArray wrapped by pint-xarray, the result is wrapped into a pint-xarray quantity.
+* If all arguments are xarray.DataArray wrapped by pint-xarray or pint Quantity, the result is wrapped into a pint-xarray quantity.
+* If arguments are Quantity, they will be converted to the unit of gsw arguments
 
 v0.2.1 - 2022-03-22
 -------------------
