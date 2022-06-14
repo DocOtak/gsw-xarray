@@ -48,7 +48,7 @@ def test_unit_cf_units(func_name):
         print(a["units"])
         cf_units.Unit(a["units"])
 
-        
+
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_of_arg(func_name, ureg):
 
@@ -61,7 +61,7 @@ def test_unit_of_arg(func_name, ureg):
     for i in p:
         assert i in input_units.keys()
 
-        
+
 def test_xarray_quantity(ds_pint):
     pint_xarray = pytest.importorskip("pint_xarray")
     sigma0 = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
