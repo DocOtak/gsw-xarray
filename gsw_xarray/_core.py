@@ -5,7 +5,7 @@ import gsw
 import xarray as xr
 
 from ._attributes import _func_attrs
-from ._arguments import _arg_attrs
+from ._arguments import input_units
 from ._names import _names
 from ._check_funcs import _check_funcs
 from ._function_utils import get_args_names
@@ -53,7 +53,7 @@ def pint_compat(fname, args_names, args, kwargs):
         if isinstance(arg, xr.DataArray):
             if arg.pint.units is not None:
                 try:
-                    input_unit = _arg_attrs[fname][args_names[i]]["units"]
+                    input_unit = input_units[args_names[i]]
                     _arg = arg.pint.to({arg.name: input_unit})
                 except KeyError:
                     _arg = arg
@@ -63,7 +63,7 @@ def pint_compat(fname, args_names, args, kwargs):
                 new_args.append(arg)
         elif isinstance(arg, pint.Quantity):
             try:
-                input_unit = _arg_attrs[fname][args_names[i]]["units"]
+                input_unit = input_units[args_names[i]]
                 _arg = arg.to(input_unit)
             except KeyError:
                 _arg = arg
@@ -76,7 +76,7 @@ def pint_compat(fname, args_names, args, kwargs):
         if isinstance(arg, xr.DataArray):
             if arg.pint.units is not None:
                 try:
-                    input_unit = _arg_attrs[fname][kw]["units"]
+                    input_unit = input_units[kw]
                     _arg = arg.pint.to({arg.name: input_unit})
                 except KeyError:
                     _arg = arg
@@ -86,7 +86,7 @@ def pint_compat(fname, args_names, args, kwargs):
                 new_kwargs[kw] = arg
         elif isinstance(arg, pint.Quantity):
             try:
-                input_unit = _arg_attrs[fname][kw]["units"]
+                input_unit = input_units[kw]
                 _arg = arg.to(input_unit)
             except KeyError:
                 _arg = arg
