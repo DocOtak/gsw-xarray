@@ -38,9 +38,44 @@ def quantify(rv, attrs, unit_registry=None):
     return rv
 
 
+def dequantify_reg(kw, arg):
+    if isinstance(arg, xr.DataArray):
+        if arg.pint.units is not None:
+            try:
+                input_unit = input_units[kw]
+                _arg = arg.pint.to({arg.name: input_unit})
+            except KeyError:
+                _arg = arg
+            # new_args.append(_arg.pint.dequantify())
+            # registries.append(arg.pint.registry)
+            _arg = _arg.pint.dequantify()
+            _reg = arg.pint.registry
+        else:
+            _arg = arg
+            _reg = None
+    elif isinstance(arg, pint.Quantity):
+        try:
+            input_unit = input_units[kw]
+            _arg = arg.to(input_unit)
+        except KeyError:
+            _arg = arg
+        # new_args.append(_arg.magnitude)
+        # registries.append(arg._REGISTRY)
+        _arg = _arg.magnitude
+        _reg = arg._REGISTRY
+    else:
+        # new_args.append(arg)
+        _arg = arg
+        _reg = None
+    return _arg, _reg
+
+
 def pint_compat(fname, args_names, args, kwargs):
     """
     fname : name of the function
+    args_names : list of argument names of the function associated with *args*
+    args, kwargs : list / dict of arguments and keyword arguments given to the function
+        by the user
     """
     if pint_xarray is None:
         return args, kwargs, None
@@ -48,55 +83,35 @@ def pint_compat(fname, args_names, args, kwargs):
     new_args = []
     new_kwargs = {}
     registries = []
-    for i, arg in enumerate(args):
-        if isinstance(arg, xr.DataArray):
-            if arg.pint.units is not None:
-                try:
-                    input_unit = input_units[args_names[i]]
-                    _arg = arg.pint.to({arg.name: input_unit})
-                except KeyError:
-                    _arg = arg
-                new_args.append(_arg.pint.dequantify())
-                registries.append(arg.pint.registry)
-            else:
-                new_args.append(arg)
-        elif isinstance(arg, pint.Quantity):
-            try:
-                input_unit = input_units[args_names[i]]
-                _arg = arg.to(input_unit)
-            except KeyError:
-                _arg = arg
-            new_args.append(_arg.magnitude)
-            registries.append(arg._REGISTRY)
-        else:
-            new_args.append(arg)
+
+    for kw, arg in zip(args_names, args):
+        _arg, _reg = dequantify_reg(kw, arg)
+        new_args.append(_arg)
+        # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
+        if input_units[kw] is not None:
+            registries.append(_reg)
 
     for kw, arg in kwargs.items():
-        if isinstance(arg, xr.DataArray):
-            if arg.pint.units is not None:
-                try:
-                    input_unit = input_units[kw]
-                    _arg = arg.pint.to({arg.name: input_unit})
-                except KeyError:
-                    _arg = arg
-                new_kwargs[kw] = _arg.pint.dequantify()
-                registries.append(arg.pint.registry)
-            else:
-                new_kwargs[kw] = arg
-        elif isinstance(arg, pint.Quantity):
-            try:
-                input_unit = input_units[kw]
-                _arg = arg.to(input_unit)
-            except KeyError:
-                _arg = arg
-            new_kwargs[kw] = _arg.magnitude
-            registries.append(arg._REGISTRY)
-        else:
-            new_kwargs[kw] = arg
+        _arg, _reg = dequantify_reg(kw, arg)
+        new_kwargs[kw] = _arg
+        # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
+        if input_units[kw] is not None:
+            registries.append(_reg)
 
     registries = set(registries)
+    # If there is a None in registries, but len > 1 => error
+    if (len(registries) > 1) and (None in registries):
+        raise ValueError("Mixed usage of Quantity and non Quantity is forbidden.")
+
+    try:
+        registries.remove(None)
+    except KeyError:
+        pass
+
     if len(registries) > 1:
-        raise ValueError("Quantity arguments must all belong to the same unit registry")
+        raise ValueError(
+            "Quantity arguments must all belong to the same unit registry."
+        )
     elif len(registries) == 0:
         registries = None
     else:
