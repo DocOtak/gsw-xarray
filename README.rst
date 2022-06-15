@@ -62,13 +62,18 @@ Outputs
    <class 'numpy.ndarray'> [-5.08964499  2.1101098   9.28348219]
 
 
-We support (but don't yet validate) the usage of pint.Quantities and the usage of xarray wrapped Quantities.
+We support (and convert the unit if necessary) the usage of pint.Quantities and the usage of xarray wrapped Quantities.
 Support for pint requires the installation of two optional dependencies: ``pint`` and ``pint-xarray``.
-If any of the inputs to a gsw function are Quantities, the returned object will also be a Quantity belonging to the same UnitRegistry.
+If all the inputs to a gsw function are Quantities, the returned object will also be a Quantity belonging to the same UnitRegistry.
 
 .. warning::
 
    Quantities must all belong to the same pint.UnitRegistry, a ValueError will be thrown if there are mixed registries.
+
+.. warning::
+
+   If one input is a Quantity, all inputs must be Quantities (and/or xarray wrapped Quantities), except for the `axis` and `interp_method` arguments.
+   For mixed usage of Quantities and non Quantities, a ValueError will be thrown.
 
 .. code:: python
 
@@ -123,6 +128,30 @@ Outputs
 ::
 
    26.824644457868317 kilogram / meter ** 3
+
+As gsw-xarray converts arguments to the proper unit when Quantities are used, we can e.g. use the temperature in Kelvin:
+
+.. code:: python
+
+   CT = ureg.Quantity(10, ureg.degC).to('kelvin')
+   sigma0 = gsw.sigma0(SA=SA, CT=CT)
+   print(sigma0)
+
+Outputs
+
+::
+
+   26.824644457868317 kilogram / meter ** 3
+
+.. note::
+   If you do not wish to use the unit conversion ability, you need to pass dequantified Quantities
+   (e.g. `da.pint.dequantify()` for pint-xarray or `arg.magnitude` for pint.Quantity).
+
+.. warning::
+   On the opposite, gsw-xarray will not check the units if non Quantity arguments are used.
+   If you wish to use unit conversion, please pass quantified arguments (if you xarray.Dataset /
+   xarray.DataArray has the 'units' attribute, you can use `da.pint.quantify()`)
+
 
 Installation
 ------------
