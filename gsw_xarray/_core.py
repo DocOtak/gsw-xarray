@@ -46,8 +46,6 @@ def dequantify_reg(kw, arg):
                 _arg = arg.pint.to({arg.name: input_unit})
             except KeyError:
                 _arg = arg
-            # new_args.append(_arg.pint.dequantify())
-            # registries.append(arg.pint.registry)
             _arg = _arg.pint.dequantify()
             _reg = arg.pint.registry
         else:
@@ -59,12 +57,9 @@ def dequantify_reg(kw, arg):
             _arg = arg.to(input_unit)
         except KeyError:
             _arg = arg
-        # new_args.append(_arg.magnitude)
-        # registries.append(arg._REGISTRY)
         _arg = _arg.magnitude
         _reg = arg._REGISTRY
     else:
-        # new_args.append(arg)
         _arg = arg
         _reg = None
     return _arg, _reg
