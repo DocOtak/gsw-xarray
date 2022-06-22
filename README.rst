@@ -152,6 +152,17 @@ Outputs
    If you wish to use unit conversion, please pass quantified arguments (if you xarray.Dataset /
    xarray.DataArray has the 'units' attribute, you can use `da.pint.quantify()`)
 
+.. note::
+   We recommend that you use the `cf-xarray <https://cf-xarray.readthedocs.io/en/latest/units.html>`_ registry for units,
+   as it implements geophysical units as `degree_north`, `degree_north`, etc.
+   gsw-xarray internally uses `degree_north` and `degree_east` for latitude and longitude unit names, so
+   if you use your own unit registry, please make sure that you implemented these 2 unit names.
+
+   The function `gsw.SP_from_SK` uses the unit name `ppt` for par per thousand for SK. If you wish to
+   use unit conversion with this function, you will need to implement this unit in your registry.
+   The easiest if you have Knudsen Salinity in your dataset, is to use non-quantity before conversion
+   to Practical Salinity and quantify afterward.
+
 
 Installation
 ------------

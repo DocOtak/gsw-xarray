@@ -5,7 +5,7 @@ input_units = {
     "SA": "g/kg",
     "SA_bulk": "g/kg",
     "SA_seaice": "g/kg",
-    "SK": "parts per thousand, ppt",  # The user will have to have a registry that allows ppt
+    "SK": "ppt",  # The user will have to have a registry that allows ppt
     "SP": "1",
     "SR": "g/kg",
     "Sstar": "g/kg",
