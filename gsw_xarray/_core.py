@@ -48,11 +48,13 @@ def convert_and_dequantify_reg(arg, kw):
 @convert_and_dequantify_reg.register
 def _cd_xr(arg: xr.DataArray, kw):
     if arg.pint.units is not None:
+        # pint-xarray raises ValueError if conversion does not work
+        # so we split the choice of unit and conversion
         try:
             input_unit = input_units[kw]
-            _arg = arg.pint.to({arg.name: input_unit})
         except KeyError:
-            _arg = arg
+            input_unit = arg.pint.units
+        _arg = arg.pint.to({arg.name: input_unit})
         _arg = _arg.pint.dequantify()
         _reg = arg.pint.registry
     else:
@@ -63,6 +65,8 @@ def _cd_xr(arg: xr.DataArray, kw):
 
 @convert_and_dequantify_reg.register
 def _cd_pint(arg: pint.Quantity, kw):
+    # pint raises DimensionalityError if conversion does not work
+    # so we can have conversion in the same try except
     try:
         input_unit = input_units[kw]
         _arg = arg.to(input_unit)
