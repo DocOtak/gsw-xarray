@@ -8,7 +8,7 @@ from ._attributes import _func_attrs
 from ._arguments import input_units
 from ._names import _names
 from ._check_funcs import _check_funcs
-from ._function_utils import get_args_names
+from ._function_utils import args_and_kwargs_to_kwargs
 
 try:
     import pint_xarray
@@ -70,7 +70,7 @@ def dequantify_reg(kw, arg):
     return _arg, _reg
 
 
-def pint_compat(fname, args_names, args, kwargs):
+def pint_compat(fname, kwargs):
     """
     fname : name of the function
     args_names : list of argument names of the function associated with *args*
@@ -80,16 +80,8 @@ def pint_compat(fname, args_names, args, kwargs):
     if pint_xarray is None:
         return args, kwargs, None
 
-    new_args = []
     new_kwargs = {}
     registries = []
-
-    for kw, arg in zip(args_names, args):
-        _arg, _reg = dequantify_reg(kw, arg)
-        new_args.append(_arg)
-        # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
-        if input_units[kw] is not None:
-            registries.append(_reg)
 
     for kw, arg in kwargs.items():
         _arg, _reg = dequantify_reg(kw, arg)
@@ -116,17 +108,18 @@ def pint_compat(fname, args_names, args, kwargs):
         registries = None
     else:
         (registries,) = registries
-    return new_args, new_kwargs, registries
+    return new_kwargs, registries
 
 
 def cf_attrs(fname, attrs, name, check_func):
     def cf_attrs_decorator(func):
         @wraps(func)
         def cf_attrs_wrapper(*args, **kwargs):
-            args_names = get_args_names(func, args)
-            args, kwargs, unit_registry = pint_compat(fname, args_names, args, kwargs)
-            rv = func(*args, **kwargs)
-            attrs_checked = check_func(attrs, args, kwargs)
+            # We start by transforming all args to kwargs
+            kwargs = args_and_kwargs_to_kwargs(func, args, kwargs)
+            kwargs, unit_registry = pint_compat(fname, kwargs)
+            rv = func(**kwargs)
+            attrs_checked = check_func(attrs, kwargs)
             if isinstance(rv, tuple):
                 rv_updated = []
                 for (i, da) in enumerate(rv):
