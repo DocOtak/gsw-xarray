@@ -149,7 +149,7 @@ Outputs
 
 .. warning::
    On the opposite, gsw-xarray will not check the units if non Quantity arguments are used.
-   If you wish to use unit conversion, please pass quantified arguments (if you xarray.Dataset /
+   If you wish to use unit conversion, please pass quantified arguments (if your xarray.Dataset /
    xarray.DataArray has the 'units' attribute, you can use `da.pint.quantify()`)
 
 .. note::
