@@ -1,4 +1,4 @@
-from functools import wraps
+from functools import wraps, singledispatch
 from itertools import chain
 
 import gsw
@@ -38,37 +38,45 @@ def quantify(rv, attrs, unit_registry=None):
     return rv
 
 
-def convert_and_dequantify_reg(kw, arg):
-    if isinstance(arg, xr.DataArray):
-        if arg.pint.units is not None:
-            try:
-                input_unit = input_units[kw]
-                _arg = arg.pint.to({arg.name: input_unit})
-            except KeyError:
-                _arg = arg
-            _arg = _arg.pint.dequantify()
-            _reg = arg.pint.registry
-        else:
-            _arg = arg
-            _reg = None
-    elif isinstance(arg, pint.Quantity):
+@singledispatch
+def convert_and_dequantify_reg(arg, kw):
+    _arg = arg
+    _reg = None
+    return _arg, _reg
+
+
+@convert_and_dequantify_reg.register
+def _cd_xr(arg: xr.DataArray, kw):
+    if arg.pint.units is not None:
         try:
             input_unit = input_units[kw]
-            _arg = arg.to(input_unit)
+            _arg = arg.pint.to({arg.name: input_unit})
         except KeyError:
             _arg = arg
-        _arg = _arg.magnitude
-        _reg = arg._REGISTRY
+        _arg = _arg.pint.dequantify()
+        _reg = arg.pint.registry
     else:
         _arg = arg
         _reg = None
     return _arg, _reg
 
 
+@convert_and_dequantify_reg.register
+def _cd_pint(arg: pint.Quantity, kw):
+    try:
+        input_unit = input_units[kw]
+        _arg = arg.to(input_unit)
+    except KeyError:
+        _arg = arg
+    _arg = _arg.magnitude
+    _reg = arg._REGISTRY
+    return _arg, _reg
+
+
 def pint_compat(fname, kwargs):
     """
     Will convert to proper unit if Quantities are used, and dequantify arguments
-    
+
     fname : name of the function
     kwargs : dict of arguments and keyword arguments given to the function
         by the user
@@ -81,7 +89,7 @@ def pint_compat(fname, kwargs):
 
     for kw, arg in kwargs.items():
         # convert and dequantify
-        _arg, _reg = convert_and_dequantify_reg(kw, arg)
+        _arg, _reg = convert_and_dequantify_reg(arg, kw)
         new_kwargs[kw] = _arg
         # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
         if input_units[kw] is not None:
