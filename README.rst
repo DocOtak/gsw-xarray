@@ -154,7 +154,7 @@ Outputs
 
 .. note::
    We recommend that you use the `cf-xarray <https://cf-xarray.readthedocs.io/en/latest/units.html>`_ registry for units,
-   as it implements geophysical units as `degree_north`, `degree_north`, etc.
+   as it implements geophysical units as `degree_north`, `degrees_north`, etc.
    gsw-xarray internally uses `degree_north` and `degree_east` for latitude and longitude unit names, so
    if you use your own unit registry, please make sure that you implemented these 2 unit names.
 
