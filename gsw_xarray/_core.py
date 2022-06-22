@@ -38,7 +38,7 @@ def quantify(rv, attrs, unit_registry=None):
     return rv
 
 
-def dequantify_reg(kw, arg):
+def convert_and_dequantify_reg(kw, arg):
     if isinstance(arg, xr.DataArray):
         if arg.pint.units is not None:
             try:
@@ -67,9 +67,10 @@ def dequantify_reg(kw, arg):
 
 def pint_compat(fname, kwargs):
     """
+    Will convert to proper unit if Quantities are used, and dequantify arguments
+    
     fname : name of the function
-    args_names : list of argument names of the function associated with *args*
-    args, kwargs : list / dict of arguments and keyword arguments given to the function
+    kwargs : dict of arguments and keyword arguments given to the function
         by the user
     """
     if pint_xarray is None:
@@ -79,7 +80,8 @@ def pint_compat(fname, kwargs):
     registries = []
 
     for kw, arg in kwargs.items():
-        _arg, _reg = dequantify_reg(kw, arg)
+        # convert and dequantify
+        _arg, _reg = convert_and_dequantify_reg(kw, arg)
         new_kwargs[kw] = _arg
         # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
         if input_units[kw] is not None:
