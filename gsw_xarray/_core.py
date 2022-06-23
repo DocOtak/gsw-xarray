@@ -136,7 +136,11 @@ def cf_attrs(fname, attrs, name, check_func):
             # It is necessary to not add defaults before pint compat
             # Otherwise, defaults are never Quantities
             kwargs = args_and_kwargs_to_kwargs(func, [], kwargs, add_defaults=True)
-            rv = func(**kwargs)
+            # the upstream gsw does not treat equally args and kwargs so we get
+            # back the original args
+            o_args = list(kwargs.values())[: len(args)]
+            o_kwargs = {i: kwargs[i] for i in list(kwargs)[len(args) :]}
+            rv = func(*o_args, **o_kwargs)
             attrs_checked = check_func(attrs, kwargs)
             if isinstance(rv, tuple):
                 rv_updated = []
