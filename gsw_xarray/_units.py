@@ -3,11 +3,7 @@ try:
 except ImportError:
     UndefinedUnitError = None
 
-generic_units = {
-    "degree_north": "degree",
-    "degree_east": "degree",
-    "ppt": "1",
-}
+generic_units = {"degree_north": "degree", "degree_east": "degree"}
 
 
 def safe_unit(unit, registry):

@@ -5,7 +5,7 @@ input_units = {
     "SA": "g/kg",
     "SA_bulk": "g/kg",
     "SA_seaice": "g/kg",
-    "SK": "ppt",  # The user will have to have a registry that allows ppt
+    "SK": "1",  # Initially part per thousand, but ppt is already used for picopint
     "SP": "1",
     "SR": "g/kg",
     "Sstar": "g/kg",
