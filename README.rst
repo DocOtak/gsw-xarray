@@ -155,13 +155,11 @@ Outputs
 .. note::
    We recommend that you use the `cf-xarray <https://cf-xarray.readthedocs.io/en/latest/units.html>`_ registry for units,
    as it implements geophysical units as `degree_north`, `degrees_north`, etc.
-   gsw-xarray internally uses `degree_north` and `degree_east` for latitude and longitude unit names, so
-   if you use your own unit registry, please make sure that you implemented these 2 unit names.
+   gsw-xarray internally uses `degree_north` and `degree_east` for latitude and longitude unit names.
+   If they are not found in the unit registry, they will be replaced by `degree`.
 
-   The function `gsw.SP_from_SK` uses the unit name `ppt` for part per thousand for SK. If you wish to
-   use unit conversion with this function, you will need to implement this unit in your registry.
-   The easiest if you have Knudsen Salinity in your dataset, is to use non-quantity before conversion
-   to Practical Salinity and quantify afterward.
+   The function `gsw.SP_from_SK` part per thousand for SK. To 'ppt' is already used for picopint,
+   so the expected unit will be replaced by '1'.
 
 
 Installation
