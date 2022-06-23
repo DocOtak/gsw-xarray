@@ -158,8 +158,8 @@ Outputs
    gsw-xarray internally uses `degree_north` and `degree_east` for latitude and longitude unit names.
    If they are not found in the unit registry, they will be replaced by `degree`.
 
-   The function `gsw.SP_from_SK` part per thousand for SK. To 'ppt' is already used for picopint,
-   so the expected unit will be replaced by '1'.
+   The function `gsw.SP_from_SK` uses part per thousand for SK. 'ppt' is already used for picopint,
+   so the expected unit is replaced by '1'.
 
 
 Installation
