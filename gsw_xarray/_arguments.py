@@ -9,14 +9,14 @@ input_units = {
     "SP": "1",
     "SR": "g/kg",
     "Sstar": "g/kg",
-    "axis": "None",  # int, numpy axis
+    "axis": None,  # int, numpy axis
     "entropy": "J/(kg*K)",
     "geo_strf": "m^2/s^2",
     "geo_strf_dyn_height": "m^2/s^2",
     "h": "J/kg",
     "h_bulk": "J/kg",
     "h_pot_bulk": "J/kg",
-    "interp_method": "None",
+    "interp_method": None,
     "lat": "degree_north",
     "lon": "degree_east",
     "max_dp": "dbar",  # in geo_strf_dyn_height
