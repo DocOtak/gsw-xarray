@@ -9,13 +9,15 @@ def ds():
     ds = xr.Dataset()
     id = np.arange(3)
     ds["id"] = xr.DataArray(id, coords={"id": id})
-    ds["CT"] = ds["id"] * 10
+    ds["CT"] = ds["id"] * 1
     ds["CT"].attrs = {
         "standard_name": "sea_water_conservative_temperature",
         "units": "degC",
     }
     ds["SA"] = ds["id"] * 0.1 + 34
     ds["SA"].attrs = {"standard_name": "sea_water_absolute_salinity", "units": "g/kg"}
+    ds["p"] = ds["id"] * 10
+    ds["p"].attrs = {"standard_name": "sea_water_pressure", "units": "dbar"}
     return ds
 
 

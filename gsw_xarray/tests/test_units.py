@@ -65,6 +65,24 @@ def test_func_return_tuple_quantity(ds_pint):
     assert CT_SA.pint.units == pint_xarray.unit_registry("K/(g/kg)")
 
 
+def test_output_falls_back_to_generic_unit(ds_pint):
+    # We can't test geostrophic_velocity with xarray for now
+    # see https://github.com/TEOS-10/GSW-Python/pull/96
+    ureg = ds_pint.SA.pint.registry
+    dyn_height = gsw_xarray.geo_strf_dyn_height(
+        ds_pint.SA.data,
+        ds_pint.CT.data,
+        ds_pint.p.data,
+        axis=ds_pint.p.get_axis_num("id"),
+    )[1]
+    dyn_height = np.ones((2,)) * dyn_height
+    lon = ureg.Quantity([0, 15], "degree")
+    lat = ureg.Quantity([10, 20], "degree")
+    (vel, lon, lat) = gsw_xarray.geostrophic_velocity(dyn_height, lon, lat, axis=0)
+    assert lon.units == ureg("degree")
+    assert lat.units == ureg("degree")
+
+
 ##########
 # Input
 ##########
@@ -89,6 +107,13 @@ def test_ds_mixed_quantity_non_quantity(ds, ds_pint):
 
     with pytest.raises(ValueError):
         sigma0 = gsw_xarray.sigma0(SA=ds.SA, CT=ds_pint.CT)
+
+
+def test_ds_mixed_quantity_non_quantity_axis_arg_None_arg(ds_pint):
+    """Should not use dimension for None args, nor for the axis arg"""
+    pint_xarray = pytest.importorskip("pint_xarray")
+
+    gsw_xarray.Nsquared(SA=ds_pint.SA, CT=ds_pint.CT, p=ds_pint.p, axis=0, lat=None)
 
 
 def test_pint_mixed_quantity_non_quantity(T):
