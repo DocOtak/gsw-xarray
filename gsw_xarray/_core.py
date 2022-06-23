@@ -94,7 +94,10 @@ def pint_compat(fname, kwargs):
 
     for kw, arg in kwargs.items():
         # convert and dequantify
-        _arg, _reg = convert_and_dequantify_reg(arg, kw)
+        if pint_xarray is not None:
+            _arg, _reg = convert_and_dequantify_reg(arg, kw)
+        else:
+            _arg, _reg = arg, None
         new_kwargs[kw] = _arg
         # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
         if input_units[kw] is not None and _arg is not None:

@@ -1,4 +1,7 @@
-from pint import UndefinedUnitError
+try:
+    from pint import UndefinedUnitError
+except ImportError:
+    UndefinedUnitError = None
 
 generic_units = {
     "degree_north": "degree",
@@ -13,7 +16,7 @@ def safe_unit(unit, registry):
     value.
     If no unit is found, raises a UndefinedUnitError.
     """
-    if registry is None:
+    if registry is None or UndefinedUnitError is None:
         return unit
     if unit in registry:
         return unit
