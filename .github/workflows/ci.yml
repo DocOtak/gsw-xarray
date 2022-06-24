@@ -64,6 +64,7 @@ jobs:
         poetry-version: ${{ matrix.poetry-version }}
     - name: Install dependencies
       run: |
+        poetry lock
         poetry install
         poetry run pip install cf_units==3.0.1
     - if: matrix.pint == 'with'
