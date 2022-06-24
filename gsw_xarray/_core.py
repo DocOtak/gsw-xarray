@@ -65,17 +65,19 @@ def _cd_xr(arg: xr.DataArray, kw):
     return _arg, _reg
 
 
-@convert_and_dequantify_reg.register
-def _cd_pint(arg: pint.Quantity, kw):
-    try:
-        input_unit = input_units[kw]
-    except KeyError:
-        input_unit = arg.unit
-    input_unit = safe_unit(input_unit, arg._REGISTRY)
-    _arg = arg.to(input_unit)
-    _arg = _arg.magnitude
-    _reg = arg._REGISTRY
-    return _arg, _reg
+if pint_xarray is not None:
+
+    @convert_and_dequantify_reg.register
+    def _cd_pint(arg: pint.Quantity, kw):
+        try:
+            input_unit = input_units[kw]
+        except KeyError:
+            input_unit = arg.unit
+        input_unit = safe_unit(input_unit, arg._REGISTRY)
+        _arg = arg.to(input_unit)
+        _arg = _arg.magnitude
+        _reg = arg._REGISTRY
+        return _arg, _reg
 
 
 def pint_compat(fname, kwargs):
@@ -87,7 +89,7 @@ def pint_compat(fname, kwargs):
         by the user (all args must be previously transformed to kwargs)
     """
     if pint_xarray is None:
-        return args, kwargs, None
+        return kwargs, None
 
     new_kwargs = {}
     registries = []
