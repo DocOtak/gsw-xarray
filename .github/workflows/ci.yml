@@ -41,7 +41,7 @@ jobs:
         pip install .
         
   test:
-    name: test (${{ matrix.os }}, ${{ matrix.python-version }}, ${{ pint }})
+    name: test (${{ matrix.os }}, ${{ matrix.python-version }}, ${{ matrix.pint }} Pint)
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
