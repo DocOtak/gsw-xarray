@@ -1,12 +1,14 @@
-from functools import wraps
-from itertools import chain
+from functools import wraps, singledispatch
 
 import gsw
 import xarray as xr
 
 from ._attributes import _func_attrs
+from ._arguments import input_units
 from ._names import _names
 from ._check_funcs import _check_funcs
+from ._function_utils import args_and_kwargs_to_kwargs
+from ._units import safe_unit
 
 try:
     import pint_xarray
@@ -36,60 +38,116 @@ def quantify(rv, attrs, unit_registry=None):
     return rv
 
 
-def pint_compat(args, kwargs):
-    if pint_xarray is None:
-        return args, kwargs, None
+@singledispatch
+def convert_and_dequantify_reg(arg, kw):
+    _arg = arg
+    _reg = None
+    return _arg, _reg
 
-    using_pint = False
-    new_args = []
+
+@convert_and_dequantify_reg.register
+def _cd_xr(arg: xr.DataArray, kw):
+    if arg.pint.units is not None:
+        # pint-xarray raises ValueError if conversion does not work
+        # so we split the choice of unit and conversion
+        try:
+            input_unit = input_units[kw]
+        except KeyError:
+            input_unit = arg.pint.units
+        input_unit = safe_unit(input_unit, arg.pint.registry)
+        _arg = arg.pint.to({arg.name: input_unit})
+        _arg = _arg.pint.dequantify()
+        _reg = arg.pint.registry
+    else:
+        _arg = arg
+        _reg = None
+    return _arg, _reg
+
+
+if pint_xarray is not None:
+
+    @convert_and_dequantify_reg.register
+    def _cd_pint(arg: pint.Quantity, kw):
+        try:
+            input_unit = input_units[kw]
+        except KeyError:
+            input_unit = arg.unit
+        input_unit = safe_unit(input_unit, arg._REGISTRY)
+        _arg = arg.to(input_unit)
+        _arg = _arg.magnitude
+        _reg = arg._REGISTRY
+        return _arg, _reg
+
+
+def pint_compat(fname, kwargs):
+    """
+    Will convert to proper unit if Quantities are used, and dequantify arguments
+
+    fname : name of the function
+    kwargs : dict of keyword arguments given to the function
+        by the user (all args must be previously transformed to kwargs)
+    """
+    if pint_xarray is None:
+        return kwargs, None
+
     new_kwargs = {}
     registries = []
-    for arg in args:
-        if isinstance(arg, xr.DataArray):
-            if arg.pint.units is not None:
-                new_args.append(arg.pint.dequantify())
-                registries.append(arg.pint.registry)
-            else:
-                new_args.append(arg)
-        elif isinstance(arg, pint.Quantity):
-            new_args.append(arg.magnitude)
-            registries.append(arg._REGISTRY)
-        else:
-            new_args.append(arg)
 
     for kw, arg in kwargs.items():
-        if isinstance(arg, xr.DataArray):
-            if arg.pint.units is not None:
-                new_kwargs[kw] = arg.pint.dequantify()
-                registries.append(arg.pint.registry)
-            else:
-                new_kwargs[kw] = arg
-        elif isinstance(arg, pint.Quantity):
-            new_kwargs[kw] = arg.magnitude
-            registries.append(arg._REGISTRY)
-        else:
-            new_kwargs[kw] = arg
+        # convert and dequantify
+        # we can safely always call this due to the pint_xarray check above (and the base case of the single dispatch)
+        _arg, _reg = convert_and_dequantify_reg(arg, kw)
+        new_kwargs[kw] = _arg
+        # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
+        if input_units[kw] is not None and _arg is not None:
+            registries.append(_reg)
 
     registries = set(registries)
+    # If there is a None in registries, but len > 1 => error
+    if (len(registries) > 1) and (None in registries):
+        raise ValueError("Mixed usage of Quantity and non Quantity is forbidden.")
+
+    try:
+        registries.remove(None)
+    except KeyError:
+        pass
+
     if len(registries) > 1:
-        raise ValueError("Quantity arguments must all belong to the same unit registry")
+        raise ValueError(
+            "Quantity arguments must all belong to the same unit registry."
+        )
     elif len(registries) == 0:
         registries = None
     else:
         (registries,) = registries
-    return new_args, new_kwargs, registries
+    return new_kwargs, registries
 
 
-def cf_attrs(attrs, name, check_func):
+def cf_attrs(fname, attrs, name, check_func):
     def cf_attrs_decorator(func):
         @wraps(func)
         def cf_attrs_wrapper(*args, **kwargs):
-            args, kwargs, unit_registry = pint_compat(args, kwargs)
-            rv = func(*args, **kwargs)
-            attrs_checked = check_func(attrs, args, kwargs)
+            # We start by transforming all args to kwargs,
+            # Except the default ones
+            kwargs = args_and_kwargs_to_kwargs(func, args, kwargs, add_defaults=False)
+            kwargs, unit_registry = pint_compat(fname, kwargs)
+            # We add the default arguments
+            # It is necessary to not add defaults before pint compat
+            # Otherwise, defaults are never Quantities
+            kwargs = args_and_kwargs_to_kwargs(func, [], kwargs, add_defaults=True)
+            # the upstream gsw does not treat equally args and kwargs so we get
+            # back the original args
+            o_args = list(kwargs.values())[: len(args)]
+            o_kwargs = {i: kwargs[i] for i in list(kwargs)[len(args) :]}
+            rv = func(*o_args, **o_kwargs)
+            attrs_checked = check_func(attrs, kwargs)
             if isinstance(rv, tuple):
                 rv_updated = []
                 for (i, da) in enumerate(rv):
+                    # Verify the unit
+                    attrs_checked[i]["units"] = safe_unit(
+                        attrs_checked[i]["units"], unit_registry
+                    )
                     add_attrs(da, attrs_checked[i], name[i])
                     rv_updated.append(
                         quantify(da, attrs_checked[i], unit_registry=unit_registry)
@@ -98,6 +156,10 @@ def cf_attrs(attrs, name, check_func):
                 rv = tuple(rv_updated)
 
             else:
+                # Verify the unit
+                attrs_checked["units"] = safe_unit(
+                    attrs_checked["units"], unit_registry
+                )
                 add_attrs(rv, attrs_checked, name)
                 rv = quantify(rv, attrs_checked, unit_registry=unit_registry)
             return rv
@@ -109,12 +171,13 @@ def cf_attrs(attrs, name, check_func):
 
 def _init_funcs():
     _wrapped_funcs = {}
-    for func in _func_attrs.keys():
-        _wrapped_funcs[func] = cf_attrs(
-            _func_attrs[func],
-            _names[func],
-            _check_funcs.get(func, lambda attrs, *args, **kwargs: attrs),
-        )(getattr(gsw, func))
+    for fname in _func_attrs.keys():
+        _wrapped_funcs[fname] = cf_attrs(
+            fname,
+            _func_attrs[fname],
+            _names[fname],
+            _check_funcs.get(fname, lambda attrs, *args, **kwargs: attrs),
+        )(getattr(gsw, fname))
     return _wrapped_funcs
 
 

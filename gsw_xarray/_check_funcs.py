@@ -11,7 +11,7 @@ def _rm_std_nme(d):
     return d
 
 
-def check_pot_rho_t_exact(attrs, args, kwargs):
+def check_pot_rho_t_exact(attrs, kwargs):
     """
     If the reference pressure is not 0, remove standard name.
 
@@ -22,10 +22,7 @@ def check_pot_rho_t_exact(attrs, args, kwargs):
     (see issue 32, https://github.com/DocOtak/gsw-xarray/issues/32)
     """
     # get value of p_ref
-    try:
-        p_ref = kwargs["p_ref"]
-    except KeyError:
-        p_ref = args[3]
+    p_ref = kwargs["p_ref"]
 
     if p_ref == 0:
         return attrs
@@ -33,7 +30,7 @@ def check_pot_rho_t_exact(attrs, args, kwargs):
         return _rm_std_nme(attrs)
 
 
-def check_z_from_p(attrs, args, kwargs):
+def check_z_from_p(attrs, kwargs):
     """
     If the 2 optional arguments are not 0, removes the standard name.
 
@@ -51,23 +48,8 @@ def check_z_from_p(attrs, args, kwargs):
     # Getting the values of optional parameters
     # If the values are in kwargs, all good
     # Otherwise, we get them from args
-    try:
-        geo_strf_dyn_height = kwargs["geo_strf_dyn_height"]
-    except KeyError:
-        try:
-            geo_strf_dyn_height = args[2]
-        except IndexError:
-            geo_strf_dyn_height = 0  # Could use inspect.signature to get default value
-
-    try:
-        sea_surface_geopotential = kwargs["sea_surface_geopotential"]
-    except KeyError:
-        try:
-            sea_surface_geopotential = args[3]
-        except IndexError:
-            sea_surface_geopotential = (
-                0  # Could use inspect.signature to get default value
-            )
+    geo_strf_dyn_height = kwargs["geo_strf_dyn_height"]
+    sea_surface_geopotential = kwargs["sea_surface_geopotential"]
 
     if geo_strf_dyn_height != 0 or sea_surface_geopotential != 0:
         return _rm_std_nme(attrs)
