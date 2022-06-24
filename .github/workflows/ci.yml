@@ -41,7 +41,7 @@ jobs:
         pip install .
         
   test:
-    name: test (${{ matrix.os }}, ${{ matrix.python-version }})
+    name: test (${{ matrix.os }}, ${{ matrix.python-version }}, ${{ pint }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -49,6 +49,7 @@ jobs:
         os: ["ubuntu-latest"]
         python-version: ["3.8", "3.9", "3.10"]
         poetry-version: [1.1.11]
+	pint: ["with", "without"]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -63,8 +64,12 @@ jobs:
         poetry-version: ${{ matrix.poetry-version }}
     - name: Install dependencies
       run: |
-        poetry install -E pint
+        poetry install
         poetry run pip install cf_units==3.0.1
+    - if: ${{ matrix.pint }} == 'with'
+      name: Install pint and pint-xarray
+      run: |
+        poetry install -E pint
     - name: Test with pytest
       run: |
         poetry run pytest gsw_xarray/tests
