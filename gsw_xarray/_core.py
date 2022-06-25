@@ -171,12 +171,12 @@ def cf_attrs(fname, attrs, name, check_func):
 
 def _init_funcs():
     _wrapped_funcs = {}
-    for fname in _func_attrs.keys():
+    for fname, attrs in _func_attrs.items():
         _wrapped_funcs[fname] = cf_attrs(
             fname,
-            _func_attrs[fname],
+            attrs,
             _names[fname],
-            _check_funcs.get(fname, lambda attrs, *args, **kwargs: attrs),
+            _check_funcs[fname],
         )(getattr(gsw, fname))
     return _wrapped_funcs
 
