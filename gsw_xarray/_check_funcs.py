@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def _rm_std_nme(d):
     """
     Return a dict which does not contain the standard name
@@ -9,6 +12,14 @@ def _rm_std_nme(d):
     except KeyError:
         pass
     return d
+
+
+def check_default(attrs, _kwargs):
+    """Default implimentation of the check functions
+
+    Simply returns the input attrs
+    """
+    return attrs
 
 
 def check_pot_rho_t_exact(attrs, kwargs):
@@ -57,10 +68,10 @@ def check_z_from_p(attrs, kwargs):
         return attrs
 
 
-_check_funcs = {
-    "pot_rho_t_exact": check_pot_rho_t_exact,
-    "z_from_p": check_z_from_p,
-}
+_check_funcs = defaultdict(lambda: check_default)
+
+_check_funcs["pot_rho_t_exact"] = check_pot_rho_t_exact
+_check_funcs["z_from_p"] = check_z_from_p
 
 # TODO
 # sigma1, sigma2, sigma3, sigma4
