@@ -9,7 +9,7 @@ import gsw_xarray
 
 from .test_imports import gsw_base
 from gsw_xarray._attributes import _func_attrs
-from gsw_xarray._arguments import input_units
+from gsw_xarray._arguments import input_properties
 from inspect import signature
 
 ##########
@@ -98,7 +98,7 @@ def test_unit_of_arg(func_name, ureg):
     s = signature(func)
     p = s.parameters
     for i in p:
-        assert i in input_units.keys()
+        assert i in input_properties.keys()
 
 
 def test_ds_mixed_quantity_non_quantity(ds, ds_pint):

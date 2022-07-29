@@ -4,7 +4,7 @@ import gsw
 import xarray as xr
 
 from ._attributes import _func_attrs
-from ._arguments import input_units
+from ._arguments import input_properties
 from ._names import _names
 from ._check_funcs import _check_funcs
 from ._function_utils import args_and_kwargs_to_kwargs
@@ -51,7 +51,7 @@ def _cd_xr(arg: xr.DataArray, kw):
         # pint-xarray raises ValueError if conversion does not work
         # so we split the choice of unit and conversion
         try:
-            input_unit = input_units[kw]
+            input_unit = input_properties[kw]['units']
         except KeyError:
             input_unit = arg.pint.units
         input_unit = safe_unit(input_unit, arg.pint.registry)
@@ -69,7 +69,7 @@ if pint_xarray is not None:
     @convert_and_dequantify_reg.register
     def _cd_pint(arg: pint.Quantity, kw):
         try:
-            input_unit = input_units[kw]
+            input_unit = input_properties[kw]['units']
         except KeyError:
             input_unit = arg.unit
         input_unit = safe_unit(input_unit, arg._REGISTRY)
@@ -99,7 +99,7 @@ def pint_compat(fname, kwargs):
         _arg, _reg = convert_and_dequantify_reg(arg, kw)
         new_kwargs[kw] = _arg
         # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
-        if input_units[kw] is not None and _arg is not None:
+        if input_properties[kw]['units'] is not None and _arg is not None:
             registries.append(_reg)
 
     registries = set(registries)
