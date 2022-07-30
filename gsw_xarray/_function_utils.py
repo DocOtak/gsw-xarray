@@ -10,6 +10,7 @@ def args_and_kwargs_to_kwargs(func, args, kwargs, add_defaults):
     all_kwargs = bound_args.arguments
     return all_kwargs
 
+
 def parameters_as_set(func):
     """
     Return a set with the names of the parameters of *func*

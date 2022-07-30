@@ -14,7 +14,8 @@ def test_use_only_dataset(ds):
     sigma0_da = gsw_xarray.sigma0(SA=ds.SA, CT=ds.CT)
     sigma0_ds = gsw_xarray.sigma0(ds=ds)
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
-    
+
+
 def test_use_partial_dataset(ds):
     """Give dataset as argument + some dataarrays"""
     sigma0_da = gsw_xarray.sigma0(SA=ds.SA, CT=ds.CT)

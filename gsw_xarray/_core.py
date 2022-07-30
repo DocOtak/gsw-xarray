@@ -56,7 +56,7 @@ def _cd_xr(arg: xr.DataArray, kw):
         # pint-xarray raises ValueError if conversion does not work
         # so we split the choice of unit and conversion
         try:
-            input_unit = input_properties[kw]['units']
+            input_unit = input_properties[kw]["units"]
         except KeyError:
             input_unit = arg.pint.units
         input_unit = safe_unit(input_unit, arg.pint.registry)
@@ -74,7 +74,7 @@ if pint_xarray is not None:
     @convert_and_dequantify_reg.register
     def _cd_pint(arg: pint.Quantity, kw):
         try:
-            input_unit = input_properties[kw]['units']
+            input_unit = input_properties[kw]["units"]
         except KeyError:
             input_unit = arg.unit
         input_unit = safe_unit(input_unit, arg._REGISTRY)
@@ -104,7 +104,7 @@ def pint_compat(fname, kwargs):
         _arg, _reg = convert_and_dequantify_reg(arg, kw)
         new_kwargs[kw] = _arg
         # We append registry only if kw has a unit, e.g. we skip it if kw is 'axis' or 'interp_method'
-        if input_properties[kw]['units'] is not None and _arg is not None:
+        if input_properties[kw]["units"] is not None and _arg is not None:
             registries.append(_reg)
 
     registries = set(registries)
@@ -133,8 +133,8 @@ def cf_attrs(fname, attrs, name, check_func):
         @wraps(func)
         def cf_attrs_wrapper(*args, **kwargs):
             # We start by checking if a dataset is in kwargs
-            ds = kwargs.pop('ds', None)
-            
+            ds = kwargs.pop("ds", None)
+
             # We transform all args to kwargs,
             # Except the default ones
             kwargs = args_and_kwargs_to_kwargs(func, args, kwargs, add_defaults=False)
@@ -145,7 +145,10 @@ def cf_attrs(fname, attrs, name, check_func):
                 missing_params = parameters - set(kwargs.keys())
                 # 2) add them to kwargs
                 kwargs.update(
-                    {i:ds.cf[input_properties[i]["standard_name"]] for i in missing_params}
+                    {
+                        i: ds.cf[input_properties[i]["standard_name"]]
+                        for i in missing_params
+                    }
                 )
             kwargs, unit_registry = pint_compat(fname, kwargs)
             # We add the default arguments
