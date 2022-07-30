@@ -3,11 +3,16 @@ from functools import wraps, singledispatch
 import gsw
 import xarray as xr
 
+try:
+    import cf_xarray
+except ImportError:
+    cf_xarray = None
+
 from ._attributes import _func_attrs
 from ._arguments import input_properties
 from ._names import _names
 from ._check_funcs import _check_funcs
-from ._function_utils import args_and_kwargs_to_kwargs
+from ._function_utils import args_and_kwargs_to_kwargs, parameters_as_set
 from ._units import safe_unit
 
 try:
@@ -127,9 +132,21 @@ def cf_attrs(fname, attrs, name, check_func):
     def cf_attrs_decorator(func):
         @wraps(func)
         def cf_attrs_wrapper(*args, **kwargs):
-            # We start by transforming all args to kwargs,
+            # We start by checking if a dataset is in kwargs
+            ds = kwargs.pop('ds', None)
+            
+            # We transform all args to kwargs,
             # Except the default ones
             kwargs = args_and_kwargs_to_kwargs(func, args, kwargs, add_defaults=False)
+            # We add the missing arguments that we find in ds
+            if ds is not None and cf_xarray:
+                # 1) get the missing arguments
+                parameters = parameters_as_set(func)
+                missing_params = parameters - set(kwargs.keys())
+                # 2) add them to kwargs
+                kwargs.update(
+                    {i:ds.cf[input_properties[i]["standard_name"]] for i in missing_params}
+                )
             kwargs, unit_registry = pint_compat(fname, kwargs)
             # We add the default arguments
             # It is necessary to not add defaults before pint compat
