@@ -85,6 +85,17 @@ optional = true
 python-versions = ">=3.6"
 
 [[package]]
+name = "cf-xarray"
+version = "0.7.4"
+description = "A lightweight convenience wrapper for using CF attributes on xarray objects"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+xarray = "*"
+
+[[package]]
 name = "cfgv"
 version = "3.3.1"
 description = "Validate configuration and produce human readable error messages."
@@ -706,7 +717,7 @@ pint = ["Pint", "pint-xarray"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8"
-content-hash = "15e13a3590f738adeda9a9fe6e75d0661486dde82adc1dd738c6b013a86d492e"
+content-hash = "62a2f990b819ae72d2b314d73bb9428370746062da64b82325dc1965d27173ae"
 
 [metadata.files]
 alabaster = [
@@ -758,6 +769,7 @@ certifi = [
     {file = "certifi-2022.6.15-py3-none-any.whl", hash = "sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412"},
     {file = "certifi-2022.6.15.tar.gz", hash = "sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d"},
 ]
+cf-xarray = []
 cfgv = [
     {file = "cfgv-3.3.1-py2.py3-none-any.whl", hash = "sha256:c6a0883f3917a037485059700b9e75da2464e6c27051014ad85ba6aaa5884426"},
     {file = "cfgv-3.3.1.tar.gz", hash = "sha256:f5a830efb9ce7a445376bb66ec94c638a9787422f96264c98edc6bdeed8ab736"},

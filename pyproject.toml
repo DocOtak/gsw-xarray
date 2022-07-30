@@ -18,6 +18,7 @@ Sphinx = {version = ">=4.4.0", optional = true}
 furo = {version = ">=2022.1.2", optional = true}
 pint-xarray = {version = '^0.2.1', optional = true}
 Pint = {version = ">=0.18", optional = true}
+cf-xarray = "^0.7.4"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=6.2.5"
