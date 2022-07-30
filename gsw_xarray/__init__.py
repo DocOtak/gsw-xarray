@@ -20,6 +20,7 @@ _compat_modules = {name: import_module(f".{name}", "gsw_xarray") for name in _co
 
 __all__ = submodule_all_compat("gsw") + list(_compat)
 
+
 # See PEP 562
 def __getattr__(name):
     if name in _compat:

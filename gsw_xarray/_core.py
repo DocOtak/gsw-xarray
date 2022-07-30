@@ -143,7 +143,7 @@ def cf_attrs(fname, attrs, name, check_func):
             attrs_checked = check_func(attrs, kwargs)
             if isinstance(rv, tuple):
                 rv_updated = []
-                for (i, da) in enumerate(rv):
+                for i, da in enumerate(rv):
                     # Verify the unit
                     attrs_checked[i]["units"] = safe_unit(
                         attrs_checked[i]["units"], unit_registry

@@ -21,6 +21,7 @@ def safe_unit(unit, registry):
     except KeyError:
         # Will not be raised unless a registry where the common units are not defined is used
         raise UndefinedUnitError(
-            f"The unit '{unit}' is not defined in the unit registry but is necessary for input or output of the gsw function."
+            f"The unit '{unit}' is not defined in the unit registry but is"
+            " necessary for input or output of the gsw function."
         )
     return unit

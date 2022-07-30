@@ -24,7 +24,8 @@ def get_module_names(module):
     # filter out modules
     return list(
         filter(
-            lambda name: not isinstance(getattr(module, name), ModuleType), public_names
+            lambda name: not isinstance(getattr(module, name), ModuleType),
+            public_names,
         )
     )
 
@@ -104,7 +105,11 @@ def test_import_interface_submodule(submodule, upstream_func):
 
     if upstream_func not in upstream_interface:
         with pytest.raises(ImportError):
-            exec(f"from gsw_xarray.{submodule} import {upstream_func}", {}, result)
+            exec(
+                f"from gsw_xarray.{submodule} import {upstream_func}",
+                {},
+                result,
+            )
     else:
         exec(f"from gsw_xarray.{submodule} import {upstream_func}", {}, result)
 

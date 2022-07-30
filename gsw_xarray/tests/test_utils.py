@@ -1,5 +1,3 @@
-import pytest
-
 from .._function_utils import args_and_kwargs_to_kwargs
 
 

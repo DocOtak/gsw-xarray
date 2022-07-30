@@ -11,7 +11,7 @@ repository = "https://github.com/DocOtak/gsw-xarray"
 documentation = "https://gsw-xarray.readthedocs.io/"
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.8,<4.0"
 xarray = ">=0.20.2"
 gsw = ">=3.4.0"
 Sphinx = {version = ">=4.4.0", optional = true}
@@ -24,6 +24,7 @@ pytest = ">=6.2.5"
 pre-commit = "^2.17.0"
 black = "^22.3.0"
 flake8 = "^4.0.1"
+autoflake8 = "^0.3.2"
 
 [tool.poetry.extras]
 docs = ["Sphinx", "furo"]

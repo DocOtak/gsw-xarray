@@ -15,7 +15,10 @@ def ds():
         "units": "degC",
     }
     ds["SA"] = ds["id"] * 0.1 + 34
-    ds["SA"].attrs = {"standard_name": "sea_water_absolute_salinity", "units": "g/kg"}
+    ds["SA"].attrs = {
+        "standard_name": "sea_water_absolute_salinity",
+        "units": "g/kg",
+    }
     ds["p"] = ds["id"] * 10
     ds["p"].attrs = {"standard_name": "sea_water_pressure", "units": "dbar"}
     return ds
@@ -23,7 +26,7 @@ def ds():
 
 @pytest.fixture(scope="session")
 def ureg():
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pytest.importorskip("pint_xarray")
     from pint_xarray import unit_registry as ureg
 
     return ureg

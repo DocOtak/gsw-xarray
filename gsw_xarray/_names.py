@@ -1,6 +1,10 @@
 _names = {
     "CT_first_derivatives": ("CT_SA", "CT_pt"),
-    "CT_first_derivatives_wrt_t_exact": ("CT_SA_wrt_t", "CT_T_wrt_t", "CT_P_wrt_t"),
+    "CT_first_derivatives_wrt_t_exact": (
+        "CT_SA_wrt_t",
+        "CT_T_wrt_t",
+        "CT_P_wrt_t",
+    ),
     "CT_freezing": "CT_freezing",
     "CT_freezing_first_derivatives": ("CT_freezing_SA", "CT_freezing_P"),
     "CT_freezing_first_derivatives_poly": ("CT_freezing_SA", "CT_freezing_P"),
@@ -81,7 +85,11 @@ _names = {
     "frazil_properties": ("SA_final", "CT_final", "w_Ih_final"),
     "frazil_properties_potential": ("SA_final", "CT_final", "w_Ih_final"),
     "frazil_properties_potential_poly": ("SA_final", "CT_final", "w_Ih_final"),
-    "frazil_ratios_adiabatic": ("dSA_dCT_frazil", "dSA_dP_frazil", "dCT_dP_frazil"),
+    "frazil_ratios_adiabatic": (
+        "dSA_dCT_frazil",
+        "dSA_dP_frazil",
+        "dCT_dP_frazil",
+    ),
     "frazil_ratios_adiabatic_poly": (
         "dSA_dCT_frazil",
         "dSA_dP_frazil",
@@ -110,8 +118,12 @@ _names = {
     "melting_ice_into_seawater": ("SA", "CT", "w_Ih_final"),
     "melting_seaice_SA_CT_ratio": "melting_seaice_SA_CT_ratio",
     "melting_seaice_SA_CT_ratio_poly": "melting_seaice_SA_CT_ratio",
-    "melting_seaice_equilibrium_SA_CT_ratio": "melting_seaice_equilibrium_SA_CT_ratio",
-    "melting_seaice_equilibrium_SA_CT_ratio_poly": "melting_seaice_equilibrium_SA_CT_ratio",
+    "melting_seaice_equilibrium_SA_CT_ratio": (
+        "melting_seaice_equilibrium_SA_CT_ratio"
+    ),
+    "melting_seaice_equilibrium_SA_CT_ratio_poly": (
+        "melting_seaice_equilibrium_SA_CT_ratio"
+    ),
     "melting_seaice_into_seawater": ("SA", "CT"),
     "p_from_z": "p",
     "pot_enthalpy_from_pt_ice": "pot_enthalpy_ice",
@@ -151,9 +163,17 @@ _names = {
         "rho_SA_P",
         "rho_CT_P",
     ),
-    "rho_second_derivatives_wrt_enthalpy": ("rho_SA_SA", "rho_SA_h", "rho_h_h"),
+    "rho_second_derivatives_wrt_enthalpy": (
+        "rho_SA_SA",
+        "rho_SA_h",
+        "rho_h_h",
+    ),
     "rho_t_exact": "rho",
-    "seaice_fraction_to_freeze_seawater": ("SA_freeze", "CT_freeze", "w_seaice"),
+    "seaice_fraction_to_freeze_seawater": (
+        "SA_freeze",
+        "CT_freeze",
+        "w_seaice",
+    ),
     "sigma0": "sigma0",
     "sigma1": "sigma1",
     "sigma2": "sigma2",
@@ -168,8 +188,18 @@ _names = {
     "specvol_first_derivatives": ("v_SA", "v_CT", "v_P"),
     "specvol_first_derivatives_wrt_enthalpy": ("v_SA_wrt_h", "v_h"),
     "specvol_ice": "specvol_ice",
-    "specvol_second_derivatives": ("v_SA_SA", "v_SA_CT", "v_CT_CT", "v_SA_P", "v_CT_P"),
-    "specvol_second_derivatives_wrt_enthalpy": ("v_SA_SA_wrt_h", "v_SA_h", "v_h_h"),
+    "specvol_second_derivatives": (
+        "v_SA_SA",
+        "v_SA_CT",
+        "v_CT_CT",
+        "v_SA_P",
+        "v_CT_P",
+    ),
+    "specvol_second_derivatives_wrt_enthalpy": (
+        "v_SA_SA_wrt_h",
+        "v_SA_h",
+        "v_h_h",
+    ),
     "specvol_t_exact": "specvol",
     "spiciness0": "spiciness0",
     "spiciness1": "spiciness1",
