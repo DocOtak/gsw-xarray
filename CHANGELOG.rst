@@ -1,7 +1,7 @@
 Changelog
 =========
 
-v0.3.0 - Unreleased
+v0.3.0 - 2022-08-09
 -------------------
 This release focused on supporting Pint quantities.
 
