@@ -23,6 +23,12 @@ def test_use_only_dataset_getitem(ds):
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
 
 
+def test_use_only_dataset_getitem_list(ds):
+    """Give dataset as argument"""
+    out = ds.gsw[["sigma0", "sigma1"]]
+    assert isinstance(out, xr.Dataset)
+
+
 def test_use_partial_dataset(ds):
     """Give dataset as argument + some dataarrays"""
     sigma0_da = ds.gsw.sigma0(SA=ds.SA, CT=ds.CT)

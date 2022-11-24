@@ -68,4 +68,9 @@ class gswDatasetAccessor:
         )
 
     def __getitem__(self, name):
-        return wrap_with_ds(self._ds)(get_attribute(name)).__call__()
+        if isinstance(name, list):
+            return xr.merge(
+                [wrap_with_ds(self._ds)(get_attribute(i)).__call__() for i in name]
+            )
+        else:
+            return wrap_with_ds(self._ds)(get_attribute(name)).__call__()
