@@ -24,6 +24,10 @@ def wrap_with_ds(ds):
                 kwargs = args_and_kwargs_to_kwargs(
                     func, args, kwargs, add_defaults=False
                 )
+                # If arguments are string => replace with value from ds
+                for i in kwargs:
+                    if isinstance(kwargs[i], str):
+                        kwargs[i] = ds[kwargs[i]]
                 # We add the missing arguments that we find in ds
                 # 1) get the missing arguments
                 parameters = parameters_as_set(func)

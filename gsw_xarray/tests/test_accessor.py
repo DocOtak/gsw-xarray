@@ -26,7 +26,7 @@ def test_use_only_dataset_getitem(ds):
 def test_use_partial_dataset(ds):
     """Give dataset as argument + some dataarrays"""
     sigma0_da = ds.gsw.sigma0(SA=ds.SA, CT=ds.CT)
-    sigma0_ds = ds.gsw.sigma0(CT=ds.CT)
+    sigma0_ds = ds.gsw.sigma0(CT="CT")
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
     # The following case must also work
     ds["SA2"] = ds["SA"].copy(deep=True)
