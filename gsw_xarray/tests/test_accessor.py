@@ -3,16 +3,23 @@ Testing use of dataset
 """
 import pytest
 import gsw
-import gsw_xarray
 import xarray as xr
+import gsw_xarray
 
 from .test_imports import gsw_base
 
 
-def test_use_only_dataset(ds):
+def test_use_only_dataset_call(ds):
     """Give dataset as argument"""
     sigma0_da = gsw_xarray.sigma0(SA=ds.SA, CT=ds.CT)
     sigma0_ds = ds.gsw.sigma0()
+    xr.testing.assert_identical(sigma0_ds, sigma0_da)
+
+
+def test_use_only_dataset_getitem(ds):
+    """Give dataset as argument"""
+    sigma0_da = gsw_xarray.sigma0(SA=ds.SA, CT=ds.CT)
+    sigma0_ds = ds.gsw["sigma0"]
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
 
 
@@ -26,4 +33,5 @@ def test_use_partial_dataset(ds):
     sigma0_ds = ds.gsw.sigma0(ds.SA)
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
     # Must raise an error (multiple values for SA)
-    ds.gsw.sigma0()
+    with pytest.raises(KeyError):
+        ds.gsw.sigma0()

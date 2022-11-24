@@ -1,6 +1,16 @@
 from importlib import import_module
-
+import gsw
 from ._core import _wrapped_funcs
+
+_compat = {
+    "conversions",
+    "density",
+    "energy",
+    "freezing",
+    "geostrophy",
+    "ice",
+    "stability",
+}
 
 
 def submodule_attr_compat(submodule_name):
@@ -31,3 +41,17 @@ def submodule_all_compat(submodule_name):
         all = dir(submodule)
         # as per python docs, an import * should return everything not starting with "_"
         return list(filter(lambda s: not s.startswith("_"), all))
+
+
+def get_attribute(name):
+    if name in _compat:
+        return getattr(_compat_modules[name], name)
+    try:
+        return _wrapped_funcs[name]
+    except KeyError:
+        try:
+            return getattr(gsw, name)
+        except AttributeError as error:
+            raise AttributeError(
+                f"module {__name__} has no attribute {name}"
+            ) from error
