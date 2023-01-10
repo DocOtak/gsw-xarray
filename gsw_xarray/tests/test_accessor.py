@@ -41,3 +41,17 @@ def test_use_partial_dataset(ds):
     # Must raise an error (multiple values for SA)
     with pytest.raises(KeyError):
         ds.gsw.sigma0()
+
+
+def test_argument_t_ice(ds):
+    """Test that for ice function, t is sea_ice_temperature"""
+    ds["t"] = ds.CT
+    ds["t"].attrs["standard_name"] = "sea_ice_temperature"
+    ds.gsw.cp_ice(p=0)
+
+
+def test_argument_t_seawater(ds):
+    """Test that for ice function, t is sea_water_temperature"""
+    ds["t"] = ds.CT
+    ds["t"].attrs["standard_name"] = "sea_water_temperature"
+    ds.gsw.rho_t_exact(p=0)

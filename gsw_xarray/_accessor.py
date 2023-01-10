@@ -33,6 +33,12 @@ def wrap_with_ds(ds):
                 parameters = parameters_as_set(func)
                 missing_params = parameters - set(kwargs.keys())
                 # 2) add them to kwargs
+                if "t" in missing_params:
+                    if "ice" in func.__name__:
+                        kwargs.update({"t": ds.cf["sea_ice_temperature"]})
+                    else:
+                        kwargs.update({"t": ds.cf["sea_water_temperature"]})
+                    missing_params = missing_params - set("t")
                 kwargs.update(
                     {
                         i: ds.cf[input_properties[i]["standard_name"]]

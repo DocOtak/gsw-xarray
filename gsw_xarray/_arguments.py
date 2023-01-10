@@ -64,7 +64,6 @@ input_properties = {
     "sea_surface_geopotential": {"units": "m^2/s^2"},
     "t": {
         "units": "degC",
-        "standard_name": "sea_water_temperature",
     },
     "t68": {"units": "degC"},
     "t_Ih": {"units": "degC"},
