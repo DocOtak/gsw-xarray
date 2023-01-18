@@ -32,9 +32,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+        cache: 'poetry'
     - name: Install / build
       run: |
         python -m pip install --upgrade pip
@@ -51,11 +52,12 @@ jobs:
         poetry-version: [1.1.11]
         pint: ["with", "without"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+        cache: 'poetry'
     - name: Install udunits
       run: sudo apt-get install -y libudunits2-dev
     - name: Run image
