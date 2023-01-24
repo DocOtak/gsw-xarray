@@ -44,7 +44,7 @@ _names = {
     "adiabatic_lapse_rate_from_CT": "adiabatic",
     "adiabatic_lapse_rate_ice": "adiabatic",
     "alpha": "alpha",
-    "alpha_on_beta": "alpha",
+    "alpha_on_beta": "alpha_on_beta",
     "alpha_wrt_t_exact": "alpha",
     "alpha_wrt_t_ice": "alpha",
     "beta": "beta",
