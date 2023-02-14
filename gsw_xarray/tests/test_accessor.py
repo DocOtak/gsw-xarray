@@ -51,7 +51,7 @@ def test_argument_t_ice(ds):
 
 
 def test_argument_t_seawater(ds):
-    """Test that for ice function, t is sea_water_temperature"""
+    """Test that for sea water function, t is sea_water_temperature"""
     ds["t"] = ds.CT
     ds["t"].attrs["standard_name"] = "sea_water_temperature"
     ds.gsw.rho_t_exact(p=0)
