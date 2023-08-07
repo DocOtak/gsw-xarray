@@ -42,7 +42,6 @@ input_properties = {
     "max_dp": {"units": "dbar"},  # in geo_strf_dyn_height
     "p": {
         "units": "dbar",
-        "standard_name": "sea_water_pressure",
     },
     "p_deep": {"units": "dbar"},
     "p_ref": {"units": "dbar"},
