@@ -36,7 +36,7 @@ with progress_message("Generating gsw attribute table"):
             if arg == "p" and not "ice" in name:
                 props["standard_name"] = "sea_water_pressure"
             for prop in props:
-                list_table += f"** ``{prop}``: {props.get(prop)}\n"
+                list_table += f"  * ``{prop}``: {props.get(prop)}\n"
 
         list_table += "\n"
 
