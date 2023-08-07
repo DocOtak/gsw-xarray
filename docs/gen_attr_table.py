@@ -24,9 +24,11 @@ with progress_message("Generating gsw attribute table"):
         sig = signature(getattr(gsw_xarray, name))
 
         list_table += f"{name}\n{'-' * len(name)}\n"
-        list_table += "Expected input units when using pint:\n\n"
+        list_table += f"Has {len(sig.parameters)} arguments:\n\n"
         for arg in sig.parameters:
-            list_table += f"* ``{arg}``: {input_units.get(arg)}\n"
+            list_table += f"* ``{arg}``\n\n"
+            for prop in input_properties[arg]:
+                list_table += f"   * ``{arg}``: {input_properties[arg].get(prop)}\n"
 
         list_table += "\n"
 

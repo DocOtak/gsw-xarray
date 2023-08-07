@@ -162,6 +162,23 @@ Outputs
    so the expected unit is replaced by '1'.
 
 
+Xarray accessor
+...............
+
+gsw-xarray provides a new accessor for xarray, that allows to call the gsw functions directly on a dataset:
+
+.. code:: python
+
+   ds.gsw.sigma0(CT="CT", SA="SA")
+   # or
+   ds.gsw.sigma0(CT=ds.CT, SA=ds.SA)
+   # or even, if CT and SA have the proper standard names
+   ds.gsw.sigma0()
+
+Any type of mixte usage with dataArrays, numbers, strings, or autoparse with standard names is possible.
+
+
+   
 Installation
 ------------
 Pip
