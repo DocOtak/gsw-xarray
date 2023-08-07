@@ -27,8 +27,16 @@ with progress_message("Generating gsw attribute table"):
         list_table += f"Has {len(sig.parameters)} arguments:\n\n"
         for arg in sig.parameters:
             list_table += f"* ``{arg}``\n\n"
-            for prop in input_properties[arg]:
-                list_table += f"   * ``{arg}``: {input_properties[arg].get(prop)}\n"
+            props = input_properties[arg]
+            if arg == "t":
+                if "ice" in name:
+                    props["standard_name"] = "sea_ice_temperature"
+                else:
+                    props["standard_name"] = "sea_water_temperature"
+            if arg == "p" and not "ice" in name:
+                props["standard_name"] = "sea_water_pressure"
+            for prop in props:
+                list_table += f"** ``{prop}``: {props.get(prop)}\n"
 
         list_table += "\n"
 
