@@ -8,7 +8,8 @@ OPTIONS = {"non_cf_name": {}}
 
 
 class set_options:
-    """Set options for gsw_xarray in a controlled context.
+    """
+    Set options for gsw_xarray in a controlled context.
 
     Parameters
     ----------
@@ -46,6 +47,21 @@ def get_options():
 
 
 class set_non_cf_name(set_options):
+    """
+    Set `non_cf_name` options for gsw_xarray in a controlled context.
+
+    Parameters
+    ----------
+    Provide the name in dataset of arguments that don't have a standard name
+    e.g. entropy='entropy_name_in_ds', SA_seaice='salinity_of_sea_ice_name_in_ds'
+
+    Using `set_non_cf_name` is equivalent to using `set_options`
+    with argument 'set_non_cf_name', but is provided as a shorter method.
+
+    You can use `set_non_cf_name` either as a context manager (using `with`)
+    or to set global options
+    """
+
     def __init__(self, **kwargs):
         self.old = {"non_cf_name": OPTIONS["non_cf_name"]}
         self._apply_update({"non_cf_name": kwargs})
