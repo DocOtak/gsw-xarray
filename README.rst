@@ -177,6 +177,15 @@ gsw-xarray provides a new accessor for xarray, that allows to call the gsw funct
 
 Any type of mixte usage with dataArrays, numbers, strings, or autoparse with standard names is possible.
 
+If all arguments are present in the dataset with the proper standard name, it is possible to use the accessor with brackets, as if it was a dictionary
+
+.. code:: python
+
+   ds.gsw["sigma0"]
+   # Or if you want to get a list of multiple variables
+   ds.gsw[["sigma0", "alpha"]]
+
+
 
    
 Installation
