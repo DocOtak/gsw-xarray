@@ -5,7 +5,9 @@ from inspect import signature
 import gsw_xarray
 from gsw_xarray._names import _names
 from gsw_xarray._attributes import _func_attrs
-from gsw_xarray._arguments import input_units
+from gsw_xarray._arguments import input_properties
+
+input_units = {i: input_properties[i]["units"] for i in input_properties}
 
 list_table = ""
 
