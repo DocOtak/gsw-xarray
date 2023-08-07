@@ -39,12 +39,17 @@ def wrap_with_ds(ds):
                     else:
                         kwargs.update({"t": ds.cf["sea_water_temperature"]})
                     missing_params = missing_params - set("t")
-                kwargs.update(
-                    {
-                        i: ds.cf[input_properties[i]["standard_name"]]
-                        for i in missing_params
-                    }
-                )
+                # We need to check that all missing arguments have a standard_name
+                for i in missing_params:
+                    std_nme = input_properties[i].get("standard_name")
+                    if std_nme is None:
+                        raise (
+                            TypeError(
+                                f"Argument '{i}' of function '{func.__name__}' does not have a cf standard name: you need to provide this argument"
+                            )
+                        )
+                    else:
+                        kwargs.update({i: ds.cf[std_nme]})
                 # the upstream gsw does not treat equally args and kwargs so we get
                 # back the original args
                 o_args = list(kwargs.values())[: len(args)]

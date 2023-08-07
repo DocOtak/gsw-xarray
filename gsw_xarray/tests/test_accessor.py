@@ -55,3 +55,9 @@ def test_argument_t_seawater(ds):
     ds["t"] = ds.CT
     ds["t"].attrs["standard_name"] = "sea_water_temperature"
     ds.gsw.rho_t_exact(p=0)
+
+
+def test_missing_standard_name(ds):
+    """Give dataset as argument"""
+    with pytest.raises(TypeError):
+        ds.gsw.SP_salinometer(t=0)
