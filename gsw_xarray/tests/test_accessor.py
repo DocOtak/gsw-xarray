@@ -61,3 +61,10 @@ def test_missing_standard_name(ds):
     """Give dataset as argument"""
     with pytest.raises(TypeError):
         ds.gsw.SP_salinometer(t=0)
+
+
+def test_missing_standard_name_setting_option(ds):
+    """Give dataset as argument"""
+    ds["Rt_in_ds"] = 0
+    with gsw_xarray.set_options(non_cf_name={"Rt": "Rt_in_ds"}):
+        ds.gsw.SP_salinometer(t=0)

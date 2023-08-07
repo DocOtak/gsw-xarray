@@ -13,6 +13,7 @@ from ._function_utils import args_and_kwargs_to_kwargs, parameters_as_set
 from ._arguments import input_properties
 from ._util import get_attribute
 from ._core import _wrapped_funcs
+from ._options import get_options
 
 
 def wrap_with_ds(ds):
@@ -50,8 +51,12 @@ def wrap_with_ds(ds):
                         kwargs.update({"t": ds.cf["sea_water_temperature"]})
                     missing_params = missing_params - set("t")
                 # We need to check that all missing arguments have a standard_name
+                OPTIONS = get_options()
                 for i in missing_params:
                     std_nme = input_properties[i].get("standard_name")
+                    if std_nme is None:
+                        # Check if the user provided options to retrieve the argument
+                        std_nme = OPTIONS["non_cf_name"].get(i)
                     if std_nme is None:
                         raise (
                             TypeError(
