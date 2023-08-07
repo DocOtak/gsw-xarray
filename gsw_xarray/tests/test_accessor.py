@@ -68,3 +68,6 @@ def test_missing_standard_name_setting_option(ds):
     ds["Rt_in_ds"] = 0
     with gsw_xarray.set_options(non_cf_name={"Rt": "Rt_in_ds"}):
         ds.gsw.SP_salinometer(t=0)
+    # Or
+    with gsw_xarray.set_non_cf_name(Rt="Rt_in_ds"):
+        ds.gsw.SP_salinometer(t=0)

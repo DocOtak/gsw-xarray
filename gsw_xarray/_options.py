@@ -43,3 +43,9 @@ class set_options:
 
 def get_options():
     return copy.deepcopy(OPTIONS)
+
+
+class set_non_cf_name(set_options):
+    def __init__(self, **kwargs):
+        self.old = {"non_cf_name": OPTIONS["non_cf_name"]}
+        self._apply_update({"non_cf_name": kwargs})
