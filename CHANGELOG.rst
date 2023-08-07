@@ -1,14 +1,14 @@
 Changelog
 =========
 
-v0.3.0 - Unreleased
+v0.3.0 - 2022-08-09
 -------------------
-This release will focus on supporting Pint quantities.
+This release focused on supporting Pint quantities.
 
 Highlights
 ``````````
 * If all arguments are xarray.DataArray wrapped by pint-xarray or pint Quantity, the result is wrapped into a pint-xarray quantity.
-* If arguments are Quantity, they will be converted to the unit of gsw arguments
+* If arguments are pint Quantity objects with compatible but incorrect units, they will be converted to the input unit of gsw arguments
 
 v0.2.1 - 2022-03-22
 -------------------

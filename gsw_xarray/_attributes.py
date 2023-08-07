@@ -308,7 +308,7 @@ _func_attrs = {
     },
     "enthalpy_second_derivatives": (
         {
-            "units": "(J/kg)(g/kg)^-2",
+            "units": "(J/kg)/((g/kg)^2)",
         },
         {
             "units": "J/(kg K(g/kg))",
@@ -319,7 +319,7 @@ _func_attrs = {
     ),
     "enthalpy_second_derivatives_CT_exact": (
         {
-            "units": "(J/kg)(g/kg)^-2",
+            "units": "(J/kg)/((g/kg)^2)",
         },
         {
             "units": "J/(kg K(g/kg))",
@@ -648,7 +648,7 @@ _func_attrs = {
     ),
     "rho_first_derivatives": (
         {
-            "units": "(kg/m^3)(g/kg)^-1",
+            "units": "(kg/m^3)/(g/kg)",
         },
         {
             "units": "kg/(m^3 K)",
@@ -659,10 +659,10 @@ _func_attrs = {
     ),
     "rho_first_derivatives_wrt_enthalpy": (
         {
-            "units": "(kg/m^3)(g/kg)^-1",  # matlab doc is uncorrect
+            "units": "(kg/m^3)/(g/kg)",  # matlab doc is uncorrect
         },
         {
-            "units": "(kg/m^3)(J/kg)^-1",
+            "units": "(kg/m^3)/(J/kg)",
         },
     ),
     "rho_ice": {
@@ -670,16 +670,16 @@ _func_attrs = {
     },
     "rho_second_derivatives": (
         {
-            "units": "(kg/m^3)(g/kg)^-2",
+            "units": "(kg/m^3)/((g/kg)^2)",
         },
         {
-            "units": "(kg/m^3)(g/kg)^-1 K^-1",
+            "units": "(kg/m^3)/(g/kg) K^-1",
         },
         {
             "units": "(kg/m^3) K^-2",
         },
         {
-            "units": "(kg/m^3)(g/kg)^-1 Pa^-1",
+            "units": "(kg/m^3)/(g/kg) Pa^-1",
         },
         {
             "units": "(kg/m^3) K^-1 Pa^-1",
@@ -687,13 +687,13 @@ _func_attrs = {
     ),
     "rho_second_derivatives_wrt_enthalpy": (
         {
-            "units": "(kg/m^3)(g/kg)^-2",  # matlab doc is uncorrect
+            "units": "(kg/m^3)/((g/kg)^2)",  # matlab doc is uncorrect
         },
         {
-            "units": "(kg/m^3)(g/kg)^-1 J^-1/kg^-1",
+            "units": "(kg/m^3)/(g/kg) J^-1/kg^-1",
         },
         {
-            "units": "(kg/m^3)(J/kg)^-2",
+            "units": "(kg/m^3)/((J/kg)^2)",
         },
     ),
     "rho_t_exact": {
@@ -758,7 +758,7 @@ _func_attrs = {
     },
     "specvol_first_derivatives": (
         {
-            "units": "(m^3/kg)(g/kg)^-1",
+            "units": "(m^3/kg)/(g/kg)",
         },
         {
             "units": "m^3/(kg K)",
@@ -769,10 +769,10 @@ _func_attrs = {
     ),
     "specvol_first_derivatives_wrt_enthalpy": (
         {
-            "units": "(m^3/kg)(g/kg)^-1",  # seems to be an error in the doc
+            "units": "(m^3/kg)/(g/kg)",  # seems to be an error in the doc
         },
         {
-            "units": "(m^3/kg)(J/kg)^-1",
+            "units": "(m^3/kg)/(J/kg)",
         },
     ),
     "specvol_ice": {
@@ -780,16 +780,16 @@ _func_attrs = {
     },
     "specvol_second_derivatives": (
         {
-            "units": "(m^3/kg)(g/kg)^-2",
+            "units": "(m^3/kg)/((g/kg)^2)",
         },
         {
-            "units": "(m^3/kg)(g/kg)^-1 K^-1",
+            "units": "(m^3/kg)/(g/kg) K^-1",
         },
         {
             "units": "(m^3/kg) K^-2",
         },
         {
-            "units": "(m^3/kg)(g/kg)^-1 Pa^-1",  # seems to be an error in the doc
+            "units": "(m^3/kg)/(g/kg) Pa^-1",  # seems to be an error in the doc
         },
         {
             "units": "(m^3/kg) K^-1 Pa^-1",
@@ -797,13 +797,13 @@ _func_attrs = {
     ),
     "specvol_second_derivatives_wrt_enthalpy": (
         {
-            "units": "(m^3/kg)(g/kg)^-2",  # error in doc?
+            "units": "(m^3/kg)/((g/kg)^2)",  # error in doc?
         },
         {
-            "units": "(m^3/kg)(g/kg)^-1 J^-1/kg^-1",
+            "units": "(m^3/kg)/(g/kg) J^-1/kg^-1",
         },
         {
-            "units": "(m^3/kg)(J/kg)^-2",
+            "units": "(m^3/kg)/((J/kg)^2)",
         },
     ),
     "specvol_t_exact": {

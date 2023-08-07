@@ -5,7 +5,7 @@
 
 .. include:: ../README.rst
 
-For the specific list of what attributes are added for each function, see the :ref:`attrs:Added Attributes` section.
+For the specific list of what attributes are added for each function, see the :ref:`attrs:Added Attributes and Expected Input Units` section.
 
 Contents
 --------

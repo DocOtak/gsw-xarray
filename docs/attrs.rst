@@ -1,5 +1,5 @@
-Added Attributes
-================
+Added Attributes and Expected Input Units
+=========================================
 This rather long list shows all the attributes that will be set on the returned DataArray objects and their exact value.
 
 There are some things to be aware of:
