@@ -48,7 +48,7 @@ def wrap_with_ds(ds):
                             )
                         )
                     else:
-                        kwargs.update({"t": ds.cf["sea_water_temperature"]})
+                        kwargs.update({"t": ds.cf["sea_water_pressure"]})
                     missing_params = missing_params - set("t")
                 # We need to check that all missing arguments have a standard_name
                 OPTIONS = get_options()
