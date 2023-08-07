@@ -24,7 +24,7 @@ with progress_message("Generating gsw attribute table"):
         sig = signature(getattr(gsw_xarray, name))
 
         list_table += f"{name}\n{'-' * len(name)}\n"
-        list_table += f"Has {len(sig.parameters)} arguments:\n\n"
+        list_table += f"Has {len(sig.parameters)} arguments\n\n"
         for arg in sig.parameters:
             list_table += f"* **{arg}**\n\n"
             props = input_properties[arg]
