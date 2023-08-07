@@ -39,6 +39,16 @@ def wrap_with_ds(ds):
                     else:
                         kwargs.update({"t": ds.cf["sea_water_temperature"]})
                     missing_params = missing_params - set("t")
+                if "p" in missing_params:
+                    if "ice" in func.__name__:
+                        raise (
+                            TypeError(
+                                f"Argument 'p' for sea ice of function '{func.__name__}' does not have a cf standard name: you need to provide this argument"
+                            )
+                        )
+                    else:
+                        kwargs.update({"t": ds.cf["sea_water_temperature"]})
+                    missing_params = missing_params - set("t")
                 # We need to check that all missing arguments have a standard_name
                 for i in missing_params:
                     std_nme = input_properties[i].get("standard_name")
