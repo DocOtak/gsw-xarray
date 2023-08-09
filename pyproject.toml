@@ -16,6 +16,7 @@ xarray = ">=0.20.2"
 gsw = ">=3.4.0"
 Sphinx = {version = ">=4.4.0", optional = true}
 furo = {version = ">=2022.1.2", optional = true}
+nbsphinx = {version = ">=0.9.2", optional = true}
 pint-xarray = {version = '^0.2.1', optional = true}
 Pint = {version = ">=0.18", optional = true}
 cf-xarray = "^0.7.4"
@@ -26,7 +27,7 @@ pre-commit = "^2.17.0"
 black = "^22.3.0"
 
 [tool.poetry.extras]
-docs = ["Sphinx", "furo"]
+docs = ["Sphinx", "furo", "nbsphinx"]
 pint = ["Pint", "pint-xarray"]
 
 [build-system]
