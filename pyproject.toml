@@ -25,6 +25,7 @@ cf-xarray = "^0.7.4"
 pytest = ">=6.2.5"
 pre-commit = "^2.17.0"
 black = "^22.3.0"
+jupyterlab = ">=4.0.4"
 
 [tool.poetry.extras]
 docs = ["Sphinx", "furo", "nbsphinx"]
