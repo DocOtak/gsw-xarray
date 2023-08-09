@@ -69,7 +69,6 @@ def wrap_with_ds(ds):
                 # back the original args
                 o_args = list(kwargs.values())[: len(args)]
                 o_kwargs = {i: kwargs[i] for i in list(kwargs)[len(args) :]}
-                print(o_kwargs)
                 return func(*o_args, **o_kwargs)
             else:
                 return func(*args, **kwargs)
