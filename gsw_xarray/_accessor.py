@@ -48,7 +48,7 @@ def wrap_with_ds(ds):
                             )
                         )
                     else:
-                        kwargs.update({"t": ds.cf["sea_water_pressure"]})
+                        kwargs.update({"p": ds.cf["sea_water_pressure"]})
                     missing_params = missing_params - set("p")
                 # We need to check that all missing arguments have a standard_name
                 OPTIONS = get_options()
@@ -69,6 +69,7 @@ def wrap_with_ds(ds):
                 # back the original args
                 o_args = list(kwargs.values())[: len(args)]
                 o_kwargs = {i: kwargs[i] for i in list(kwargs)[len(args) :]}
+                print(o_kwargs)
                 return func(*o_args, **o_kwargs)
             else:
                 return func(*args, **kwargs)
