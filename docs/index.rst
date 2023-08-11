@@ -13,6 +13,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   real_world_example.ipynb
    attrs
    changelog
 

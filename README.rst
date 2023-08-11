@@ -185,8 +185,17 @@ If all arguments are present in the dataset with the proper standard name, it is
    # Or if you want to get a list of multiple variables
    ds.gsw[["sigma0", "alpha"]]
 
+If you wish to use the accessor with automatic detection of arguments, but for a function whose arguments do not have a standard name, it is possible. You need to set an option in gsw, either in a context or globally
 
+.. code:: python
 
+   # Globally
+   gsw_xarray.set_non_cf_name(argument="argument_name_in_dataset")
+   # Or in a context, e.g.
+   with gsw_xarray.set_non_cf_name(Rt="Rt_in_ds"):
+       ds.gsw.SP_salinometer(t=0)
+
+In this 2nd case, the function ``gsw.SP_salinometer`` take the argument ``Rt`` which has no standard name.
    
 Installation
 ------------
