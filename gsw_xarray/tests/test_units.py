@@ -46,7 +46,13 @@ def test_unit_pint(func_name, ureg):
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_cf_units(func_name):
     cf_units = pytest.importorskip("cf_units")
-    if func_name in ["indexer", "match_args_return", "pchip_interp"]:
+    if func_name in [
+        "indexer",
+        "match_args_return",
+        "pchip_interp",
+        "gibbs",
+        "gibbs_ice",
+    ]:
         # Internal gsw cookery or non wrapped functions
         return
     attrs = _func_attrs[func_name]
@@ -97,7 +103,13 @@ def test_output_falls_back_to_generic_unit(ds_pint):
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_of_arg(func_name, ureg):
 
-    if func_name in ["indexer", "match_args_return", "pchip_interp"]:
+    if func_name in [
+        "indexer",
+        "match_args_return",
+        "pchip_interp",
+        "gibbs",
+        "gibbs_ice",
+    ]:
         # Internal gsw cookery or non wrapped functions
         return
     func = getattr(gsw, func_name)
