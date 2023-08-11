@@ -53,7 +53,19 @@ def wrap_with_ds(ds):
                 # We need to check that all missing arguments have a standard_name
                 OPTIONS = get_options()
                 for i in missing_params:
-                    std_nme = input_properties[i].get("standard_name")
+                    std_nme_raw = input_properties[i].get("standard_name")
+                    std_nme = None
+                    # In some cases, std_nme can be a list if multiple standard names exist
+                    if isinstance(std_nme_raw, list):
+                        ds_cf_standard_names_keys = ds.cf.standard_names.keys()
+                        for name in std_nme_raw:
+                            # We check and stop at the 1st occurence
+                            if name in ds_cf_standard_names_keys:
+                                std_nme = name
+                                break
+                    else:
+                        std_nme = std_nme_raw
+
                     if std_nme is None:
                         # Check if the user provided options to retrieve the argument
                         std_nme = OPTIONS["non_cf_name"].get(i)

@@ -19,7 +19,8 @@ input_properties = {
     },  # Initially part per thousand, but ppt is already used for picopint
     "SP": {
         "units": "1",
-        "standard_name": "sea_water_practical_salinity",
+        "standard_name": ["sea_water_practical_salinity", "sea_water_salinity"],
+        # This 2nd standard name is the old one, still used e.g. in ARGO
     },
     "SR": {"units": "g/kg"},
     "Sstar": {"units": "g/kg"},
