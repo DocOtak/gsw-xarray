@@ -43,6 +43,16 @@ def test_use_partial_dataset(ds):
         ds.gsw.sigma0()
 
 
+def test_multiple_standard_names_for_same_argument(ds):
+    """Give dataset as argument + some dataarrays"""
+    ds["psal"] = ds.SA
+    ds["psal"].attrs["standard_name"] = "sea_water_practical_salinity"
+    ds.gsw.SA_from_SP(p=0, lon=0, lat=0)
+    # However ARGO data still have the old standard name sea_water_salinity
+    ds["psal"].attrs["standard_name"] = "sea_water_salinity"
+    ds.gsw.SA_from_SP(p=0, lon=0, lat=0)
+
+
 def test_argument_t_ice(ds):
     """Test that for ice function, t is sea_ice_temperature"""
     ds["t"] = ds.CT
