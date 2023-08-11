@@ -867,5 +867,6 @@ _func_attrs = {
     "z_from_p": {
         "standard_name": "height_above_mean_sea_level",
         "units": "m",
+        "positive": "up",
     },
 }
