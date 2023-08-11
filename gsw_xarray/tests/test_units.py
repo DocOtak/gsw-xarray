@@ -20,7 +20,13 @@ from inspect import signature
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_pint(func_name, ureg):
 
-    if func_name in ["indexer", "match_args_return", "pchip_interp"]:
+    if func_name in [
+        "indexer",
+        "match_args_return",
+        "pchip_interp",
+        "gibbs",
+        "gibbs_ice",
+    ]:
         # Internal gsw cookery or non wrapped functions
         return
     if func_name == "geostrophic_velocity":
