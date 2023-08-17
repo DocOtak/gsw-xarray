@@ -1,13 +1,14 @@
 """
 xarray Dataset accessor for gsw
 """
-
+from functools import wraps
 import xarray as xr
 
 try:
     import cf_xarray
 except ImportError:
     cf_xarray = None
+
 
 from ._function_utils import args_and_kwargs_to_kwargs, parameters_as_set
 from ._arguments import input_properties
@@ -18,6 +19,7 @@ from ._options import get_options
 
 def wrap_with_ds(ds):
     def decorator(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
             if cf_xarray is not None:
                 # We transform all args to kwargs,
