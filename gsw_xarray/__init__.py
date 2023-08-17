@@ -6,9 +6,14 @@ import gsw
 from ._core import _wrapped_funcs
 from ._util import submodule_all_compat, get_attribute, _compat
 import gsw_xarray._accessor
-from ._options import set_options, get_options, set_non_cf_name
+from ._options import set_options, get_options, set_non_cf_name, set_cf_name_preference
 
-gsw_xarray_specific_functions = ["set_options", "get_options", "set_non_cf_name"]
+gsw_xarray_specific_functions = [
+    "set_options",
+    "get_options",
+    "set_non_cf_name",
+    "set_cf_name_preference",
+]
 
 _compat_modules = {name: import_module(f".{name}", "gsw_xarray") for name in _compat}
 

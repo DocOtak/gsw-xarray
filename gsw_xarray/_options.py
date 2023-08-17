@@ -4,7 +4,7 @@ Started from xarray and cf_xarray options.py
 
 import copy
 
-OPTIONS = {"non_cf_name": {}}
+OPTIONS = {"non_cf_name": {}, "cf_name_preference": {}}
 
 
 class set_options:
@@ -65,3 +65,26 @@ class set_non_cf_name(set_options):
     def __init__(self, **kwargs):
         self.old = {"non_cf_name": OPTIONS["non_cf_name"]}
         self._apply_update({"non_cf_name": kwargs})
+
+
+class set_cf_name_preference(set_options):
+    """
+    Set `cf_name_preference` options for gsw_xarray in a controlled context.
+
+    Parameters
+    ----------
+    Provide the name in dataset of arguments that have a standard name,
+    if multiple variables of the dataset have this standard name (e.g. to choose
+    salinity from CTD or bottle)
+    e.g. sea_water_practical_salinity='psal_name_in_ds'
+
+    Using `set_cf_name_preference` is equivalent to using `set_options`
+    with argument 'set_cf_name_preference', but is provided as a shorter method.
+
+    You can use `set_cf_name_preference` either as a context manager (using `with`)
+    or to set global options
+    """
+
+    def __init__(self, **kwargs):
+        self.old = {"cf_name_preference": OPTIONS["cf_name_preference"]}
+        self._apply_update({"cf_name_preference": kwargs})
