@@ -211,6 +211,8 @@ If you wish to use the accessor with automatic detection of arguments, but for a
        ds.gsw.SP_salinometer(t=0)
 
 In this 2nd case, the function ``gsw.SP_salinometer`` take the argument ``Rt`` which has no standard name.
+
+When using user set options, the order of priority to automatically get variables is: 1) variables set by ``gsw_xarray.set_cf_name_preference``, 2) variables with standard name (internal mapping), and 3) variables set by ``gsw_xarray.set_non_cf_name``.
    
 Installation
 ------------
