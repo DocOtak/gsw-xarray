@@ -10,27 +10,27 @@ from .test_imports import gsw_base
 
 
 def test_use_only_dataset_call(ds):
-    """Give dataset as argument"""
+    """Use accessor"""
     sigma0_da = gsw_xarray.sigma0(SA=ds.SA, CT=ds.CT)
     sigma0_ds = ds.gsw.sigma0()
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
 
 
 def test_use_only_dataset_getitem(ds):
-    """Give dataset as argument"""
+    """Use getitem"""
     sigma0_da = gsw_xarray.sigma0(SA=ds.SA, CT=ds.CT)
     sigma0_ds = ds.gsw["sigma0"]
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
 
 
 def test_use_only_dataset_getitem_list(ds):
-    """Give dataset as argument"""
+    """Use getitem with a list"""
     out = ds.gsw[["sigma0", "sigma1"]]
     assert isinstance(out, xr.Dataset)
 
 
 def test_use_partial_dataset(ds):
-    """Give dataset as argument + some dataarrays"""
+    """Use accessor + some strings / DataArrays"""
     sigma0_da = ds.gsw.sigma0(SA=ds.SA, CT=ds.CT)
     sigma0_ds = ds.gsw.sigma0(CT="CT")
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
@@ -43,14 +43,45 @@ def test_use_partial_dataset(ds):
         ds.gsw.sigma0()
 
 
+def test_missing_argument_with_standard_name(ds):
+    """If it misses an argument should raise a TypeError"""
+    with pytest.raises(TypeError):
+        ds.gsw.SA_from_SP(p=0, lon=0, lat=0)
+
+
 def test_multiple_standard_names_for_same_argument(ds):
-    """Give dataset as argument + some dataarrays"""
+    """Test for practical salinity that has multiple standard names"""
     ds["psal"] = ds.SA
     ds["psal"].attrs["standard_name"] = "sea_water_practical_salinity"
     ds.gsw.SA_from_SP(p=0, lon=0, lat=0)
     # However ARGO data still have the old standard name sea_water_salinity
     ds["psal"].attrs["standard_name"] = "sea_water_salinity"
     ds.gsw.SA_from_SP(p=0, lon=0, lat=0)
+
+
+def test_multiple_variables_with_same_standard_names(ds):
+    """lot of tests with options for standard names and errors that must be raised"""
+    ds["sal"] = ds.SA
+    ds["sal"].attrs["standard_name"] = "sea_water_salinity"
+    ds["psal"] = ds.SA
+    ds["psal"].attrs["standard_name"] = "sea_water_practical_salinity"
+    ds["psal2"] = ds.SA
+    ds["psal2"].attrs["standard_name"] = "sea_water_practical_salinity"
+    ds["lon"] = 0
+    ds["lon"].attrs["standard_name"] = "longitude"
+    ds["lon2"] = 0
+    ds["lon2"].attrs["standard_name"] = "longitude"
+    with gsw_xarray.set_cf_name_preference(sea_water_practical_salinity="psal2"):
+        ds.gsw.SA_from_SP(p=0, lon=0, lat=0)
+    with gsw_xarray.set_cf_name_preference(longitude="lon"):
+        ds.gsw.SA_from_SP(SP=0, p=0, lat=0)
+    with pytest.raises(KeyError):
+        ds.gsw.SA_from_SP(p=0, SP=0, lat=0)
+    with pytest.raises(KeyError):
+        ds.gsw.SA_from_SP(p=0, lon=0, lat=0)
+    ds = ds.drop_vars("psal")
+    with pytest.raises(TypeError):
+        ds.gsw.SA_from_SP(p=0, lon=0, lat=0)
 
 
 def test_argument_t_ice(ds):
@@ -68,13 +99,13 @@ def test_argument_t_seawater(ds):
 
 
 def test_missing_standard_name(ds):
-    """Give dataset as argument"""
+    """If there is no standard name and the argument is missing, must raise TypeError"""
     with pytest.raises(TypeError):
         ds.gsw.SP_salinometer(t=0)
 
 
 def test_missing_standard_name_setting_option(ds):
-    """Give dataset as argument"""
+    """Test option set_non_cf_name"""
     ds["Rt_in_ds"] = 0
     with gsw_xarray.set_options(non_cf_name={"Rt": "Rt_in_ds"}):
         ds.gsw.SP_salinometer(t=0)
