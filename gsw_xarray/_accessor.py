@@ -97,15 +97,14 @@ def wrap_with_ds(ds):
                     for sublist in standard_names_missing_params.values()
                     for item in sublist
                 ]
-                ds_cf_standard_names_keys = ds.cf.standard_names.keys()
+                ds_cf_standard_names = ds.cf.standard_names
+                ds_cf_standard_names_keys = ds_cf_standard_names.keys()
                 for p in standard_names_missing_params:
                     out = []
                     for std_nme in standard_names_missing_params[p]:
                         if std_nme in ds_cf_standard_names_keys:
                             # out.append(ds.cf[std_nme])
-                            cf_xarray_detected_vars = (
-                                cf_xarray.accessor._get_with_standard_name(ds, std_nme)
-                            )
+                            cf_xarray_detected_vars = ds_cf_standard_names[std_nme]
                             if len(cf_xarray_detected_vars) > 1:
                                 raise (
                                     KeyError(
