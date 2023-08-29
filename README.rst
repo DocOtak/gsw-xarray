@@ -9,8 +9,8 @@
    :alt: pypi package
 .. |conda forge| image:: https://img.shields.io/conda/vn/conda-forge/gsw-xarray
    :target: https://anaconda.org/conda-forge/gsw-xarray
-.. |zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.8297619.svg
-   :target: https://doi.org/10.5281/zenodo.8297619
+.. |zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.8297618.svg
+   :target: https://doi.org/10.5281/zenodo.8297618
    :alt: zenodo DOI
 
 gsw-xarray: Wrapper for gsw that adds CF attributes
