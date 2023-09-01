@@ -23,6 +23,22 @@ def test_use_only_dataset_getitem(ds):
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
 
 
+def test_use_only_dataset_call_pint(ds_pint):
+    """Use accessor and pint"""
+    pint_xarray = pytest.importorskip("pint_xarray")
+    sigma0_da = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
+    sigma0_ds = ds_pint.gsw.sigma0()
+    xr.testing.assert_identical(sigma0_ds, sigma0_da)
+
+
+def test_use_only_dataset_getitem_pint(ds_pint):
+    """Use getitem and pint"""
+    pint_xarray = pytest.importorskip("pint_xarray")
+    sigma0_da = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
+    sigma0_ds = ds_pint.gsw["sigma0"]
+    xr.testing.assert_identical(sigma0_ds, sigma0_da)
+
+
 def test_use_only_dataset_getitem_list(ds):
     """Use getitem with a list"""
     out = ds.gsw[["sigma0", "sigma1"]]
