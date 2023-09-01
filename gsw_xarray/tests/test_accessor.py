@@ -128,3 +128,15 @@ def test_missing_standard_name_setting_option(ds):
     # Or
     with gsw_xarray.set_non_cf_name(Rt="Rt_in_ds"):
         ds.gsw.SP_salinometer(t=0)
+
+
+def test_missing_standard_name_and_option_multiple_standard_names(ds):
+    """Test option set_non_cf_name along with"""
+    ds["Rt_in_ds"] = 0
+    ds["t"] = ds.CT
+    ds["t"].attrs["standard_name"] = "sea_water_temperature"
+    ds["t2"] = ds.CT
+    ds["t2"].attrs["standard_name"] = "sea_water_temperature"
+    with gsw_xarray.set_options(non_cf_name={"Rt": "Rt_in_ds"}):
+        with gsw_xarray.set_cf_name_preference(sea_water_temperature="t2"):
+            ds.gsw.SP_salinometer()
