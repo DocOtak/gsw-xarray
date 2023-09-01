@@ -2,6 +2,7 @@
 xarray Dataset accessor for gsw
 """
 from functools import wraps
+import gsw
 import xarray as xr
 
 try:
@@ -167,6 +168,20 @@ def wrap_with_ds(ds):
     return decorator
 
 
+def _test_if_wrapped(name):
+    print(name)
+    if name in _wrapped_funcs:
+        return
+    try:
+        getattr(gsw, name)
+        raise AttributeError(
+            f"{name} has not been mapped by gsw_xarray in the xarray accessor. "
+            + "You can access it with `gsw.{name}`"
+        )
+    except AttributeError:
+        raise AttributeError(f"{name} does not exist in the upstream gsw library")
+
+
 @xr.register_dataset_accessor("gsw")
 class gswDatasetAccessor:
     """
@@ -184,9 +199,12 @@ class gswDatasetAccessor:
 
     def __getitem__(self, name):
         if isinstance(name, list):
+            for i in name:
+                _test_if_wrapped(i)
             return xr.merge(
                 [wrap_with_ds(self._ds)(get_attribute(i)).__call__() for i in name],
                 combine_attrs="drop",
             )
         else:
+            _test_if_wrapped(name)
             return wrap_with_ds(self._ds)(get_attribute(name)).__call__()

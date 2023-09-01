@@ -140,3 +140,15 @@ def test_missing_standard_name_and_option_multiple_standard_names(ds):
     with gsw_xarray.set_options(non_cf_name={"Rt": "Rt_in_ds"}):
         with gsw_xarray.set_cf_name_preference(sea_water_temperature="t2"):
             ds.gsw.SP_salinometer()
+
+
+def test_no_access_to_modules(ds):
+    """The accessor does not provide access to the gsw modules"""
+    with pytest.raises(AttributeError):
+        ds.gsw["density"]
+
+
+def test_no_access_to_modules(ds):
+    """Raise attribute error if we try to access something not existing in gsw upstream"""
+    with pytest.raises(AttributeError):
+        ds.gsw["does_not_exist"]
