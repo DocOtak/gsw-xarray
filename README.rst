@@ -169,7 +169,7 @@ Outputs
 Xarray accessor
 ...............
 
-gsw-xarray provides a new accessor for xarray, that allows to call the gsw functions directly on a dataset:
+gsw-xarray provides a new accessor for xarray, that allows to call the gsw **functions** directly on a dataset:
 
 .. code:: python
 
