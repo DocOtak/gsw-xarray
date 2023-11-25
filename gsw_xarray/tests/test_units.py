@@ -9,7 +9,7 @@ import gsw_xarray
 
 from .test_imports import gsw_base
 from gsw_xarray._attributes import _func_attrs
-from gsw_xarray._arguments import input_units
+from gsw_xarray._arguments import input_properties
 from inspect import signature
 
 ##########
@@ -20,7 +20,13 @@ from inspect import signature
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_pint(func_name, ureg):
 
-    if func_name in ["indexer", "match_args_return", "pchip_interp"]:
+    if func_name in [
+        "indexer",
+        "match_args_return",
+        "pchip_interp",
+        "gibbs",
+        "gibbs_ice",
+    ]:
         # Internal gsw cookery or non wrapped functions
         return
     if func_name == "geostrophic_velocity":
@@ -40,7 +46,13 @@ def test_unit_pint(func_name, ureg):
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_cf_units(func_name):
     cf_units = pytest.importorskip("cf_units")
-    if func_name in ["indexer", "match_args_return", "pchip_interp"]:
+    if func_name in [
+        "indexer",
+        "match_args_return",
+        "pchip_interp",
+        "gibbs",
+        "gibbs_ice",
+    ]:
         # Internal gsw cookery or non wrapped functions
         return
     attrs = _func_attrs[func_name]
@@ -91,14 +103,20 @@ def test_output_falls_back_to_generic_unit(ds_pint):
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_of_arg(func_name, ureg):
 
-    if func_name in ["indexer", "match_args_return", "pchip_interp"]:
+    if func_name in [
+        "indexer",
+        "match_args_return",
+        "pchip_interp",
+        "gibbs",
+        "gibbs_ice",
+    ]:
         # Internal gsw cookery or non wrapped functions
         return
     func = getattr(gsw, func_name)
     s = signature(func)
     p = s.parameters
     for i in p:
-        assert i in input_units.keys()
+        assert i in input_properties.keys()
 
 
 def test_ds_mixed_quantity_non_quantity(ds, ds_pint):

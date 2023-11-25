@@ -16,16 +16,23 @@ xarray = ">=0.20.2"
 gsw = ">=3.4.0"
 Sphinx = {version = ">=4.4.0", optional = true}
 furo = {version = ">=2022.1.2", optional = true}
-pint-xarray = {version = '^0.2.1', optional = true}
+nbsphinx = {version = ">=0.9.2", optional = true}
+netCDF4 = {version = ">=1.6.4", optional = true}
+pint-xarray = {version = '^0.3', optional = true}
 Pint = {version = ">=0.18", optional = true}
+dask = {version = ">=2023.1.0", optional = true}
+cf-xarray = "^0.7.4"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=6.2.5"
 pre-commit = "^2.17.0"
 black = "^22.3.0"
+jupyterlab = ">=4.0.4"
+netCDF4 = ">=1.6.4"
+line_profiler = "*"
 
 [tool.poetry.extras]
-docs = ["Sphinx", "furo"]
+docs = ["Sphinx", "furo", "nbsphinx", "netCDF4", "Pint", "pint-xarray", "dask"]
 pint = ["Pint", "pint-xarray"]
 
 [build-system]

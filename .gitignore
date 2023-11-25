@@ -1,5 +1,6 @@
 # These files are generated on doc build and shoudl not be kept in VC
 docs/_attr_table.rst
+docs/ARGO_example.nc
 
 # macOS noise
 .DS_Store

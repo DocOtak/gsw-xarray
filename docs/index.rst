@@ -5,7 +5,7 @@
 
 .. include:: ../README.rst
 
-For the specific list of what attributes are added for each function, see the :ref:`attrs:Added Attributes and Expected Input Units` section.
+For the specific list of what attributes are added for each function, along with the standard name and units of arguments, see the :ref:`attrs:Added Attributes and Expected Input Units` section.
 
 Contents
 --------
@@ -13,6 +13,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   real_world_example.ipynb
    attrs
    changelog
 

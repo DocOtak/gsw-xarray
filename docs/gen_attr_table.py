@@ -5,7 +5,9 @@ from inspect import signature
 import gsw_xarray
 from gsw_xarray._names import _names
 from gsw_xarray._attributes import _func_attrs
-from gsw_xarray._arguments import input_units
+from gsw_xarray._arguments import input_properties
+
+input_units = {i: input_properties[i]["units"] for i in input_properties}
 
 list_table = ""
 
@@ -22,9 +24,19 @@ with progress_message("Generating gsw attribute table"):
         sig = signature(getattr(gsw_xarray, name))
 
         list_table += f"{name}\n{'-' * len(name)}\n"
-        list_table += "Expected input units when using pint:\n\n"
+        list_table += f"Has {len(sig.parameters)} arguments\n\n"
         for arg in sig.parameters:
-            list_table += f"* ``{arg}``: {input_units.get(arg)}\n"
+            list_table += f"* **{arg}**\n\n"
+            props = input_properties[arg]
+            if arg == "t":
+                if "ice" in name:
+                    props["standard_name"] = "sea_ice_temperature"
+                else:
+                    props["standard_name"] = "sea_water_temperature"
+            if arg == "p" and not "ice" in name:
+                props["standard_name"] = "sea_water_pressure"
+            for prop in props:
+                list_table += f"  * {prop}: ``{props.get(prop)}``\n"
 
         list_table += "\n"
 

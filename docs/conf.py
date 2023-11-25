@@ -29,6 +29,7 @@ author = "Andrew Barna; Romain Caneill"
 # ones.
 extensions = [
     "sphinx.ext.autosectionlabel",
+    "nbsphinx",
 ]
 
 autosectionlabel_prefix_document = True

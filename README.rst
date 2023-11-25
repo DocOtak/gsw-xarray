@@ -22,6 +22,8 @@ You can find the documentation on `gsw-xarray.readthedocs.io <https://gsw-xarray
 
 Usage
 -----
+Simple usage
+............
 
 .. code:: python
 
@@ -61,7 +63,9 @@ Outputs
 
    <class 'numpy.ndarray'> [-5.08964499  2.1101098   9.28348219]
 
-
+Using Pint
+..........
+   
 We support (and convert the unit if necessary) the usage of pint.Quantities and the usage of xarray wrapped Quantities.
 Support for pint requires the installation of two optional dependencies: ``pint`` and ``pint-xarray``.
 If all the inputs to a gsw function are Quantities, the returned object will also be a Quantity belonging to the same UnitRegistry.
@@ -162,6 +166,54 @@ Outputs
    so the expected unit is replaced by '1'.
 
 
+Xarray accessor
+...............
+
+gsw-xarray provides a new accessor for xarray, that allows to call the gsw **functions** directly on a dataset:
+
+.. code:: python
+
+   ds.gsw.sigma0(CT="CT", SA="SA")
+   # or
+   ds.gsw.sigma0(CT=ds.CT, SA=ds.SA)
+   # or even, if CT and SA have the proper standard names
+   ds.gsw.sigma0()
+
+Any type of mixte usage with dataArrays, numbers, strings, or autoparse with standard names is possible.
+
+If all arguments are present in the dataset with the proper standard name, it is possible to use the accessor with brackets, as if it was a dictionary
+
+.. code:: python
+
+   ds.gsw["sigma0"]
+   # Or if you want to get a list of multiple variables
+   ds.gsw[["sigma0", "alpha"]]
+
+If the dataset contains multiple variables with same standard name (e.g. practical salinity from bottle or CTD), you can set an option to tell gsw_xarray which variable to get:
+
+.. code:: python
+
+   # Globally
+   gsw_xarray.set_cf_name_preference(standard_name="variable_in_dataset")
+   # Or in a context, e.g.
+   with gsw_xarray.set_non_cf_name(sea_water_pressure="pres_adjusted"):
+       # write code here
+       pass
+   
+If you wish to use the accessor with automatic detection of arguments, but for a function whose arguments do not have a standard name, it is possible. You need to set an option in gsw-xarray, either in a context or globally
+
+.. code:: python
+
+   # Globally
+   gsw_xarray.set_non_cf_name(argument="argument_name_in_dataset")
+   # Or in a context, e.g.
+   with gsw_xarray.set_non_cf_name(Rt="Rt_in_ds"):
+       ds.gsw.SP_salinometer(t=0)
+
+In this 2nd case, the function ``gsw.SP_salinometer`` take the argument ``Rt`` which has no standard name.
+
+When using user set options, the order of priority to automatically get variables is: 1) variables set by ``gsw_xarray.set_cf_name_preference``, 2) variables with standard name (internal mapping), and 3) variables set by ``gsw_xarray.set_non_cf_name``.
+   
 Installation
 ------------
 Pip

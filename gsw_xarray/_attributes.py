@@ -819,6 +819,7 @@ _func_attrs = {
         "units": "kg/m^3",
     },
     "t90_from_t68": {
+        "standard_name": "sea_water_temperature",
         "units": "degC",
         "reference_scale": "ITS-90",
     },
@@ -866,5 +867,6 @@ _func_attrs = {
     "z_from_p": {
         "standard_name": "height_above_mean_sea_level",
         "units": "m",
+        "positive": "up",
     },
 }
