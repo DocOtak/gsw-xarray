@@ -2,11 +2,8 @@
 Testing use of dataset
 """
 import pytest
-import gsw
 import xarray as xr
 import gsw_xarray
-
-from .test_imports import gsw_base
 
 
 def test_use_only_dataset_call(ds):
@@ -25,7 +22,7 @@ def test_use_only_dataset_getitem(ds):
 
 def test_use_only_dataset_call_pint(ds_pint):
     """Use accessor and pint"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pytest.importorskip("pint_xarray")
     sigma0_da = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
     sigma0_ds = ds_pint.gsw.sigma0()
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
@@ -33,7 +30,7 @@ def test_use_only_dataset_call_pint(ds_pint):
 
 def test_use_only_dataset_getitem_pint(ds_pint):
     """Use getitem and pint"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pytest.importorskip("pint_xarray")
     sigma0_da = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
     sigma0_ds = ds_pint.gsw["sigma0"]
     xr.testing.assert_identical(sigma0_ds, sigma0_da)
@@ -148,7 +145,7 @@ def test_no_access_to_modules(ds):
         ds.gsw["density"]
 
 
-def test_no_access_to_modules(ds):
+def test_no_access_to_modules2(ds):
     """Raise attribute error if we try to access something not existing in gsw upstream"""
     with pytest.raises(AttributeError):
         ds.gsw["does_not_exist"]
