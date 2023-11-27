@@ -30,6 +30,7 @@ black = "^22.3.0"
 jupyterlab = ">=4.0.4"
 netCDF4 = ">=1.6.4"
 line_profiler = "*"
+toml = ">=0.10.2"
 
 [tool.poetry.extras]
 docs = ["Sphinx", "furo", "nbsphinx", "netCDF4", "Pint", "pint-xarray", "dask"]
