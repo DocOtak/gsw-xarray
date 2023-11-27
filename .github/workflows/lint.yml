@@ -3,12 +3,8 @@ name: Lint
 on:
   push:
     branches: [ master ]
-    paths:
-      - '*.py'
   pull_request:
     branches: [ master ]
-    paths:
-      - '*.py'
 
 jobs:
 
