@@ -11,7 +11,7 @@ repository = "https://github.com/DocOtak/gsw-xarray"
 documentation = "https://gsw-xarray.readthedocs.io/"
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.8,<4.0"
 xarray = ">=0.20.2"
 gsw = ">=3.4.0"
 Sphinx = {version = ">=4.4.0", optional = true}
@@ -31,6 +31,8 @@ jupyterlab = ">=4.0.4"
 netCDF4 = ">=1.6.4"
 line_profiler = "*"
 toml = ">=0.10.2"
+flake8 = "^4.0.1"
+autoflake8 = "^0.3.2"
 
 [tool.poetry.extras]
 docs = ["Sphinx", "furo", "nbsphinx", "netCDF4", "Pint", "pint-xarray", "dask"]
