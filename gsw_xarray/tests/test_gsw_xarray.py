@@ -5,10 +5,6 @@ import numpy as np
 import pytest
 
 
-def test_version():
-    assert __version__ == "0.2.1"
-
-
 def test_func_standard(ds):
     """Basic test"""
     sigma0 = gsw.sigma0(SA=ds.SA, CT=ds.CT)
