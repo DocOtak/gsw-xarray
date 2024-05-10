@@ -1,0 +1,25 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: gsw-xarray
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Romain
+    family-names: Caneill
+    email: romain.caneill@ens-lyon.org
+    orcid: 'https://orcid.org/0000-0001-6649-4275'
+  - given-names: Andrew
+    family-names: Barna
+    orcid: 'https://orcid.org/0000-0002-5203-8954'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.8297618
+repository-code: 'https://github.com/DocOtak/gsw-xarray'
+abstract: >-
+  Wrapper for gsw that will add CF attributes to
+  xarray.DataArray outputs
+license: BSD-3-Clause
