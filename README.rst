@@ -9,10 +9,13 @@
    :alt: pypi package
 .. |conda forge| image:: https://img.shields.io/conda/vn/conda-forge/gsw-xarray
    :target: https://anaconda.org/conda-forge/gsw-xarray
+.. |zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.8297618.svg
+   :target: https://doi.org/10.5281/zenodo.8297618
+   :alt: zenodo DOI
 
 gsw-xarray: Wrapper for gsw that adds CF attributes
 ===================================================
-|CI Status| |Documentation Status| |pypi| |conda forge|
+|CI Status| |Documentation Status| |pypi| |conda forge| |zenodo|
 
 gsw-xarray is a wrapper for `gsw python <https://github.com/TEOS-10/GSW-python>`_
 that will add CF attributes to xarray.DataArray outputs.
@@ -234,6 +237,21 @@ Pipenv
 
 Inside a pipenv environment: ``pipenv install gsw-xarray``.
 
+Citation
+--------
+
+If you use gsw-xarray, please cite the reference paper for the upstream gsw library:  McDougall, T.J. and P.M. Barker, 2011: Getting started with TEOS-10 and the Gibbs Seawater (GSW) Oceanographic Toolbox, 28pp., SCOR/IAPSO WG127, ISBN 978-0-646-55621-5
+
+.. code:: bibtex
+    @book{mcdougall2011getting,
+      author = {McDougall, T. J. and Barker, P. M.},
+      title = {Getting started with TEOS-10 and the Gibbs Seawater (GSW) Oceanographic Toolbox},
+      year = {2011},
+      pages = {28},
+      publisher = {SCOR/IAPSO WG127},
+      isbn = {978-0-646-55621-5}
+    }
+You can also cite gsw-xarray by using the zenodo DOI |zenodo|.
 
 Contributor guide
 -----------------
