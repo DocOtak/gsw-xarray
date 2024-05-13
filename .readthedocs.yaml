@@ -15,7 +15,7 @@ build:
       - pip install poetry
     post_install:
       # Install dependencies with 'docs' extra
-      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install -with docs
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --with docs
 
 sphinx:
    configuration: docs/conf.py
