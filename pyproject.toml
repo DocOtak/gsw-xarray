@@ -16,7 +16,7 @@ xarray = ">=0.20.2"
 gsw = ">=3.4.0"
 cf-xarray = "^0.7.4"
 pint-xarray = {version = '^0.3', optional = true}
-Pint = {version = ">=0.18", optional = true}
+Pint = {version = ">=0.20", optional = true}
 
 
 [tool.poetry.group.dev]
