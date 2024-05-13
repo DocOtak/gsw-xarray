@@ -290,6 +290,9 @@ You can check that the tests pass locally:
 
    pytest gsw_xarray/tests
 
+You can install `pre-commit <https://pre-commit.com/#install>`_ to run the linting
+automatically at each commit.
+   
 Release (for maintainers only)
 ..............................
 
