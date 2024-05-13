@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.4.0 - not released
+---------------------
+This release adds an accessor for xarray. Support for python 3.8 is dropped and 3.12 is added.
+
 v0.3.0 - 2022-08-09
 -------------------
 This release focused on supporting Pint quantities.
