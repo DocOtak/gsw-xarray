@@ -275,7 +275,7 @@ Then go to your local clone of gsw-xarray and launch installation:
 .. code:: bash
 
    cd /path/to/your/gsw-xarray
-   poetry install
+   poetry install --with dev
 
 You can then activate the environment by launching a shell
 within the virtual environment:
