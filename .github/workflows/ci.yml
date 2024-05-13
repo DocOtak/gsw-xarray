@@ -54,8 +54,10 @@ jobs:
         include:
           - python-version: "3.9"
             version: "minimal"
+            pint: "with"
           - python-version: "3.12"
             version: "maximal"
+            pint: "with"
     steps:
     - uses: actions/checkout@v3
     - name: Install poetry
@@ -81,9 +83,9 @@ jobs:
     - name: use minimal versions for lock file
       if: matrix.version == 'minimal'
       run: |
-        pip install pdm==2.15.2
-        pdm lock --strategy direct_minimal_versions -v
-        poetry run pdm install -v
+        pipx install pdm==2.15.2
+        poetry run pdm lock --strategy direct_minimal_versions -v -G :all
+        poetry run pdm install -v -G :all
     - name: Test with pytest
       run: |
         poetry run pytest gsw_xarray/tests
