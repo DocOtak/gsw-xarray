@@ -2981,4 +2981,4 @@ pint = ["Pint", "pint-xarray"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9"
-content-hash = "0d93dd26f20b32d46af50cc2fe13775caa4a26e872c966c5fa1eb510d87c94e6"
+content-hash = "23e844ed8c56f80563ca98dc6926d46a80348e6bc2ee9ffeaa84395c070d3d3f"
