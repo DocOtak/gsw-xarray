@@ -30,6 +30,8 @@ jupyterlab = ">=4.0.4"
 netCDF4 = ">=1.6.5"
 toml = ">=0.10.2"
 dask = ">=2023.1.0"
+flake8 = ">=4.0.1"
+autoflake8 = ">=0.3.2"
 
 [tool.poetry.group.docs]
 optional = true
