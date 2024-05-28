@@ -1,7 +1,10 @@
 from types import ModuleType
-import numpy as np
 
+import gsw
+import numpy as np
 import pytest
+
+import gsw_xarray
 
 """
 Here all import machinery is tested (dir, getattr, ...),
@@ -10,9 +13,6 @@ for functions and modules.
 The import gsw_xarray is kept in every function to not interfere
 between them with a global import.
 """
-
-import gsw_xarray
-import gsw
 
 
 def get_module_names(module):
@@ -31,6 +31,7 @@ def get_module_names(module):
 
 gsw_base = get_module_names(gsw)
 wrapped_funcs = gsw_xarray._core._wrapped_funcs
+del gsw_xarray
 
 submodules = [
     "conversions",
@@ -46,11 +47,15 @@ submodules = [
 @pytest.mark.parametrize("upstream_func", gsw_base)
 def test_wrapped_interface(upstream_func):
     """Tests the complete gsw function namespace against ours"""
+    import gsw_xarray
+
     assert hasattr(gsw_xarray, upstream_func)
 
 
 @pytest.mark.parametrize("upstream_func", gsw_base)
 def test_wrapped_return(upstream_func):
+    import gsw_xarray
+
     if upstream_func in wrapped_funcs:
         assert getattr(gsw_xarray, upstream_func) is wrapped_funcs[upstream_func]
     else:
@@ -59,6 +64,8 @@ def test_wrapped_return(upstream_func):
 
 @pytest.mark.parametrize("submodule", submodules)
 def test_wrapped_interface_submodules(submodule):
+    import gsw_xarray
+
     upstream_submodule = getattr(gsw, submodule)
     wrapped_submodule = getattr(gsw_xarray, submodule)
 
@@ -79,6 +86,8 @@ def test_import_interface_base(upstream_func):
     It does this by creating an empty "locals" dict and calling an exec on the way the code
     would be written, it then checks the idenity of that returned result
     """
+    import gsw_xarray  # noqa: F401
+
     result = {}
     # the empty dict is for the "globals" that we don't care about (exec would populate it with builtins)
     exec(f"from gsw_xarray import {upstream_func}", {}, result)
@@ -97,6 +106,8 @@ def test_import_interface_submodule(submodule, upstream_func):
     where submod is one of the submodule groupings in the upstream
 
     """
+    import gsw_xarray  # noqa: F401
+
     result = {}
     upstream_interface = get_module_names(getattr(gsw, submodule))
 
@@ -123,6 +134,8 @@ def test_import_interface_submodule(submodule, upstream_func):
 @pytest.mark.parametrize("submodule", submodules)
 def test_attr_method(submodule, upstream_func):
     """tests the identities of funcs in the form of gsw_xarray.submodule.func"""
+    import gsw_xarray  # noqa: F401
+
     upstream_interface = get_module_names(getattr(gsw, submodule))
 
     expected_func = getattr(gsw, upstream_func)
@@ -143,6 +156,8 @@ def test_attr_method(submodule, upstream_func):
 
 
 def test_wildcard_top_level():
+    import gsw_xarray  # noqa: F401
+
     upstream_interface = {}
     exec("from gsw import *", {}, upstream_interface)
 
@@ -155,6 +170,8 @@ def test_wildcard_top_level():
 @pytest.mark.parametrize("submodule", submodules)
 def test_wildcard_submodule(submodule):
     """tests the identities of funcs in the form of gsw_xarray.submodule.func"""
+    import gsw_xarray  # noqa: F401
+
     upstream_interface = {}
     exec(f"from gsw.{submodule} import *", {}, upstream_interface)
 

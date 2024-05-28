@@ -1,18 +1,18 @@
-from functools import wraps, singledispatch
+from functools import singledispatch, wraps
 
 import gsw
 import xarray as xr
 
-from ._attributes import _func_attrs
 from ._arguments import input_properties
-from ._names import _names
+from ._attributes import _func_attrs
 from ._check_funcs import _check_funcs
-from ._function_utils import args_and_kwargs_to_kwargs, parameters_as_set
+from ._function_utils import args_and_kwargs_to_kwargs
+from ._names import _names
 from ._units import safe_unit
 
 try:
-    import pint_xarray
     import pint
+    import pint_xarray
 
 except ImportError:
     pint_xarray = None
@@ -143,7 +143,7 @@ def cf_attrs(fname, attrs, name, check_func):
             attrs_checked = check_func(attrs, kwargs)
             if isinstance(rv, tuple):
                 rv_updated = []
-                for (i, da) in enumerate(rv):
+                for i, da in enumerate(rv):
                     # Verify the unit
                     attrs_checked[i]["units"] = safe_unit(
                         attrs_checked[i]["units"], unit_registry

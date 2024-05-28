@@ -1,5 +1,7 @@
-import toml
 from pathlib import Path
+
+import toml
+
 import gsw_xarray
 
 

@@ -1,16 +1,19 @@
 """
 Testing units with pint and cf_units
 """
-import pytest
-import numpy as np
-import xarray as xr
+
+from inspect import signature
+
 import gsw
+import numpy as np
+import pytest
+import xarray as xr
+
 import gsw_xarray
+from gsw_xarray._arguments import input_properties
+from gsw_xarray._attributes import _func_attrs
 
 from .test_imports import gsw_base
-from gsw_xarray._attributes import _func_attrs
-from gsw_xarray._arguments import input_properties
-from inspect import signature
 
 ##########
 # Outputs
@@ -19,7 +22,6 @@ from inspect import signature
 
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_pint(func_name, ureg):
-
     if func_name in [
         "indexer",
         "match_args_return",
@@ -102,7 +104,6 @@ def test_output_falls_back_to_generic_unit(ds_pint):
 
 @pytest.mark.parametrize("func_name", gsw_base)
 def test_unit_of_arg(func_name, ureg):
-
     if func_name in [
         "indexer",
         "match_args_return",
@@ -121,30 +122,30 @@ def test_unit_of_arg(func_name, ureg):
 
 def test_ds_mixed_quantity_non_quantity(ds, ds_pint):
     """If at least 1 of the inputs is quantity, all inputs should be quantity"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
 
     with pytest.raises(ValueError):
-        sigma0 = gsw_xarray.sigma0(SA=ds.SA, CT=ds_pint.CT)
+        gsw_xarray.sigma0(SA=ds.SA, CT=ds_pint.CT)
 
 
 def test_ds_mixed_quantity_non_quantity_axis_arg_None_arg(ds_pint):
     """Should not use dimension for None args, nor for the axis arg"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
 
     gsw_xarray.Nsquared(SA=ds_pint.SA, CT=ds_pint.CT, p=ds_pint.p, axis=0, lat=None)
 
 
 def test_pint_mixed_quantity_non_quantity(T):
     """If at least 1 of the inputs is quantity, all inputs should be quantity"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
 
     with pytest.raises(ValueError):
-        sigma0 = gsw_xarray.sigma0(SA=35, CT=T)
+        gsw_xarray.sigma0(SA=35, CT=T)
 
 
 def test_pint_quantity_xarray(ds_pint, T):
     """If input is mixed between pint-xarray and pint quantity it should return pint-xarray wrapped quantity"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
 
     sigma0 = gsw_xarray.sigma0(SA=ds_pint.SA, CT=T)
     assert sigma0.pint.units == pint_xarray.unit_registry("kg / m^3")
@@ -152,7 +153,7 @@ def test_pint_quantity_xarray(ds_pint, T):
 
 def test_pint_quantity(S, T):
     """If input is pint quantity should return a quantity"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
     pint = pytest.importorskip("pint")
 
     CT = gsw_xarray.CT_from_pt(SA=S, pt=T)
@@ -161,7 +162,7 @@ def test_pint_quantity(S, T):
 
 def test_pint_quantity_tuple(S, T):
     """If input is pint quantity should return a quantity"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
     import pint
 
     (a, b) = gsw_xarray.CT_first_derivatives(S, pt=T)
@@ -171,7 +172,7 @@ def test_pint_quantity_tuple(S, T):
 
 def test_mixed_unit_registries():
     """If input quantities are from different registries, it should fail"""
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
     import pint
 
     ureg_a = pint.UnitRegistry()
@@ -183,7 +184,7 @@ def test_mixed_unit_registries():
 
 
 def test_pint_quantity_convert_kwargs(ds_pint):
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
 
     sigma0_good_units = gsw_xarray.sigma0(SA=ds_pint.SA, CT=ds_pint.CT)
     sigma0_bad_units = gsw_xarray.sigma0(
@@ -193,7 +194,7 @@ def test_pint_quantity_convert_kwargs(ds_pint):
 
 
 def test_pint_quantity_convert_args(ds_pint):
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
 
     sigma0_good_units = gsw_xarray.sigma0(ds_pint.SA, ds_pint.CT)
     sigma0_bad_units = gsw_xarray.sigma0(
@@ -203,7 +204,7 @@ def test_pint_quantity_convert_args(ds_pint):
 
 
 def test_pint_quantity_convert_kwargs_pint(S, T):
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
 
     sigma0_good_units = gsw_xarray.sigma0(SA=S, CT=T)
     sigma0_bad_units = gsw_xarray.sigma0(SA=S.to("mg / kg"), CT=T.to("kelvin"))
@@ -211,7 +212,7 @@ def test_pint_quantity_convert_kwargs_pint(S, T):
 
 
 def test_pint_quantity_convert_args_pint(S, T):
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
 
     sigma0_good_units = gsw_xarray.sigma0(S, T)
     sigma0_bad_units = gsw_xarray.sigma0(S.to("mg / kg"), T.to("kelvin"))

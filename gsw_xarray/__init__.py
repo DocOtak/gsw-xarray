@@ -1,12 +1,18 @@
 __version__ = "0.3.0"
 
-from importlib import import_module
-
 import gsw
+
+import gsw_xarray._accessor  # noqa: F401
+
 from ._core import _wrapped_funcs
-from ._util import submodule_all_compat, get_attribute, _compat
-import gsw_xarray._accessor
-from ._options import set_options, get_options, set_non_cf_name, set_cf_name_preference
+from ._options import (  # noqa: F401
+    get_options,
+    set_cf_name_preference,
+    set_non_cf_name,
+    set_options,
+)
+from ._util import _compat, get_attribute
+from ._util_module import submodule_all_compat
 
 gsw_xarray_specific_functions = [
     "set_options",
@@ -15,9 +21,9 @@ gsw_xarray_specific_functions = [
     "set_cf_name_preference",
 ]
 
-_compat_modules = {name: import_module(f".{name}", "gsw_xarray") for name in _compat}
 
 __all__ = submodule_all_compat("gsw") + list(_compat)
+
 
 # See PEP 562
 def __getattr__(name):

@@ -1,7 +1,6 @@
-import pytest
-
-import xarray as xr
 import numpy as np
+import pytest
+import xarray as xr
 
 
 @pytest.fixture
@@ -23,7 +22,7 @@ def ds():
 
 @pytest.fixture(scope="session")
 def ureg():
-    pint_xarray = pytest.importorskip("pint_xarray")
+    pint_xarray = pytest.importorskip("pint_xarray")  # noqa: F841
     from pint_xarray import unit_registry as ureg
 
     return ureg

@@ -2,14 +2,16 @@
 Functions that return tuples must have tuples
 (with the same length) as attributes and names
 """
+
+from inspect import _empty, signature
+
+import gsw
 import pytest
-from inspect import signature, _empty
+
+from gsw_xarray._attributes import _func_attrs
+from gsw_xarray._names import _names
 
 from .test_imports import gsw_base
-
-from gsw_xarray._names import _names
-from gsw_xarray._attributes import _func_attrs
-import gsw
 
 
 @pytest.mark.parametrize("func_name", gsw_base)

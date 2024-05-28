@@ -1,8 +1,13 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-  - repo: https://github.com/psf/black
-    rev: 22.3.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.5
     hooks:
-      - id: black
-        language_version: python3
+      - id: ruff
+        name: lint with ruff
+      - id: ruff
+        name: sort imports with ruff
+        args: [--select, I, --fix]
+      - id: ruff-format
+        name: format with ruff

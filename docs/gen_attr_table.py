@@ -1,11 +1,11 @@
-from sphinx.util import progress_message
-
 from inspect import signature
 
+from sphinx.util import progress_message
+
 import gsw_xarray
-from gsw_xarray._names import _names
-from gsw_xarray._attributes import _func_attrs
 from gsw_xarray._arguments import input_properties
+from gsw_xarray._attributes import _func_attrs
+from gsw_xarray._names import _names
 
 input_units = {i: input_properties[i]["units"] for i in input_properties}
 
@@ -33,7 +33,7 @@ with progress_message("Generating gsw attribute table"):
                     props["standard_name"] = "sea_ice_temperature"
                 else:
                     props["standard_name"] = "sea_water_temperature"
-            if arg == "p" and not "ice" in name:
+            if arg == "p" and "ice" not in name:
                 props["standard_name"] = "sea_water_pressure"
             for prop in props:
                 list_table += f"  * {prop}: ``{props.get(prop)}``\n"
