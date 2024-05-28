@@ -1,18 +1,13 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-  - repo: https://github.com/psf/black
-    rev: 22.3.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.5
     hooks:
-      - id: black
-        language_version: python3
-
-  - repo: https://github.com/fsouza/autoflake8
-    rev: v0.3.2
-    hooks:
-      - id: autoflake8
-
-  - repo: https://github.com/PyCQA/flake8
-    rev: 4.0.1
-    hooks:
-      - id: flake8
+      - id: ruff
+        name: lint with ruff
+      - id: ruff
+        name: sort imports with ruff
+        args: [--select, I, --fix]
+      - id: ruff-format
+        name: format with ruff

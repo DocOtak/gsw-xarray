@@ -1,7 +1,9 @@
 """
 xarray Dataset accessor for gsw
 """
+
 from functools import wraps
+
 import gsw
 import xarray as xr
 
@@ -11,15 +13,14 @@ except ImportError:
     cf_xarray = None
 
 
+from ._core import _wrapped_funcs
 from ._function_utils import (
     args_and_kwargs_to_kwargs,
-    parameters_as_set,
     get_parameters_standard_name,
+    parameters_as_set,
 )
-from ._arguments import input_properties
-from ._util import get_attribute
-from ._core import _wrapped_funcs
 from ._options import get_options
+from ._util import get_attribute
 
 
 def safe_get_cf(ds, n):
@@ -169,7 +170,6 @@ def wrap_with_ds(ds):
 
 
 def _test_if_wrapped(name):
-    print(name)
     if name in _wrapped_funcs:
         return
     try:

@@ -1,8 +1,8 @@
-from gsw_xarray import __version__
-import gsw_xarray as gsw
-import xarray as xr
 import numpy as np
 import pytest
+import xarray as xr
+
+import gsw_xarray as gsw
 
 
 def test_func_standard(ds):

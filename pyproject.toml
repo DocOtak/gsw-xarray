@@ -25,13 +25,11 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 pytest = ">=6.2.5"
 pre-commit = "^2.17.0"
-black = "^22.3.0"
 jupyterlab = ">=4.0.4"
 netCDF4 = ">=1.6.5"
 toml = ">=0.10.2"
 dask = ">=2023.1.0"
-flake8 = ">=4.0.1"
-autoflake8 = ">=0.3.2"
+ruff = "^0.4.5"
 
 [tool.poetry.group.docs]
 optional = true
@@ -52,3 +50,31 @@ pint = ["Pint", "pint-xarray"]
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# Same as Black.
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["E4", "E7", "E9", "F", "I"]
+ignore = []
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"

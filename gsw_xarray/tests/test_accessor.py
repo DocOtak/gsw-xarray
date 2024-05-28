@@ -1,8 +1,10 @@
 """
 Testing use of dataset
 """
+
 import pytest
 import xarray as xr
+
 import gsw_xarray
 
 
@@ -145,7 +147,7 @@ def test_no_access_to_modules(ds):
         ds.gsw["density"]
 
 
-def test_no_access_to_modules2(ds):
+def test_no_access_to_unexisting_func(ds):
     """Raise attribute error if we try to access something not existing in gsw upstream"""
     with pytest.raises(AttributeError):
         ds.gsw["does_not_exist"]
