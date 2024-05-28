@@ -22,6 +22,8 @@ gsw_xarray_specific_functions = [
 ]
 
 
+
+
 __all__ = submodule_all_compat("gsw") + list(_compat)
 
 
@@ -31,6 +33,4 @@ def __getattr__(name):
 
 
 def __dir__():
-    return list(
-        sorted(set([*_wrapped_funcs.keys(), *dir(gsw), *gsw_xarray_specific_functions]))
-    )
+    return list(        sorted(set([*_wrapped_funcs.keys(), *dir(gsw), *gsw_xarray_specific_functions]))    )
