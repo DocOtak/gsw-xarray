@@ -232,10 +232,6 @@ Conda
 
 Inside a conda environment:  ``conda install -c conda-forge gsw-xarray``.
 
-Pipenv
-......
-
-Inside a pipenv environment: ``pipenv install gsw-xarray``.
 
 Citation
 --------
