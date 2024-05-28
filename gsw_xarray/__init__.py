@@ -7,8 +7,8 @@ import gsw_xarray._accessor  # noqa: F401
 from ._core import _wrapped_funcs
 from ._options import (  # noqa: F401
     get_options,
-    set_non_cf_name,
     set_cf_name_preference,
+    set_non_cf_name,
     set_options,
 )
 from ._util import _compat, get_attribute
