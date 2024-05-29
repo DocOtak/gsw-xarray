@@ -238,15 +238,17 @@ Citation
 
 If you use gsw-xarray, please cite the reference paper for the upstream gsw library:  McDougall, T.J. and P.M. Barker, 2011: Getting started with TEOS-10 and the Gibbs Seawater (GSW) Oceanographic Toolbox, 28pp., SCOR/IAPSO WG127, ISBN 978-0-646-55621-5
 
-.. code:: bibtex
+.. code-block:: bibtex
+
     @book{mcdougall2011getting,
       author = {McDougall, T. J. and Barker, P. M.},
-      title = {Getting started with TEOS-10 and the Gibbs Seawater (GSW) Oceanographic Toolbox},
+      title = {Getting Started with TEOS-10 and the Gibbs Seawater (GSW) Oceanographic Toolbox},
       year = {2011},
       pages = {28},
       publisher = {SCOR/IAPSO WG127},
       isbn = {978-0-646-55621-5}
     }
+
 You can also cite gsw-xarray by using the zenodo DOI |zenodo|.
 
 Contributor guide
