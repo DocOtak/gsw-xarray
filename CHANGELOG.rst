@@ -1,7 +1,7 @@
 Changelog
 =========
 
-v0.4.0 - not released
+v0.4.0 - 2024-05-29
 ---------------------
 This release adds an accessor for xarray. Support for python 3.8 is dropped and 3.12 is added.
 
