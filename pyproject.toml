@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gsw-xarray"
-version = "0.3.0"
+version = "0.4.0"
 description = "Drop in wrapper for gsw which adds CF standard name and units attributes to xarray results"
 authors = ["Andrew Barna <abarna@gmail.com>", "Romain Caneill <romain.caneill@ens-lyon.org>"]
 license = "BSD-3-Clause"
@@ -11,7 +11,7 @@ repository = "https://github.com/DocOtak/gsw-xarray"
 documentation = "https://gsw-xarray.readthedocs.io/"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9"
 xarray = ">=0.20.2"
 gsw = ">=3.4.0"
 cf-xarray = "^0.7.4"
