@@ -73,10 +73,10 @@ jobs:
     - name: use minimal versions for lock file
       if: matrix.version == 'minimal'
       run: |
-        pipx install pdm==2.25.9
-        poetry run pdm lock --strategy direct_minimal_versions -v -G :all
-        pdm sync --no-default numpy
-        poetry run pdm install -v -G :all
+        pipx install uv
+        poetry run uvx migrate-to-uv
+        poetry run uv lock --resolution lowest
+        poetry run uv install
     - name: Test with pytest
       run: |
         poetry run pytest gsw_xarray/tests
