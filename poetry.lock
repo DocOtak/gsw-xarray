@@ -263,22 +263,41 @@ files = [
 
 [[package]]
 name = "cf-xarray"
-version = "0.7.9"
+version = "0.10.6"
 description = "A convenience wrapper for using CF attributes on xarray objects"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.10"
 groups = ["main"]
-markers = "python_version < \"3.12\" or python_version >= \"3.12.0.rc1\""
+markers = "python_version == \"3.10\""
 files = [
-    {file = "cf_xarray-0.7.9-py3-none-any.whl", hash = "sha256:e5896ff597e9ba7e16c6f97b42006dac197247f9212dfd0aee7550c531229617"},
-    {file = "cf_xarray-0.7.9.tar.gz", hash = "sha256:b8757032a2653a3f3d8f8f43a8f8fde04910dcc4e5e57e21d3111e417d2e7ca8"},
+    {file = "cf_xarray-0.10.6-py3-none-any.whl", hash = "sha256:39b457e47bb1557749ede115d1126ad9340eafb26ddeea0fef3a81149fc4d019"},
+    {file = "cf_xarray-0.10.6.tar.gz", hash = "sha256:159236eca465453784ee7efa2a430d5e2092978db8a5d4d8b591f61d0639cb89"},
 ]
 
 [package.dependencies]
-xarray = "*"
+xarray = ">=2023.09.0"
 
 [package.extras]
-all = ["matplotlib", "pint", "regex", "shapely"]
+all = ["matplotlib", "pint (>=0.18,!=0.24.0)", "pooch", "regex", "rich", "shapely"]
+
+[[package]]
+name = "cf-xarray"
+version = "0.10.9"
+description = "A convenience wrapper for using CF attributes on xarray objects"
+optional = false
+python-versions = ">=3.11"
+groups = ["main"]
+markers = "python_version == \"3.11\" or python_version >= \"3.12.0.rc1\""
+files = [
+    {file = "cf_xarray-0.10.9-py3-none-any.whl", hash = "sha256:a41fa218e8f31b6c82c4687d92951f536186e288e5da6d56efd92a57b628eb18"},
+    {file = "cf_xarray-0.10.9.tar.gz", hash = "sha256:36e829c63e42496e892b52faf1c5d6a9936857df3b3ad2f4fd86e06a17e6ec33"},
+]
+
+[package.dependencies]
+xarray = ">=2024.7.0"
+
+[package.extras]
+all = ["matplotlib", "pint (>=0.18,!=0.24.0)", "pooch", "regex", "rich", "shapely"]
 
 [[package]]
 name = "cffi"
@@ -3213,4 +3232,4 @@ pint = ["Pint", "pint-xarray"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10"
-content-hash = "5b2bd7f98ae3a5f4e835fa3f43dfe8637cc77811fd4412a8ef666a749bb457ef"
+content-hash = "96e5b4ab48af2c1528860d2c41bab5dd72d2e4eb66720e1cc2030dc8265caa2e"
