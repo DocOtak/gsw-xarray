@@ -30,6 +30,7 @@ netCDF4 = ">=1.6.5"
 toml = ">=0.10.2"
 dask = ">=2023.1.0"
 ruff = "^0.4.5"
+toolz = ">=0.12.0"
 
 [tool.poetry.group.docs]
 optional = true
@@ -39,10 +40,10 @@ Sphinx = ">=4.4.0"
 furo = ">=2022.1.2"
 nbsphinx = ">=0.9.2"
 ipykernel = ">=6.29.4"
-netCDF4 = "*"
-Pint = "*"
-pint-xarray = "*"
-dask = "*"
+netCDF4 = ">=1.6.5"
+Pint = ">=0.20"
+pint-xarray = ">=0.3"
+dask = ">=2023.1.0"
 
 [tool.poetry.extras]
 pint = ["Pint", "pint-xarray"]
