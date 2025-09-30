@@ -12,7 +12,7 @@ documentation = "https://gsw-xarray.readthedocs.io/"
 
 [tool.poetry.dependencies]
 python = ">=3.10"
-xarray = ">=2024.9"
+xarray = ">=2024.09"
 gsw = ">=3.4.0"
 cf-xarray = ">=0.8"
 pint-xarray = {version = '>=0.3', optional = true}

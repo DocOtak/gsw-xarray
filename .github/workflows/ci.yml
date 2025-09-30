@@ -75,6 +75,7 @@ jobs:
       run: |
         pipx install pdm==2.25.9
         poetry run pdm lock --strategy direct_minimal_versions -v -G :all
+        pdm sync --no-default numpy
         poetry run pdm install -v -G :all
     - name: Test with pytest
       run: |
