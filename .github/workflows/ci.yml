@@ -73,12 +73,14 @@ jobs:
     - name: use minimal versions for lock file
       if: matrix.version == 'minimal'
       run: |
+        cp pyproject.toml pyproject.toml.bak
         pipx install uv
         uvx migrate-to-uv
         uv add --active "toolz>=0.12.0" "appnope>=0.1.0" "decorator>=5.1.1" "python-json-logger>2.0.4" "matplotlib>=3.5.0" "bleach>5.0.0" --frozen
         uv lock --resolution lowest
         uv pip freeze > requirements.txt
         poetry run pip install -r requirements.txt
+        cp pyproject.toml.bak pyproject.toml
     - name: Test with pytest
       run: |
         poetry run pytest gsw_xarray/tests
