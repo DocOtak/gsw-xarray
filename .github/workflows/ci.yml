@@ -65,7 +65,7 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --with dev
-        poetry run pip install cf_units==3.0.1
+        poetry run pip install cf_units==3.3.0
     - if: matrix.pint == 'with'
       name: Install pint and pint-xarray
       run: |
