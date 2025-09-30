@@ -74,10 +74,10 @@ jobs:
       if: matrix.version == 'minimal'
       run: |
         pipx install uv
-        poetry run uvx migrate-to-uv
-        poetry run uv add --active "toolz>=0.12.0" "appnope>=0.1.0" "decorator>=5.1.1" "python-json-logger>2.0.4" "matplotlib>=3.5.0" "bleach>5.0.0" --frozen
-        poetry run uv lock --resolution lowest
-        poetry run uv export --all-extras --frozen --no-hashes --format requirements.txt > requirements.txt
+        uvx migrate-to-uv
+        uv add --active "toolz>=0.12.0" "appnope>=0.1.0" "decorator>=5.1.1" "python-json-logger>2.0.4" "matplotlib>=3.5.0" "bleach>5.0.0" --frozen
+        uv lock --resolution lowest
+        uv pip freeze > requirements.txt
         poetry run pip install -r requirements.txt
     - name: Test with pytest
       run: |
