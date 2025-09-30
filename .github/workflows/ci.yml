@@ -77,7 +77,7 @@ jobs:
         poetry run uvx migrate-to-uv
         poetry run uv add "toolz>=0.12.0" "appnope>=0.1.0" "decorator>=5.1.1" "python-json-logger>2.0.4" "matplotlib>=3.5.0" "bleach>5.0.0" --frozen
         poetry run uv lock --resolution lowest
-        poetry run uv sync
+        poetry run uv sync --active
     - name: Test with pytest
       run: |
         poetry run pytest gsw_xarray/tests
