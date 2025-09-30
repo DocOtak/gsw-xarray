@@ -1,55 +1,60 @@
-[tool.poetry]
+[project]
 name = "gsw-xarray"
 version = "0.5.0"
 description = "Drop in wrapper for gsw which adds CF standard name and units attributes to xarray results"
-authors = ["Andrew Barna <abarna@gmail.com>", "Romain Caneill <romain.caneill@ens-lyon.org>"]
-license = "BSD-3-Clause"
-
+authors = [
+    { name = "Andrew Barna", email = "abarna@gmail.com" },
+    { name = "Romain Caneill", email = "romain.caneill@ens-lyon.org" },
+]
+requires-python = ">=3.10"
 readme = "README.rst"
+license = "BSD-3-Clause"
+dependencies = [
+    "xarray>=2023.09",
+    "gsw>=3.4.0",
+    "cf-xarray>=0.8",
+]
 
-repository = "https://github.com/DocOtak/gsw-xarray"
-documentation = "https://gsw-xarray.readthedocs.io/"
+[project.optional-dependencies]
+pint = [
+    "Pint>=0.20",
+    "pint-xarray>=0.3",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.10"
-xarray = ">=2024.09"
-gsw = ">=3.4.0"
-cf-xarray = ">=0.8"
-pint-xarray = {version = '>=0.3', optional = true}
-Pint = {version = ">=0.20", optional = true}
+[project.urls]
+Repository = "https://github.com/DocOtak/gsw-xarray"
+Documentation = "https://gsw-xarray.readthedocs.io/"
 
+[dependency-groups]
+dev = [
+    "pytest>=6.2.5",
+    "pre-commit>=2.17.0,<3",
+    "jupyterlab>=4.0.4",
+    "netCDF4>=1.6.5",
+    "toml>=0.10.2",
+    "dask>=2023.1.0",
+    "ruff>=0.4.5,<0.5",
+]
+docs = [
+    "Sphinx>=8",
+    "furo>=2022.1.2",
+    "nbsphinx>=0.9.2",
+    "ipykernel>=6.29.4",
+    "netCDF4>=1.6.5",
+    "Pint>=0.20",
+    "pint-xarray>=0.3",
+    "dask>=2023.1.0",
+]
 
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-pytest = ">=6.2.5"
-pre-commit = "^2.17.0"
-jupyterlab = ">=4.0.4"
-netCDF4 = ">=1.6.5"
-toml = ">=0.10.2"
-dask = ">=2023.1.0"
-ruff = "^0.4.5"
-
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
-Sphinx = ">=8"
-furo = ">=2022.1.2"
-nbsphinx = ">=0.9.2"
-ipykernel = ">=6.29.4"
-netCDF4 = ">=1.6.5"
-Pint = ">=0.20"
-pint-xarray = ">=0.3"
-dask = ">=2023.1.0"
-
-[tool.poetry.extras]
-pint = ["Pint", "pint-xarray"]
+[tool.uv]
+default-groups = [
+    "dev",
+    "docs",
+]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
 # Same as Black.
