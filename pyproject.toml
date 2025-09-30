@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gsw-xarray"
-version = "0.4.0"
+version = "0.5.0"
 description = "Drop in wrapper for gsw which adds CF standard name and units attributes to xarray results"
 authors = ["Andrew Barna <abarna@gmail.com>", "Romain Caneill <romain.caneill@ens-lyon.org>"]
 license = "BSD-3-Clause"
@@ -11,11 +11,11 @@ repository = "https://github.com/DocOtak/gsw-xarray"
 documentation = "https://gsw-xarray.readthedocs.io/"
 
 [tool.poetry.dependencies]
-python = ">=3.9"
-xarray = ">=0.20.2"
+python = ">=3.10"
+xarray = ">=2024.09"
 gsw = ">=3.4.0"
-cf-xarray = "^0.7.4"
-pint-xarray = {version = '^0.3', optional = true}
+cf-xarray = ">=0.8"
+pint-xarray = {version = '>=0.3', optional = true}
 Pint = {version = ">=0.20", optional = true}
 
 
@@ -35,14 +35,14 @@ ruff = "^0.4.5"
 optional = true
 
 [tool.poetry.group.docs.dependencies]
-Sphinx = ">=4.4.0"
+Sphinx = ">=8"
 furo = ">=2022.1.2"
 nbsphinx = ">=0.9.2"
 ipykernel = ">=6.29.4"
-netCDF4 = "*"
-Pint = "*"
-pint-xarray = "*"
-dask = "*"
+netCDF4 = ">=1.6.5"
+Pint = ">=0.20"
+pint-xarray = ">=0.3"
+dask = ">=2023.1.0"
 
 [tool.poetry.extras]
 pint = ["Pint", "pint-xarray"]

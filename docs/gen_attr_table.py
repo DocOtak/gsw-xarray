@@ -1,6 +1,6 @@
 from inspect import signature
 
-from sphinx.util import progress_message
+from sphinx.util.display import progress_message
 
 import gsw_xarray
 from gsw_xarray._arguments import input_properties

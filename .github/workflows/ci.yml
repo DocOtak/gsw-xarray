@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest", "macos-latest"]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v4
@@ -34,18 +34,18 @@ jobs:
     name: test (ubuntu-latest, ${{ matrix.python-version }}, ${{ matrix.pint }} Pint, packages version ${{ matrix.version }})
     runs-on: "ubuntu-latest"
     env:
-      poetry_version: 1.3.2
+      poetry_version: 2.1.3
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
         pint: ["with", "without"]
         version: ["lock"]
         include:
-          - python-version: "3.9"
+          - python-version: "3.10"
             version: "minimal"
             pint: "with"
-          - python-version: "3.12"
+          - python-version: "3.13"
             version: "maximal"
             pint: "with"
     steps:
@@ -65,7 +65,7 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --with dev
-        poetry run pip install cf_units==3.0.1
+        poetry run pip install cf_units==3.3.0
     - if: matrix.pint == 'with'
       name: Install pint and pint-xarray
       run: |
@@ -73,9 +73,14 @@ jobs:
     - name: use minimal versions for lock file
       if: matrix.version == 'minimal'
       run: |
-        pipx install pdm==2.15.2
-        poetry run pdm lock --strategy direct_minimal_versions -v -G :all
-        poetry run pdm install -v -G :all
+        cp pyproject.toml pyproject.toml.bak
+        pipx install uv
+        uvx migrate-to-uv
+        uv add --active "toolz>=0.12.0" "appnope>=0.1.0" "decorator>=5.1.1" "python-json-logger>2.0.4" "matplotlib>=3.5.0" "bleach>5.0.0" --frozen
+        uv lock --resolution lowest
+        uv pip freeze > requirements.txt
+        poetry run pip install -r requirements.txt
+        cp pyproject.toml.bak pyproject.toml
     - name: Test with pytest
       run: |
         poetry run pytest gsw_xarray/tests

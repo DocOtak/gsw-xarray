@@ -2,6 +2,7 @@
 Testing units with pint and cf_units
 """
 
+import warnings
 from inspect import signature
 
 import gsw
@@ -12,6 +13,7 @@ import xarray as xr
 import gsw_xarray
 from gsw_xarray._arguments import input_properties
 from gsw_xarray._attributes import _func_attrs
+from gsw_xarray._names import _names
 
 from .test_imports import gsw_base
 
@@ -30,6 +32,9 @@ def test_unit_pint(func_name, ureg):
         "gibbs_ice",
     ]:
         # Internal gsw cookery or non wrapped functions
+        return
+    if func_name not in _names:
+        warnings.warn(f"Function *{func_name}* has not been wrapped yet")
         return
     if func_name == "geostrophic_velocity":
         pytest.xfail(
@@ -56,6 +61,9 @@ def test_unit_cf_units(func_name):
         "gibbs_ice",
     ]:
         # Internal gsw cookery or non wrapped functions
+        return
+    if func_name not in _names:
+        warnings.warn(f"Function *{func_name}* has not been wrapped yet")
         return
     attrs = _func_attrs[func_name]
     if isinstance(attrs, dict):
@@ -112,6 +120,9 @@ def test_unit_of_arg(func_name, ureg):
         "gibbs_ice",
     ]:
         # Internal gsw cookery or non wrapped functions
+        return
+    if func_name not in _names:
+        warnings.warn(f"Function *{func_name}* has not been wrapped yet")
         return
     func = getattr(gsw, func_name)
     s = signature(func)
