@@ -21,14 +21,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+    - name: Set up latest uv and Python ${{ matrix.python-version }}
+      uses: astral-sh/setup-uv@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install / build
       run: |
-        python -m pip install --upgrade pip
-        pip install .
+        uv pip install .
         
   test:
     name: test (ubuntu-latest, ${{ matrix.python-version }}, ${{ matrix.pint }} Pint, packages version ${{ matrix.version }})
