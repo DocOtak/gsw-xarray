@@ -3,6 +3,7 @@ Functions that return tuples must have tuples
 (with the same length) as attributes and names
 """
 
+import warnings
 from inspect import _empty, signature
 
 import gsw
@@ -24,6 +25,9 @@ def test_(func_name):
         "gibbs_ice",
     ]:
         # Internal gsw cookery or non wrapped functions
+        return
+    if func_name not in _names:
+        warnings.warn(f"Function *{func_name}* has not been wrapped yet")
         return
     f = getattr(gsw, func_name)
     n_args = len(signature(f).parameters)
