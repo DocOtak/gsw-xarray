@@ -19,7 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 pint = [
-    "Pint>=0.24.1",
+    "Pint>=0.24.4",
     "pint-xarray>=0.6",
 ]
 
@@ -45,7 +45,7 @@ docs = [
     "ipykernel>=6.29.4",
     "netCDF4>=1.6.5; python_version <= '3.12'",
     "netCDF4>=1.7.2; python_version == '3.13'",
-    "Pint>=0.24.1",
+    "Pint>=0.24.4",
     "pint-xarray>=0.6",
     "dask>=2023.1.0",
 ]
