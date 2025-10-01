@@ -55,7 +55,7 @@ jobs:
     - if: matrix.pint == 'with'
       name: Install pint and pint-xarray
       run: |
-        uv sync --resolution ${{matrix.resolution}} --extra pint
+        uv sync --resolution ${{matrix.resolution}} --no-group docs --extra pint
     - name: Test with pytest
       run: |
         uv run --no-sync pytest gsw_xarray/tests
