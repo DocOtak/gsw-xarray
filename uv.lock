@@ -299,7 +299,7 @@ version = "1.6.4.post1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "numpy", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "numpy", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11' and python_full_version < '3.14'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/ab/c8/1155d1d58003105307c7e5985f422ae5bcb2ca0cbc553cc828f3c5a934a7/cftime-1.6.4.post1.tar.gz", hash = "sha256:50ac76cc9f10ab7bd46e44a71c51a6927051b499b4407df4f29ab13d741b942f", size = 54631, upload-time = "2024-10-22T18:48:34.194Z" }
 wheels = [
@@ -715,7 +715,7 @@ docs = [
     { name = "furo" },
     { name = "ipykernel" },
     { name = "nbsphinx" },
-    { name = "netcdf4", version = "1.6.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version != '3.13.*'" },
+    { name = "netcdf4", version = "1.6.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.13'" },
     { name = "netcdf4", version = "1.7.1.post1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.13.*'" },
     { name = "pint" },
     { name = "pint-xarray" },
@@ -751,7 +751,8 @@ docs = [
     { name = "furo", specifier = ">=2022.1.2" },
     { name = "ipykernel", specifier = ">=6.29.4" },
     { name = "nbsphinx", specifier = ">=0.9.2" },
-    { name = "netcdf4", specifier = ">=1.6.5" },
+    { name = "netcdf4", marker = "python_full_version < '3.13'", specifier = ">=1.6.5" },
+    { name = "netcdf4", marker = "python_full_version == '3.13.*'", specifier = ">=1.7" },
     { name = "pint", specifier = ">=0.20" },
     { name = "pint-xarray", specifier = ">=0.3" },
     { name = "sphinx", specifier = ">=8" },
@@ -1344,16 +1345,15 @@ name = "netcdf4"
 version = "1.6.5"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.14'",
     "python_full_version == '3.12.*'",
     "python_full_version == '3.11.*'",
     "python_full_version < '3.11'",
 ]
 dependencies = [
-    { name = "certifi", marker = "python_full_version != '3.13.*'" },
-    { name = "cftime", marker = "python_full_version != '3.13.*'" },
+    { name = "certifi", marker = "python_full_version < '3.13'" },
+    { name = "cftime", marker = "python_full_version < '3.13'" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "numpy", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14' or (python_full_version >= '3.11' and python_full_version < '3.13')" },
+    { name = "numpy", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11' and python_full_version < '3.13'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/da/f2/b7307966bf174559c80c0bdaaccebe1538efa3aef8e996d18229b01e9760/netCDF4-1.6.5.tar.gz", hash = "sha256:824881d0aacfde5bd982d6adedd8574259c85553781e7b83e0ce82b890bfa0ef", size = 764969, upload-time = "2023-10-25T15:20:20.812Z" }
 wheels = [
