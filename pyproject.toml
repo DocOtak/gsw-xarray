@@ -11,7 +11,7 @@ readme = "README.rst"
 license = "BSD-3-Clause"
 dependencies = [
     "xarray>=2023.09",
-    "gsw>=3.4.0",
+    "gsw>=3.4.2",
     "cf-xarray>=0.8",
 ]
 
