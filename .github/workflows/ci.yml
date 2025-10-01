@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest", "macos-latest"]
-        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12", "3.13"]
         pint: ["with", "without"]
         resolution: ["highest", "lowest-direct"]
     steps:
@@ -50,7 +50,7 @@ jobs:
       run: sudo apt-get install -y libudunits2-dev
     - name: Install dependencies
       run: |
-        uv sync --resolution ${{matrix.resolution}} --no-group doc
+        uv sync --resolution ${{matrix.resolution}} --no-group docs
         uv pip install cf_units==3.3.0
     - if: matrix.pint == 'with'
       name: Install pint and pint-xarray
