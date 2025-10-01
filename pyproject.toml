@@ -29,7 +29,8 @@ Documentation = "https://gsw-xarray.readthedocs.io/"
 
 [dependency-groups]
 dev = [
-    "pytest>=6.2.5",
+    "pytest>=6.2.5; python_version <= '3.13'",
+    "pytest>=8.4.0; python_version >= '3.14'",
     "pre-commit>=2.17.0,<3",
     "jupyterlab>=4.0.4",
     "netCDF4>=1.6.5; python_version <= '3.12'",
