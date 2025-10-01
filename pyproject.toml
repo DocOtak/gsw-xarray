@@ -6,13 +6,12 @@ authors = [
     { name = "Andrew Barna", email = "abarna@gmail.com" },
     { name = "Romain Caneill", email = "romain.caneill@ens-lyon.org" },
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 readme = "README.rst"
 license = "BSD-3-Clause"
 dependencies = [
     "xarray>=2023.09",
-    "gsw>=3.4.2; python_version <= '3.11'",
-    "gsw>=3.6.18; python_version == '3.12'",
+    "gsw>=3.6.18; python_version <= '3.12'",
     "gsw>=3.6.20; python_version == '3.13'",
     "gsw>=3.6.20; python_version == '3.14'",
     "cf-xarray>=0.8",
@@ -20,8 +19,8 @@ dependencies = [
 
 [project.optional-dependencies]
 pint = [
-    "Pint>=0.20",
-    "pint-xarray>=0.3",
+    "Pint>=0.24.1",
+    "pint-xarray>=0.6",
 ]
 
 [project.urls]
