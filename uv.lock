@@ -704,7 +704,7 @@ dev = [
     { name = "dask" },
     { name = "jupyterlab" },
     { name = "netcdf4", version = "1.6.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.13'" },
-    { name = "netcdf4", version = "1.7.1.post1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.13.*'" },
+    { name = "netcdf4", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.13.*'" },
     { name = "pre-commit" },
     { name = "pytest" },
     { name = "ruff" },
@@ -716,7 +716,7 @@ docs = [
     { name = "ipykernel" },
     { name = "nbsphinx" },
     { name = "netcdf4", version = "1.6.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.13'" },
-    { name = "netcdf4", version = "1.7.1.post1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.13.*'" },
+    { name = "netcdf4", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.13.*'" },
     { name = "pint" },
     { name = "pint-xarray" },
     { name = "sphinx" },
@@ -740,7 +740,7 @@ dev = [
     { name = "dask", specifier = ">=2023.1.0" },
     { name = "jupyterlab", specifier = ">=4.0.4" },
     { name = "netcdf4", marker = "python_full_version < '3.13'", specifier = ">=1.6.5" },
-    { name = "netcdf4", marker = "python_full_version == '3.13.*'", specifier = ">=1.7" },
+    { name = "netcdf4", marker = "python_full_version == '3.13.*'", specifier = ">=1.7.2" },
     { name = "pre-commit", specifier = ">=2.17.0,<3" },
     { name = "pytest", specifier = ">=6.2.5" },
     { name = "ruff", specifier = ">=0.4.5,<0.5" },
@@ -752,7 +752,7 @@ docs = [
     { name = "ipykernel", specifier = ">=6.29.4" },
     { name = "nbsphinx", specifier = ">=0.9.2" },
     { name = "netcdf4", marker = "python_full_version < '3.13'", specifier = ">=1.6.5" },
-    { name = "netcdf4", marker = "python_full_version == '3.13.*'", specifier = ">=1.7" },
+    { name = "netcdf4", marker = "python_full_version == '3.13.*'", specifier = ">=1.7.2" },
     { name = "pint", specifier = ">=0.20" },
     { name = "pint-xarray", specifier = ">=0.3" },
     { name = "sphinx", specifier = ">=8" },
@@ -1377,7 +1377,7 @@ wheels = [
 
 [[package]]
 name = "netcdf4"
-version = "1.7.1.post1"
+version = "1.7.2"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version == '3.13.*'",
@@ -1387,23 +1387,28 @@ dependencies = [
     { name = "cftime", marker = "python_full_version == '3.13.*'" },
     { name = "numpy", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.13.*'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4d/a2/a1cf9790177376209b8d4b3b2f1fb59157324cf60d3e84ced1b23b886ee2/netcdf4-1.7.1.post1.tar.gz", hash = "sha256:797f0b25d87827fc6821e415d9e15a2068604b18c3be62563e72682bcba76548", size = 827730, upload-time = "2024-06-25T18:13:28.91Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/71/ed/4d27fcfa40ebfdad3d2088a3de7ee48dbff7f35163e815ec1870d2a7398c/netcdf4-1.7.2.tar.gz", hash = "sha256:a4c6375540b19989896136943abb6d44850ff6f1fa7d3f063253b1ad3f8b7fce", size = 835064, upload-time = "2024-10-22T19:01:25.521Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/66/96/0bde1060419cbdef25b7e6511b343784e1fe0cc2cf0206acc8c42297a827/netCDF4-1.7.1.post1-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:5abdc8ab27bcb11325547841311717a0ba8f5b73a5fc5e93b933bc23285d0c03", size = 2954894, upload-time = "2024-06-25T18:11:04.273Z" },
-    { url = "https://files.pythonhosted.org/packages/05/cd/8e7b0818df1109baffcf36e60d638827ae29bae04559216c5f6f29c97fd1/netCDF4-1.7.1.post1-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:33f5d66ee9cedf43d3932d0e5447eb471f9c53332f93476133b4bfc6b682f790", size = 2439612, upload-time = "2024-06-25T18:11:06.885Z" },
-    { url = "https://files.pythonhosted.org/packages/2f/c7/31522a5202b381627cea1210cbbd1688975438cc24784e03a8c5e1f7be7d/netCDF4-1.7.1.post1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d649fad9d1f63e25a191576c7de158c8c3afa8d4b4001e8683e20da90b49b939", size = 9158044, upload-time = "2024-06-25T18:11:08.643Z" },
-    { url = "https://files.pythonhosted.org/packages/22/31/98f76169e039d3195dccfc7235a82ec33334efc1564051b25aac567e7bc3/netCDF4-1.7.1.post1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:860222bc57bbc714e55705f263162be2c935129dcb700a944bda61aee785ff03", size = 8997338, upload-time = "2024-06-25T18:11:11.529Z" },
-    { url = "https://files.pythonhosted.org/packages/48/2a/7b49b8f7f69bffce60db3819fa6bb8aefa971573eb6c74f16bc47ff6fcdf/netCDF4-1.7.1.post1-cp310-cp310-win_amd64.whl", hash = "sha256:d5420155ca6c768c070922d80acd9f4088a913afd25a9fd2f429e7af626374eb", size = 7046844, upload-time = "2024-06-25T18:11:14.374Z" },
-    { url = "https://files.pythonhosted.org/packages/4b/51/88330e764a0f1a3fd31f86c5946c3dc8295606ba2d8bedc184bb8bc89e99/netCDF4-1.7.1.post1-cp311-cp311-macosx_11_0_x86_64.whl", hash = "sha256:a8d3209516aa8c58d70863ab1059af4ec82ef8ecb1c6b8cb4842d7825a6f64da", size = 2959100, upload-time = "2024-06-25T18:11:16.184Z" },
-    { url = "https://files.pythonhosted.org/packages/14/60/acc2c10d7cc74a8ca8d0ee3d3ed5f7e9741f1ba546aacf3e54824bdaab37/netCDF4-1.7.1.post1-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:7a10da9b60d3358876d53a0cd691d2c900c2b39903bf25ad5235fd321d59eb2f", size = 2440717, upload-time = "2024-06-25T18:11:18.61Z" },
-    { url = "https://files.pythonhosted.org/packages/fc/96/4a942d320c51186adc455f2dae6a32f278d6297e5bafb97483c3c9794b56/netCDF4-1.7.1.post1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:30ac99e03d6e28419b206444fd6dc80a5e21d0ae8e53ff37d756fbc16c5d3775", size = 9399198, upload-time = "2024-06-25T18:11:21.286Z" },
-    { url = "https://files.pythonhosted.org/packages/e1/76/69e1f3f706fd11d3ff0c4c3a0017f46c7a19068587d5667e57e0ec7f0ab5/netCDF4-1.7.1.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e15f3afa4e6910fc158a318ea73fdc6f9e41058c71bf98a99fd63994334d16b0", size = 9234021, upload-time = "2024-06-25T18:11:25.336Z" },
-    { url = "https://files.pythonhosted.org/packages/01/15/21ba3bdc4a0ad93f6acffc3c67b634f89bc31ab5dbc0351cdc26069c37da/netCDF4-1.7.1.post1-cp311-cp311-win_amd64.whl", hash = "sha256:115160fc8e09333754542c33d721d42625a7bd62381a74f2f759297e3e38810b", size = 7051700, upload-time = "2024-06-25T18:11:27.745Z" },
-    { url = "https://files.pythonhosted.org/packages/7a/d7/36ca1c82b5836f98223d702b394c44813aa4c9c2e9222ed04d5f1d941e8e/netCDF4-1.7.1.post1-cp312-cp312-macosx_11_0_x86_64.whl", hash = "sha256:75bba24ef0354fb6913bc3acdcb3790534e86bf329bbeaaf54122b18e5fd05ea", size = 2932170, upload-time = "2024-06-25T18:11:30.124Z" },
-    { url = "https://files.pythonhosted.org/packages/e8/d6/bec0c20dfdd35f2d74dba8629a7dbc9f803a7806f98937e7cb8b9a47f619/netCDF4-1.7.1.post1-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:ce7f89b98dbb3acd9582db30e6478ce7a7003b2cb70dc20d85fe9506e65ab001", size = 2438571, upload-time = "2024-06-25T18:11:31.871Z" },
-    { url = "https://files.pythonhosted.org/packages/72/b1/96e9dab6f77f9066a99e88549a66be68fe9b9d8c4e5e9baf9204868a6c2b/netCDF4-1.7.1.post1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ac4e30a0d5a8e227d6a890502cfa201388acf606c0c73a5a7594232f3a74e67e", size = 9325599, upload-time = "2024-06-25T18:11:33.599Z" },
-    { url = "https://files.pythonhosted.org/packages/2a/9d/1dfb952373d37bf9205ac96df0ee949942821350fc1a8e49028b076f9798/netCDF4-1.7.1.post1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:988c45f9122337a12267fb158953c0609e3ea50a557335a3105f104416a4821a", size = 9204952, upload-time = "2024-06-25T18:11:36.467Z" },
-    { url = "https://files.pythonhosted.org/packages/e5/f4/f3766752af4e72b10421f4fd7cca765b6395f7a12acea9d91428ffac29a9/netCDF4-1.7.1.post1-cp312-cp312-win_amd64.whl", hash = "sha256:8fb3ed3541fa1b5b46e9d92d7e803734a1a3f37d8f5adf5fdf7957c7750cb20e", size = 7032623, upload-time = "2024-06-25T18:11:38.78Z" },
+    { url = "https://files.pythonhosted.org/packages/53/00/2b1fb43e46e3d986e961e420046453796d67200b58639bd29f18657a39b7/netCDF4-1.7.2-cp310-cp310-macosx_12_0_x86_64.whl", hash = "sha256:5e9b485e3bd9294d25ff7dc9addefce42b3d23c1ee7e3627605277d159819392", size = 2977508, upload-time = "2024-10-22T19:00:28.975Z" },
+    { url = "https://files.pythonhosted.org/packages/81/c2/a5001f25de53b7312609d2733ac887a5051c1ce196288af4b9777ead5a75/netCDF4-1.7.2-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:118b476fd00d7e3ab9aa7771186d547da645ae3b49c0c7bdab866793ebf22f07", size = 2461128, upload-time = "2024-10-22T19:00:31.415Z" },
+    { url = "https://files.pythonhosted.org/packages/da/33/ecb4790d053c58ec03f940ab55aacb59a207e356e57792cfd4b4eedbcc4d/netCDF4-1.7.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:abe5b1837ff209185ecfe50bd71884c866b3ee69691051833e410e57f177e059", size = 9210818, upload-time = "2024-10-22T19:00:33.436Z" },
+    { url = "https://files.pythonhosted.org/packages/db/a6/54f0f335b28228b89e1598fda950382c83b1d7b1f75d28c5eebbcb7f113e/netCDF4-1.7.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:28021c7e886e5bccf9a8ce504c032d1d7f98d86f67495fb7cf2c9564eba04510", size = 9059470, upload-time = "2024-10-22T19:00:35.394Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/ea/80b9feddd36721f92bac056a7dea41cd48bd4fc676f3f248fc48332d0bd2/netCDF4-1.7.2-cp310-cp310-win_amd64.whl", hash = "sha256:7460b638e41c8ce4179d082a81cb6456f0ce083d4d959f4d9e87a95cd86f64cb", size = 7005418, upload-time = "2024-10-22T19:00:37.774Z" },
+    { url = "https://files.pythonhosted.org/packages/a0/d8/b7079ecbab35f7c95ab27e5146fa91daf0e39ba76093f0fc1187fc748749/netCDF4-1.7.2-cp311-cp311-macosx_12_0_x86_64.whl", hash = "sha256:09d61c2ddb6011afb51e77ea0f25cd0bdc28887fb426ffbbc661d920f20c9749", size = 2981078, upload-time = "2024-10-22T19:00:39.93Z" },
+    { url = "https://files.pythonhosted.org/packages/4b/c1/ae83fdcc05d1db00a340f5f3e252247d73f11f8eaa890c59e7b5c8e35b56/netCDF4-1.7.2-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:fd2a16dbddeb8fa7cf48c37bfc1967290332f2862bb82f984eec2007bb120aeb", size = 2462104, upload-time = "2024-10-22T19:00:41.683Z" },
+    { url = "https://files.pythonhosted.org/packages/f2/bd/6f76916fae5d375eedd0cb48acd713d8d8db267d0c3cf3d209a4631923a5/netCDF4-1.7.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f54f5d39ffbcf1726a1e6fd90cb5fa74277ecea739a5fa0f424636d71beafe24", size = 9451498, upload-time = "2024-10-22T19:00:43.822Z" },
+    { url = "https://files.pythonhosted.org/packages/18/c1/7e564dbd28228ba4a35a272bf53b9a2e8b0ba9ac06b2c84b57c03c84e87b/netCDF4-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:902aa50d70f49d002d896212a171d344c38f7b8ca520837c56c922ac1535c4a3", size = 9283073, upload-time = "2024-10-22T19:00:45.925Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/ba/d26e8278ad8a2306580bab076b6d64cd16459a60e632e6c1a9cbb68dd3d9/netCDF4-1.7.2-cp311-cp311-win_amd64.whl", hash = "sha256:3291f9ad0c98c49a4dd16aefad1a9abd3a1b884171db6c81bdcee94671cfabe3", size = 7010215, upload-time = "2024-10-22T19:00:48.101Z" },
+    { url = "https://files.pythonhosted.org/packages/52/7f/3a0f18a39efca0e093b54d634b66573c25ecab5c482d73138ae14aa55c6d/netCDF4-1.7.2-cp312-cp312-macosx_12_0_x86_64.whl", hash = "sha256:e73e3baa0b74afc414e53ff5095748fdbec7fb346eda351e567c23f2f0d247f1", size = 2952127, upload-time = "2024-10-22T19:00:50.613Z" },
+    { url = "https://files.pythonhosted.org/packages/ed/c4/8aac0f8ca95a41bdf1364d34ff4e9bcc24494bfe69a1157301d884c2e392/netCDF4-1.7.2-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:a51da09258b31776f474c1d47e484fc7214914cdc59edf4cee789ba632184591", size = 2460781, upload-time = "2024-10-22T19:00:52.383Z" },
+    { url = "https://files.pythonhosted.org/packages/2d/1a/32b7427aaf62fed3d4e4456f874b25ce39373dbddf6cfde9edbcfc2417fc/netCDF4-1.7.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:cb95b11804fe051897d1f2044b05d82a1847bc2549631cdd2f655dde7de77a9c", size = 9377415, upload-time = "2024-10-22T19:00:54.412Z" },
+    { url = "https://files.pythonhosted.org/packages/fd/bf/5e671495c8bdf6b628e091aa8980793579474a10e51bc6ba302a3af6a778/netCDF4-1.7.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f9d8a848373723f41ef662590b4f5e1832227501c9fd4513e8ad8da58c269977", size = 9260579, upload-time = "2024-10-22T19:00:56.594Z" },
+    { url = "https://files.pythonhosted.org/packages/d4/57/0a0bcdebcfaf72e96e7bcaa512f80ee096bf71945a3318d38253338e9c25/netCDF4-1.7.2-cp312-cp312-win_amd64.whl", hash = "sha256:568ea369e00b581302d77fc5fd0b8f78e520c7e08d0b5af5219ba51f3f1cd694", size = 6991523, upload-time = "2024-10-22T19:00:58.97Z" },
+    { url = "https://files.pythonhosted.org/packages/e6/7a/ce4f9038d8726c9c90e07b2d3a404ae111a27720d712cfcded0c8ef160e8/netCDF4-1.7.2-cp313-cp313-macosx_12_0_x86_64.whl", hash = "sha256:205a5f1de3ddb993c7c97fb204a923a22408cc2e5facf08d75a8eb89b3e7e1a8", size = 2948911, upload-time = "2024-10-22T19:01:00.614Z" },
+    { url = "https://files.pythonhosted.org/packages/58/3e/5736880a607edabca4c4fc49f1ccf9a2bb2485f84478e4cd19ba11c3b803/netCDF4-1.7.2-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:96653fc75057df196010818367c63ba6d7e9af603df0a7fe43fcdad3fe0e9e56", size = 2455078, upload-time = "2024-10-22T19:01:02.674Z" },
+    { url = "https://files.pythonhosted.org/packages/71/96/d5d8859a6dac29f8ebc815ff8e75770bd513db9f08d7a711e21ae562a948/netCDF4-1.7.2-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:30d20e56b9ba2c48884eb89c91b63e6c0612b4927881707e34402719153ef17f", size = 9378149, upload-time = "2024-10-22T19:01:04.924Z" },
+    { url = "https://files.pythonhosted.org/packages/d1/80/b9c19f1bb4ac6c5fa6f94a4f278bc68a778473d1814a86a375d7cffa193a/netCDF4-1.7.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8d6bfd38ba0bde04d56f06c1554714a2ea9dab75811c89450dc3ec57a9d36b80", size = 9254471, upload-time = "2024-10-22T19:01:07.041Z" },
+    { url = "https://files.pythonhosted.org/packages/66/b5/e04550fd53de57001dbd5a87242da7ff784c80790adc48897977b6ccf891/netCDF4-1.7.2-cp313-cp313-win_amd64.whl", hash = "sha256:5c5fbee6134ee1246c397e1508e5297d825aa19221fdf3fa8dc9727ad824d7a5", size = 6990521, upload-time = "2024-10-23T15:02:27.549Z" },
 ]
 
 [[package]]
