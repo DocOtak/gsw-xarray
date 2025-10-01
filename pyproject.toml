@@ -11,7 +11,10 @@ readme = "README.rst"
 license = "BSD-3-Clause"
 dependencies = [
     "xarray>=2023.09",
-    "gsw>=3.4.2",
+    "gsw>=3.4.2; python_version <= '3.11'",
+    "gsw>=3.6.18; python_version == '3.12'",
+    "gsw>=3.6.20; python_version == '3.13'",
+    "gsw>=3.6.20; python_version == '3.14'",
     "cf-xarray>=0.8",
 ]
 
