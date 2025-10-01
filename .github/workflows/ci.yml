@@ -50,12 +50,12 @@ jobs:
       run: sudo apt-get install -y libudunits2-dev
     - name: Install dependencies
       run: |
-        uv sync --resolution ${{matrix.resolution}}
+        uv sync --resolution ${{matrix.resolution}} --no-group doc
         uv pip install cf_units==3.3.0
     - if: matrix.pint == 'with'
       name: Install pint and pint-xarray
       run: |
-        uv pip install pint
+        uv sync --resolution ${{matrix.resolution}} --extra pint
     - name: Test with pytest
       run: |
         uv run --no-sync pytest gsw_xarray/tests
