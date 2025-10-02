@@ -3,7 +3,7 @@ Changelog
 
 v0.5.0 - 2025-10-02
 ---------------------
-This release updates the constraints on packages, switch from poetry to uv, and support for python 3.9 and 3.10 is dropped, and 3.13 is added.
+This release updates the constraints on packages, switches from poetry to uv, drops support for python 3.9 and 3.10, and adds support for python 3.13 is added.
 No change on the core package python code has been made.
 
 v0.4.0 - 2024-05-29
