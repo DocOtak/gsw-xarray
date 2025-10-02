@@ -51,12 +51,14 @@ jobs:
     - name: Install dependencies
       run: |
         uv sync --resolution ${{matrix.resolution}} --no-group docs
-        export UDUNITS2_XML_PATH=/usr/share/xml/udunits/udunits2.xml
-        uv pip install cf_units==3.3.0
     - if: matrix.pint == 'with'
       name: Install pint and pint-xarray
       run: |
         uv sync --resolution ${{matrix.resolution}} --no-group docs --extra pint
+    - name: Install cf_units
+      run: |
+        export UDUNITS2_XML_PATH=/usr/share/xml/udunits/udunits2.xml
+        uv pip install cf_units==3.3.0
     - name: Test with pytest
       run: |
         uv run --no-sync pytest gsw_xarray/tests
