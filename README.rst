@@ -262,31 +262,30 @@ to open an issue in the `GitHub issues page <https://github.com/DocOtak/gsw-xarr
 In order to contribute to gsw-xarray, please fork the repository and
 submit a pull request. A good step by step tutorial for starting with git can be found in the
 `xarray contributor guide <https://xarray.pydata.org/en/stable/contributing.html#working-with-the-code>`_.
-A main difference is that we do not use conda as python environment, but poetry.
+A main difference is that we do not use conda as python environment, but uv.
 
 Set up the environment
 ......................
 
-You will first need to `install poetry <https://python-poetry.org/docs/#installation>`_.
+You will first need to `install uv <https://docs.astral.sh/uv/getting-started/installation/>`_.
 Then go to your local clone of gsw-xarray and launch installation:
 
 .. code:: bash
 
    cd /path/to/your/gsw-xarray
-   poetry install --with dev
+   uv sync --all-groups
 
-You can then activate the environment by launching a shell
-within the virtual environment:
+If desired, you can then activate the environment manually:
 
 .. code:: bash
 
-   poetry shell
+   source .venv/bin/activate
 
 You can check that the tests pass locally:
 
 .. code:: bash
 
-   pytest gsw_xarray/tests
+   uv run pytest gsw_xarray/tests
 
 You can install `pre-commit <https://pre-commit.com/#install>`_ to run the linting
 automatically at each commit.
